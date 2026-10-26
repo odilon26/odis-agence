@@ -1,0 +1,2365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Odi's Agence par Odi'Service Digital : point mobile money sans cahier</title>
+<meta name="theme-color" content="#0F766E">
+<meta name="description" content="Odi's Agence, une solution Odi'Service Digital (Aboisso, Côte d'Ivoire). Application pour gérants, gérantes, patrons et patronnes d'agences mobile money (Orange Money, Wave, MTN, Moov…) : point d'ouverture et de fermeture en 2 minutes, écart avec le budget calculé tout seul, résumé WhatsApp au patron. 7 jours d'essai gratuit.">
+<link rel="canonical" href="https://agence.odiservicedigital.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Odi's Agence">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://agence.odiservicedigital.com/">
+<meta property="og:title" content="Odi's Agence par Odi'Service Digital : le cahier, c'est fini">
+<meta property="og:description" content="Le point d'ouverture et de fermeture de votre agence mobile money en 2 minutes, sans cahier. 7 jours d'essai gratuit.">
+<meta property="og:image" content="https://agence.odiservicedigital.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Odi's Agence","applicationCategory":"BusinessApplication","operatingSystem":"Android, iOS, Windows (application web)","url":"https://agence.odiservicedigital.com/","description":"Point d'ouverture et de fermeture des agences mobile money en 2 minutes : écart avec le budget, crédits nommés, résumé WhatsApp au patron.","inLanguage":"fr","publisher":{"@type":"Organization","name":"Odi'Service Digital","alternateName":["Odi Service Digital","OdiService Digital","Odi'Service"],"sameAs":["https://www.facebook.com/Odiservicedigital","https://www.tiktok.com/@odiservice_digital","https://whatsapp.com/channel/0029VbDGiobBVJl1YH0iRv0K"],"address":{"@type":"PostalAddress","addressLocality":"Aboisso","addressCountry":"CI"}}}</script>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Odi's Agence">
+<style>
+:root{
+  /* Palette Odi's Agence V2.5 */
+  --dark:#0F172A; --teal:#0D9488; --teal-d:#0F766E; --teal-l:#CCFBF1; --sky-d:#0284C7; --dark2:#1E293B; --orange:#F59E0B;
+  --grad:linear-gradient(135deg,#0F766E,#0284C7); --grad-btn:linear-gradient(135deg,#0D9488,#0EA5E9);
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04); --shadow-md:0 4px 6px rgba(0,0,0,.07),0 2px 4px rgba(0,0,0,.05);
+  --r:12px; --r-sm:8px;
+  --deep:#0F766E; --title:#0F172A; --text:#0F172A; --muted:#64748B;
+  --bg:#F1F5F9; --surface:#FFFFFF; --surface-2:#FFFFFF; --line:#E2E8F0; --line-2:#F1F5F9; --track:#E2E8F0;
+  --lagoon:#0D9488; --lagoon-d:#0F766E; --lagoon-l:#CCFBF1; --sky:#0EA5E9; --sky-l:#E0F2FE; --sky-t:#0C4A6E; --sky-b:#BAE6FD;
+  --red:#EF4444; --red-l:#FEE2E2; --red-b:#FECACA; --green:#10B981; --green-l:#D1FAE5;
+  --amber-l:#FEF3C7; --amber-t:#92400E; --amber-b:#FDE68A; --filled:#99F6E4; --wave:#1DC8FF; --wave-ink:#04314A;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{height:100%}
+body{min-height:100%;font-family:var(--font);background:var(--bg);color:var(--text);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px;border-radius:6px}
+.hidden{display:none!important}
+.muted{color:var(--muted)} .small{font-size:13px}
+.neg{color:var(--red)} .pos{color:var(--green)} .zero{color:var(--title)}
+
+/* ── Écrans d'accueil (connexion, inscription, configuration) ── */
+.gate{min-height:100vh;display:grid;place-items:center;padding:24px 16px;background:var(--deep)}
+.gate-card{width:min(440px,100%);background:var(--surface);border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.stripe{height:5px;background:linear-gradient(90deg,var(--lagoon),var(--sky))}
+.gate-body{padding:28px 26px 26px}
+.g-brand{font-size:28px;font-weight:800;letter-spacing:-.025em;color:var(--title);line-height:1.1}
+.g-sub{color:var(--muted);margin-top:6px}
+.g-title{font-size:19px;font-weight:800;color:var(--title);margin-top:22px}
+.g-form{display:grid;gap:12px;margin-top:14px}
+.g-links{display:grid;gap:8px;margin-top:18px;justify-items:center;text-align:center}
+.g-err{color:var(--red);font-weight:600;font-size:14px;min-height:20px}
+.g-ok{color:var(--green);font-weight:600;font-size:14px}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font-weight:700;font-size:14px;color:var(--title)}
+.field small{color:var(--muted);font-size:12.5px}
+.txt{border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;background:var(--surface-2);width:100%;min-width:0}
+.txt:focus{outline:none;border-color:var(--lagoon);box-shadow:0 0 0 3px var(--lagoon-l)}
+textarea.txt{resize:vertical}
+.code-in{text-transform:uppercase;letter-spacing:.25em;font-weight:800;text-align:center;font-size:20px}
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* ── En-tête ── */
+.app-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:30}
+.top{background:var(--deep);color:#fff}
+.top-in{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px}
+.brand{font-weight:800;font-size:18px;letter-spacing:-.015em;line-height:1.2;min-width:0}
+.brand span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{display:block;font-weight:500;font-size:12.5px;opacity:.65}
+.top-right{margin-left:auto;display:flex;gap:8px;align-items:center;flex:none}
+.sync{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.1);white-space:nowrap}
+.sync i{width:8px;height:8px;border-radius:50%;background:#9AB7B3}
+.sync.ok i{background:#5FE0A6} .sync.wait i{background:#F2C14E} .sync.off i{background:#FF8B7E}
+.role{font-size:13px;font-weight:700;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:999px;white-space:nowrap}
+.btn-out{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700}
+.btn-out:hover{background:rgba(255,255,255,.08)}
+.tabs{background:var(--surface);border-bottom:1px solid var(--line)}
+.tabs-in{max-width:1100px;margin:0 auto;padding:0 12px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs-in::-webkit-scrollbar{display:none}
+.tab{display:inline-flex;align-items:center;gap:8px;background:none;border:0;border-bottom:3px solid transparent;padding:14px 13px 11px;font-weight:700;font-size:14px;color:var(--muted);white-space:nowrap}
+.tab:hover{color:var(--title)}
+.tab[aria-current="page"]{color:var(--title);border-bottom-color:var(--lagoon)}
+.tdot{width:8px;height:8px;border-radius:50%}
+.tdot.ok{background:var(--green)} .tdot.wait{background:#E2A23A} .tdot.bad{background:var(--red)}
+
+main{max-width:1100px;margin:0 auto;padding:28px 20px 96px}
+.view-head{margin-bottom:20px}
+.view-head h1{font-size:30px;line-height:1.15;font-weight:800;letter-spacing:-.025em;color:var(--title);text-wrap:balance}
+.view-head p{color:var(--muted);margin-top:6px;max-width:64ch}
+
+/* ── Boutons ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:10px 18px;font-weight:700;font-size:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--title);text-decoration:none;transition:background .15s,border-color .15s}
+.btn:hover{border-color:var(--lagoon)}
+.btn.primary{background:var(--lagoon);border-color:var(--lagoon);color:#fff}
+.btn.primary:hover{background:var(--lagoon-d);border-color:var(--lagoon-d)}
+.btn.danger{color:var(--red);border-color:var(--red-b)}
+.btn.danger:hover{background:var(--red-l)}
+.btn.wa{background:#1FA855;border-color:#1FA855;color:#fff}
+.btn.wave{background:var(--wave);border-color:var(--wave);color:var(--wave-ink)}
+.btn.block{width:100%;padding:13px 18px;font-size:15px}
+.btn.sm{padding:6px 12px;font-size:13px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.link{background:none;border:0;color:var(--lagoon-d);font-weight:700;text-decoration:underline;text-underline-offset:3px;padding:0;font-size:inherit}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
+.panel h2{font-size:17px;font-weight:800;color:var(--title);letter-spacing:-.01em}
+.panel > p{color:var(--muted);margin-top:6px;max-width:66ch}
+.notice{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-weight:600;background:var(--amber-l);color:var(--amber-t);border:1px solid var(--amber-b)}
+.notice.info{background:var(--sky-l);color:var(--sky-t);border-color:var(--sky-b)}
+.notice.bad{background:var(--red-l);color:var(--red);border-color:var(--red-b)}
+.notice span{min-width:0;flex:1 1 260px}
+
+/* ── Tableau de bord ── */
+.hero{background:var(--deep);color:#fff;border-radius:24px;padding:30px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:34px;margin-bottom:20px}
+.hero-k{font-size:15px;font-weight:700;color:rgba(255,255,255,.8)}
+.hero-when{font-size:14px;color:rgba(255,255,255,.55)}
+.ecart-big{font-size:clamp(42px,7.5vw,74px);font-weight:800;letter-spacing:-.04em;line-height:1;margin-top:16px}
+.hero .ecart-big.neg{color:#FF8B7E} .hero .ecart-big.pos{color:#5FE0A6} .hero .ecart-big.zero{color:#fff}
+.hero-tone{margin-top:12px;font-weight:600;color:rgba(255,255,255,.85)}
+.ruler{margin-top:24px}
+.ruler-track{position:relative;height:12px;border-radius:999px;background:rgba(255,255,255,.12)}
+.ruler-fill{position:absolute;top:0;bottom:0;left:50%;width:0;border-radius:999px;transition:left .8s cubic-bezier(.2,.8,.2,1),width .8s cubic-bezier(.2,.8,.2,1)}
+.ruler-fill.neg{background:#FF8B7E} .ruler-fill.pos{background:#5FE0A6} .ruler-fill.zero{background:#fff}
+.ruler-zero{position:absolute;left:50%;top:-5px;bottom:-5px;width:2px;margin-left:-1px;background:#fff;border-radius:2px}
+.ruler-scale{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.55);margin-top:8px}
+.ruler.light .ruler-track{background:var(--track)}
+.ruler.light .ruler-fill.neg{background:var(--red)} .ruler.light .ruler-fill.pos{background:var(--green)} .ruler.light .ruler-fill.zero{background:var(--title)}
+.ruler.light .ruler-zero{background:var(--title)} .ruler.light .ruler-scale{color:var(--muted)}
+.steps{list-style:none;display:grid;gap:10px}
+.steps li{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:12px 14px}
+.steps .mark{width:28px;height:28px;flex:none;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;border:2px solid rgba(255,255,255,.35)}
+.steps li.done .mark{background:var(--lagoon);border-color:var(--lagoon)}
+.steps .s-t{font-weight:700;display:block}
+.steps .s-m{font-size:13px;color:rgba(255,255,255,.6)}
+.steps .go{margin-left:auto;background:#fff;color:#0B3B3C;border:0;border-radius:999px;padding:7px 14px;font-weight:800;font-size:13px}
+.hero-kv{display:grid;gap:8px;margin-top:20px}
+.hero-kv div{display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.hero-kv dt{color:rgba(255,255,255,.65)} .hero-kv dd{font-weight:700}
+.hero-kv .tot{border-top:1px solid rgba(255,255,255,.15);padding-top:9px;margin-top:2px}
+.hero-kv .tot dt{color:#fff;font-weight:700}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.trio div{border-left:3px solid var(--line);padding-left:12px}
+.trio small{display:block;color:var(--muted);font-size:13px;font-weight:600}
+.trio b{font-size:19px;font-weight:800;display:block;margin-top:2px}
+.card-text{color:var(--muted);margin-top:6px}
+.card-act{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+.stack{display:flex;height:16px;border-radius:999px;overflow:hidden;margin-top:18px;background:var(--track);gap:2px}
+.stack span{height:100%}
+.legend{list-style:none;margin-top:14px;display:grid;gap:8px}
+.legend li{display:flex;align-items:center;gap:10px;font-size:14px}
+.legend .sw{width:10px;height:10px;border-radius:3px;flex:none}
+.legend .v{margin-left:auto;font-weight:700}
+.legend .pc{width:46px;text-align:right;color:var(--muted);font-size:13px}
+.month-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:34px 0 14px}
+.month-head h2{font-size:21px;font-weight:800;color:var(--title);letter-spacing:-.015em}
+.mnav{display:flex;align-items:center;gap:6px}
+.mnav button{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);font-size:17px;font-weight:800;color:var(--title);line-height:1}
+.mnav button:hover{border-color:var(--lagoon)}
+.mnav button:disabled{opacity:.35;cursor:not-allowed}
+.mnav span{min-width:150px;text-align:center;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:18px}
+.stats>div{padding:18px 20px;border-left:1px solid var(--line)}
+.stats>div:first-child{border-left:0}
+.stats small{color:var(--muted);font-size:13px;font-weight:600;display:block}
+.stats b{display:block;font-size:22px;font-weight:800;margin-top:4px;color:var(--title);letter-spacing:-.01em}
+.stats em{font-style:normal;font-size:12.5px;color:var(--muted)}
+.chart-panel{margin-top:16px}
+.chart-scroll{overflow-x:auto;margin-top:10px}
+.chart{width:100%;min-width:560px;height:auto;display:block}
+.c-zero{stroke:var(--title);stroke-width:1.5;stroke-dasharray:4 4;opacity:.45}
+.c-neg{fill:var(--red)} .c-pos{fill:var(--green)} .c-eq{fill:var(--title)}
+.c-ouv{fill:var(--surface);stroke:var(--sky);stroke-width:2.2}
+.c-lbl{font-size:11px;fill:var(--muted);font-family:var(--font)}
+.c-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:10px}
+.c-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.empty{text-align:center;padding:40px 20px}
+.empty h2{font-size:20px;font-weight:800;color:var(--title)}
+.empty p{color:var(--muted);margin:6px auto 18px;max-width:46ch}
+
+/* ── Formulaire de point ── */
+.datebar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.datebar label{font-weight:700;color:var(--title)}
+.datebar input{border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--surface)}
+.chip{font-size:12.5px;font-weight:800;background:var(--lagoon-l);color:var(--lagoon-d);padding:4px 10px;border-radius:999px}
+.form-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:20px;align-items:start}
+.block{border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:18px 20px 8px;margin-bottom:16px}
+.block h2{font-size:16px;font-weight:800;color:var(--title)}
+.block>p{margin:2px 0 6px}
+.op-row{display:grid;grid-template-columns:40px minmax(0,1fr) minmax(150px,210px);align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--line-2)}
+.op-row:last-child{border-bottom:0}
+.op-badge{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:11.5px;font-weight:800;background:var(--c);color:var(--fg)}
+.op-name label{font-weight:700;color:var(--title);display:block}
+.op-name small{color:var(--muted);font-size:12.5px}
+.money{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:var(--surface-2);padding:0 12px;transition:border-color .15s,box-shadow .15s}
+.money:focus-within{border-color:var(--lagoon);box-shadow:0 0 0 3px var(--lagoon-l);background:var(--surface)}
+.money.filled{border-color:var(--filled);background:var(--surface)}
+.money input{flex:1;min-width:0;border:0;background:transparent;padding:11px 0;font-size:17px;font-weight:700;text-align:right;outline:none}
+.money span{margin-left:6px;color:var(--muted);font-weight:700}
+.block .txt{margin:8px 0 12px}
+.live{position:sticky;top:calc(env(safe-area-inset-top,0px) + 128px);background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
+.live h2{font-size:16px;font-weight:800;color:var(--title);margin-bottom:10px}
+.lrow{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:5px 0}
+.lrow span{color:var(--muted)}
+.lrow.tot{border-top:1px solid var(--line);margin-top:6px;padding-top:10px}
+.lrow.tot span{color:var(--title);font-weight:700}
+.live-ecart{margin-top:16px;padding:16px;border-radius:14px;background:var(--bg);color:var(--title)}
+.live-ecart.neg{background:var(--red-l);color:var(--red)}
+.live-ecart.pos{background:var(--green-l);color:var(--green)}
+.live-ecart .lbl{font-weight:700;font-size:14px}
+.live-ecart .val{font-size:34px;font-weight:800;letter-spacing:-.025em;line-height:1.1;margin-top:4px}
+.live-ecart .ruler{margin-top:16px}
+.live-var{font-size:14px;margin-top:12px}
+.live-miss{font-size:13px;color:var(--muted);margin:12px 0}
+
+/* ── Point enregistré ── */
+.rec-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.badge{font-size:12.5px;font-weight:800;padding:4px 11px;border-radius:999px;background:var(--green-l);color:var(--green)}
+.badge.wait{background:var(--amber-l);color:var(--amber-t)}
+.badge.info{background:var(--sky-l);color:var(--sky-t)}
+.badge.bad{background:var(--red-l);color:var(--red)}
+.rec-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;margin-top:20px}
+.rec .ecart-big{margin-top:8px}
+.rec-tone{font-weight:700;margin-top:8px}
+.rec-var{margin-top:14px;font-size:14px}
+.kv{display:grid}
+.kv div{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.kv dt{color:var(--muted)} .kv dd{font-weight:700;text-align:right}
+.kv .tot{border-bottom:0;border-top:1.5px solid var(--line);margin-top:4px}
+.kv .tot dt{color:var(--title);font-weight:700}
+.sub{font-size:15px;font-weight:800;color:var(--title);margin-top:26px}
+.note{margin-top:16px;background:var(--bg);border-radius:10px;padding:10px 12px;font-size:14px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.share{margin-top:22px;padding-top:18px;border-top:1px solid var(--line-2)}
+.share h3{font-size:15px;font-weight:800;color:var(--title)}
+.share p{font-size:13.5px;color:var(--muted);margin-top:2px}
+.tbl-wrap{overflow-x:auto;margin-top:10px}
+table.cmp{width:100%;border-collapse:collapse;font-size:14px;min-width:460px}
+.cmp th{text-align:right;font-size:12.5px;color:var(--muted);font-weight:700;padding:8px 10px;border-bottom:1.5px solid var(--line)}
+.cmp th:first-child,.cmp td:first-child{text-align:left}
+.cmp td{text-align:right;padding:9px 10px;border-bottom:1px solid var(--line-2)}
+.cmp tr.sum td{font-weight:800;border-top:1.5px solid var(--line);border-bottom:0}
+
+/* ── Historique ── */
+.days{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+.day{min-width:0}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.day summary{list-style:none;display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr)) 18px;gap:12px;align-items:center;padding:14px 18px;cursor:pointer}
+.day summary::-webkit-details-marker{display:none}
+.day[open]{border-color:var(--filled)}
+.d-date{font-weight:700;color:var(--title)}
+.d-cell small{display:block;font-size:12px;color:var(--muted);font-weight:600}
+.d-cell b{font-weight:800}
+.d-cell em{font-style:normal;color:var(--muted)}
+.chev{width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);margin-top:-4px;transition:transform .2s}
+.day[open] .chev{transform:rotate(225deg);margin-top:4px}
+.day-body{padding:0 18px 18px;border-top:1px solid var(--line-2)}
+
+/* ── Abonnement ── */
+.sub-card{border-radius:18px;padding:22px;border:1px solid var(--line);background:var(--surface)}
+.sub-card.ok{background:var(--green-l);border-color:color-mix(in srgb,var(--green) 25%,transparent)}
+.sub-card.warn{background:var(--amber-l);border-color:var(--amber-b)}
+.sub-card.info{background:var(--sky-l);border-color:var(--sky-b)}
+.sub-card.bad{background:var(--red-l);border-color:var(--red-b)}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;padding:4px 11px;border-radius:999px;background:var(--surface)}
+.pill i{width:8px;height:8px;border-radius:50%;background:currentColor}
+.pill.ok{color:var(--green)} .pill.warn{color:var(--amber-t)} .pill.info{color:var(--sky-t)} .pill.bad{color:var(--red)}
+.sub-days{display:flex;align-items:baseline;gap:8px;margin-top:12px}
+.sub-days b{font-size:44px;font-weight:800;line-height:1;color:var(--title)}
+.meter{height:8px;border-radius:999px;background:color-mix(in srgb,var(--title) 10%,transparent);overflow:hidden;margin-top:12px}
+.meter span{display:block;height:100%;border-radius:999px;background:var(--lagoon)}
+.msg{margin-top:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13.5px;white-space:pre-wrap;word-break:break-word}
+.plist{list-style:none;display:grid;gap:8px;margin-top:12px}
+.plist li{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:14px;padding:10px 12px;background:var(--bg);border-radius:10px}
+
+/* ── Réglages / Console ── */
+.sets{display:grid;gap:16px;max-width:760px}
+.inline{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;align-items:flex-end}
+.inline .money,.inline .field{flex:1;min-width:180px}
+.invite{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:14px}
+.invite b{font-size:26px;letter-spacing:.2em;color:var(--title);font-weight:800;background:var(--bg);border:1.5px dashed var(--line);border-radius:12px;padding:8px 16px}
+.team{list-style:none;display:grid;gap:8px;margin-top:14px}
+.team li{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;background:var(--bg);border-radius:10px;font-size:14px}
+.set.danger{border-color:var(--red-b)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi small{display:block;font-size:12.5px;font-weight:700;color:var(--muted)}
+.kpi b{display:block;font-size:24px;font-weight:800;color:var(--title);margin-top:2px}
+table.adm{width:100%;border-collapse:collapse;min-width:720px;font-size:14px}
+.adm th{text-align:left;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);padding:10px;border-bottom:1.5px solid var(--line)}
+.adm td{padding:12px 10px;border-bottom:1px solid var(--line-2);vertical-align:middle}
+.adm tr.attn td{background:color-mix(in srgb,var(--sky) 9%,transparent)}
+.adm .name{font-weight:700;color:var(--title)}
+.adm .subl{font-size:12.5px;color:var(--muted)}
+.tdact{display:flex;gap:6px;flex-wrap:wrap}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.filters button{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;color:var(--muted)}
+.filters button[aria-pressed="true"]{background:var(--lagoon-l);color:var(--title);border-color:var(--lagoon)}
+
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 24px);transform:translate(-50%,20px);background:var(--deep);color:#fff;padding:12px 18px;border-radius:12px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:min(92vw,520px);z-index:100;box-shadow:0 10px 30px rgba(11,59,60,.25)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.err{background:var(--red)}
+.spin{width:34px;height:34px;border-radius:50%;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;animation:sp 1s linear infinite;margin:0 auto}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+@media (max-width:860px){
+  .hero,.row2,.form-grid,.rec-grid{grid-template-columns:1fr}
+  .live{position:static}
+  .stats,.kpis{grid-template-columns:1fr 1fr}
+  .stats>div:nth-child(3){border-left:0}
+  .stats>div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:560px){
+  main{padding:20px 16px 80px}
+  .top-in{padding:10px 16px}
+  .brand small,.role{display:none}
+  .hero{padding:22px;border-radius:20px;gap:24px}
+  .view-head h1{font-size:26px}
+  .op-row{grid-template-columns:36px minmax(0,1fr)}
+  .op-badge{width:36px;height:36px}
+  .op-row .money{grid-column:1/-1}
+  .day summary{grid-template-columns:repeat(3,minmax(0,1fr)) 18px}
+  .d-date{grid-column:1/-1}
+  .trio b{font-size:16px}
+  .split2{grid-template-columns:1fr}
+  .sync span{max-width:110px;overflow:hidden;text-overflow:ellipsis}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ═════════ Habillage V2.5 ═════════ */
+body{font-size:14px;line-height:1.45}
+.stripe{display:none}
+/* Écrans de connexion */
+.gate{background:var(--grad)}
+.gate-card{border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.gate-body{padding:2.5rem 2rem 2rem}
+.g-brand{text-align:center;font-size:1.6rem;font-weight:800;letter-spacing:-.01em}
+.g-brand span{color:var(--teal)}
+.g-sub{text-align:center;font-size:13px;margin-top:4px}
+.g-title{font-size:15px;margin-top:1.75rem}
+.field label{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.txt{border:1.5px solid var(--line);border-radius:var(--r-sm);padding:10px 12px;background:#fff;font-size:14px}
+.txt:focus{border-color:var(--teal);box-shadow:none}
+.code-in{border-width:2px;font-size:1.3rem;letter-spacing:.3em}
+/* Boutons */
+.btn{border-radius:var(--r-sm);font-size:13px;font-weight:600;padding:9px 16px;border:1.5px solid var(--line)}
+.btn.primary{background:var(--grad-btn);border:0;color:#fff;font-weight:700}
+.btn.primary:hover{background:var(--grad-btn);opacity:.9}
+.btn.block{padding:13px;font-size:15px;font-weight:700}
+.btn.danger{background:var(--red-l);color:var(--red);border-color:transparent}
+.btn.danger:hover{background:#FECACA}
+.btn.sm{padding:5px 10px;font-size:11.5px;border-radius:6px}
+.link{color:var(--teal)}
+/* En-tête */
+.top{background:var(--grad);box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.top-in{max-width:680px;padding:0 1rem;height:56px}
+.brand{font-size:15px;font-weight:800;letter-spacing:-.3px}
+.brand small{font-size:11.5px;font-weight:400;opacity:.7}
+.role{font-size:12px;font-weight:600;background:rgba(255,255,255,.15);padding:5px 12px;border-radius:20px}
+.sync{font-size:11.5px;font-weight:600;background:rgba(255,255,255,.15);padding:5px 10px;border-radius:20px}
+.btn-out{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--r-sm);padding:6px 12px;font-size:12px;font-weight:600}
+.tabs{background:#fff;border-bottom:1px solid var(--line)}
+.tabs-in{max-width:680px;padding:0 1rem;gap:0}
+.tab{padding:14px 12px;font-size:13px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent}
+.tab[aria-current="page"]{color:var(--teal);border-bottom-color:var(--teal);font-weight:700}
+/* Contenu */
+main{max-width:680px;padding:1rem 1rem 80px}
+.view-head{margin-bottom:1.25rem}
+.view-head h1{font-size:1.1rem;font-weight:800;letter-spacing:0}
+.view-head p{font-size:12px;margin-top:4px}
+.panel,.block,.live,.sub-card,.day,.kpi{border:0;border-radius:var(--r);box-shadow:var(--shadow)}
+.panel{padding:1.25rem}
+.panel h2,.block h2,.live h2{font-size:14px;font-weight:700}
+.panel > p,.card-text{font-size:13px}
+.notice{border-radius:var(--r-sm);padding:12px 14px;font-size:13px;font-weight:500;margin-bottom:1rem}
+/* Grilles en une colonne, comme la V2.5 */
+.hero,.row2,.form-grid,.rec-grid{grid-template-columns:1fr}
+.row2{gap:1rem}
+.live{position:static}
+/* Carte principale (écart) */
+.hero{background:var(--grad);border-radius:var(--r);padding:1.25rem;gap:1.25rem;margin-bottom:1rem}
+.hero-k{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.75)}
+.hero-when{font-size:12px;color:rgba(255,255,255,.65)}
+.ecart-big{font-size:2.2rem;letter-spacing:-.02em;margin-top:10px}
+.hero .ecart-big.neg{color:#FECACA} .hero .ecart-big.pos{color:#A7F3D0}
+.hero-tone{font-size:13px}
+.ruler-fill.neg{background:#FCA5A5} .ruler-fill.pos{background:#6EE7B7}
+.steps li{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);border-radius:var(--r-sm);padding:10px 12px}
+.steps li.done .mark{background:#fff;border-color:#fff;color:var(--teal-d)}
+.steps .go{color:var(--teal-d);border-radius:var(--r-sm)}
+/* Cartes statistiques à bordure colorée */
+.stats,.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;background:none;border:0;border-radius:0}
+.stats>div,.kpi{background:#fff;border:0!important;border-left:4px solid var(--teal)!important;border-radius:var(--r);box-shadow:var(--shadow);padding:1rem 1.1rem}
+.stats>div:nth-child(2),.kpi:nth-child(2){border-left-color:var(--sky)!important}
+.stats>div:nth-child(3),.kpi:nth-child(3){border-left-color:var(--orange)!important}
+.stats>div:nth-child(4),.kpi:nth-child(4){border-left-color:var(--red)!important}
+.stats small,.kpi small,.trio small,.d-cell small{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.stats b,.kpi b{font-size:1.25rem;font-weight:800}
+.stats em{font-size:11px}
+.trio div{border-left:3px solid var(--teal)}
+.trio div:nth-child(2){border-left-color:var(--sky)} .trio div:nth-child(3){border-left-color:var(--orange)}
+.month-head{margin:1.5rem 0 .75rem}
+.month-head h2{font-size:1rem}
+.mnav button{border-radius:var(--r-sm)}
+/* Saisie */
+.datebar input{border-radius:var(--r-sm)}
+.op-row{background:var(--bg);border:0;border-radius:var(--r-sm);padding:10px 12px;margin-bottom:8px}
+.block{padding:1.1rem 1.1rem .6rem}
+.op-badge{border-radius:50%}
+.money{border-radius:var(--r-sm);background:#fff}
+.money:focus-within{box-shadow:none;border-color:var(--teal)}
+.money input{font-size:15px}
+.live{background:linear-gradient(135deg,var(--dark),var(--dark2));color:#fff}
+.live h2{color:#fff}
+.live .lrow span{color:rgba(255,255,255,.65)}
+.live .lrow.tot{border-top-color:rgba(255,255,255,.2)} .live .lrow.tot span{color:#fff}
+.live-ecart{background:rgba(255,255,255,.08);color:#fff}
+.live-ecart.neg{background:rgba(239,68,68,.18);color:#FCA5A5}
+.live-ecart.pos{background:rgba(16,185,129,.18);color:#6EE7B7}
+.live-ecart .val{font-size:1.6rem}
+.live .ruler.light .ruler-track{background:rgba(255,255,255,.15)} .live .ruler.light .ruler-zero{background:#fff} .live .ruler.light .ruler-scale{color:rgba(255,255,255,.55)}
+.live-miss,.live-var{color:rgba(255,255,255,.75)}
+.live .btn:not(.primary){background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+/* Historique, abonnement, console */
+.day summary{padding:12px 14px}
+.day{border-left:4px solid var(--teal)}
+.badge,.pill{border-radius:20px;font-size:11px;font-weight:700}
+.sub-card{padding:1.25rem}
+.sub-card.ok{background:#fff;border-left:4px solid var(--green)}
+.sub-card.warn{background:#fff;border-left:4px solid var(--orange)}
+.sub-card.info{background:#fff;border-left:4px solid var(--sky)}
+.sub-card.bad{background:#fff;border-left:4px solid var(--red)}
+.pill{background:var(--bg)}
+.sub-days b{font-size:2.2rem}
+.meter span{background:var(--grad-btn)}
+.plist li,.team li{border-radius:var(--r-sm)}
+.invite b{border-radius:var(--r-sm)}
+.filters button{border-radius:20px;font-size:12px;font-weight:600}
+.filters button[aria-pressed="true"]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.adm tr.attn td{background:var(--sky-l)}
+.toast{background:var(--dark);border-radius:30px;font-size:13px;font-weight:600;padding:10px 20px}
+.toast.err{background:var(--red)}
+@media (max-width:560px){ .top-in{padding:0 1rem} main{padding:1rem 1rem 80px} .hero{padding:1.1rem} .view-head h1{font-size:1.1rem} }
+@media (max-width:560px){
+  .op-row{grid-template-columns:32px minmax(0,1fr) 150px;gap:10px}
+  .op-row .money{grid-column:auto}
+  .op-badge{width:32px;height:32px;font-size:10px}
+  .op-name small{display:none}
+  .money input{font-size:14px;padding:9px 0}
+  .tbl-wrap:has(table.adm){overflow:visible}
+  table.adm{min-width:0}
+  .adm thead{display:none}
+  .adm,.adm tbody,.adm tr,.adm td{display:block}
+  .adm tr{background:var(--bg);border-radius:var(--r-sm);padding:10px 12px;margin-bottom:8px}
+  .adm td{border:0;padding:3px 0}
+  .adm tr.attn td{background:none} .adm tr.attn{background:var(--sky-l)}
+  .adm tr{display:grid;grid-template-columns:1fr 1fr;column-gap:12px}
+  .adm td:first-child,.adm td:nth-child(4),.adm td:last-child{grid-column:1/-1}
+  .adm td:nth-child(2),.adm td:nth-child(3){font-size:13px}
+  .adm td:last-child{padding-top:8px}
+}
+@media (max-width:380px){ .stats,.kpis{grid-template-columns:1fr} }
+
+/* ═════════ Ordinateur (écrans larges) ═════════ */
+@media (min-width:900px){
+  .top-in,.tabs-in{max-width:1180px;padding-left:24px;padding-right:24px}
+  main{max-width:1180px;padding:28px 24px 60px}
+  .view-head h1{font-size:1.5rem}
+  .view-head p{font-size:13.5px}
+  .hero{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px;padding:1.75rem}
+  .ecart-big{font-size:3.2rem}
+  .row2{grid-template-columns:1fr 1fr;gap:1.25rem}
+  .stats,.kpis{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+  .form-grid{grid-template-columns:minmax(0,1.5fr) minmax(320px,1fr);gap:1.5rem}
+  .live{position:sticky;top:130px}
+  .op-row{grid-template-columns:40px minmax(0,1fr) 220px}
+  .rec-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .sets{max-width:none;grid-template-columns:1fr 1fr;align-items:start}
+  .notice,.install-card{max-width:none}
+}
+
+/* ═════════ Comptes, suggestions, mot de passe ═════════ */
+.acct-btn{position:relative;width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.55);background:rgba(255,255,255,.18);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;padding:0}
+.acct-btn:hover{background:rgba(255,255,255,.28)}
+.acct-btn i{position:absolute;top:-5px;right:-5px;min-width:17px;height:17px;border-radius:9px;background:#F59E0B;color:#fff;font-style:normal;font-size:10.5px;font-weight:800;display:grid;place-items:center;padding:0 4px;border:2px solid #0F766E}
+.acct-menu{position:fixed;top:calc(env(safe-area-inset-top,0px) + 60px);right:12px;width:min(330px,calc(100vw - 24px));background:#fff;border-radius:16px;box-shadow:0 18px 50px rgba(15,23,42,.25),0 0 0 1px rgba(15,23,42,.06);padding:8px;z-index:200;max-height:calc(100vh - 90px);overflow:auto}
+.am-h{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:8px 10px 6px}
+.am-row,.am-act{display:flex;align-items:center;gap:11px;width:100%;border:0;background:none;text-align:left;padding:9px 10px;border-radius:10px;color:var(--title);font-size:14px;font-weight:600}
+.am-row:hover,.am-act:hover{background:var(--bg)}
+.am-row.cur{background:var(--teal-l)}
+.am-t{flex:1;min-width:0}
+.am-t b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.am-t small{display:block;font-size:12px;color:var(--muted);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.am-ok{color:var(--teal);font-weight:900}
+.av{width:34px;height:34px;flex:none;border-radius:50%;background:var(--grad-btn);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:800}
+.av.plus{background:var(--bg);color:var(--teal);font-size:20px;border:1.5px dashed var(--teal)}
+.av.ic{background:var(--bg);font-size:15px}
+.am-act.out{color:var(--red)}
+.am-sep{height:1px;background:var(--line);margin:6px 4px}
+.g-accts{margin-top:22px;border-top:1px solid var(--line);padding-top:14px;display:grid;gap:4px;justify-items:stretch;text-align:center}
+.g-accts>p{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:300;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal-card{background:#fff;border-radius:18px;padding:20px;width:100%;max-width:440px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.modal-top{display:flex;justify-content:space-between;align-items:center}
+.modal-top h2{font-size:17px;font-weight:800;color:var(--title)}
+.modal-x{width:34px;height:34px;border-radius:50%;border:0;background:var(--bg);font-size:22px;line-height:1;color:var(--muted)}
+.sug-types{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.sug-types button{flex:1;min-width:90px;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:9px 6px;font-weight:700;font-size:13px;color:var(--muted)}
+.sug-types button[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-l);color:var(--teal-d)}
+.pw-wrap{position:relative;display:block}
+.pw-wrap .txt{padding-right:46px}
+.pw-eye{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:38px;height:38px;border:0;background:none;color:var(--muted);display:grid;place-items:center;border-radius:8px}
+.pw-eye:hover{color:var(--teal);background:var(--bg)}
+
+/* Choix des opérateurs */
+.ops-g{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px}
+.ops-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.op-chk{display:flex;align-items:center;gap:9px;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:600;font-size:13.5px;color:var(--title);background:#fff}
+.op-chk:has(input:checked){border-color:var(--teal);background:var(--teal-l)}
+.op-chk input{width:18px;height:18px;accent-color:var(--teal);flex:none}
+.op-chk .op-badge{width:28px;height:28px;font-size:9px;flex:none}
+.ops-custom{display:grid;gap:8px}
+
+.op-badge.logo{background:#fff;padding:0;overflow:hidden;box-shadow:0 0 0 1px rgba(15,23,42,.08)}
+.op-badge.logo img{width:100%;height:100%;object-fit:cover;display:block}
+
+.faq details{border-bottom:1px solid var(--line-2);padding:4px 0}
+.faq summary{cursor:pointer;font-weight:700;color:var(--title);padding:10px 0;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.faq summary::after{content:'+';color:var(--teal);font-size:20px;line-height:1}
+.faq details[open] summary::after{content:'−'}
+.faq summary::-webkit-details-marker{display:none}
+.faq p{color:var(--muted);font-size:13.5px;padding:0 0 12px}
+.news{margin:14px 0 18px 18px;display:grid;gap:9px;font-size:14px;color:var(--title)}
+.sugs li{display:grid;gap:6px}
+.sg-m{white-space:pre-wrap;color:var(--title)}
+a.am-act{text-decoration:none}
+
+.esp-tools{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:-2px 0 10px 46px}
+.esp-detail{flex-basis:100%;color:#0F766E;font-weight:600}
+@media (max-width:560px){ .esp-tools{margin-left:0} }
+.cred-box{margin:6px 0 4px;padding:12px;border:1px dashed var(--line);border-radius:12px;background:var(--surface)}
+.cred-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.cred-carry{background:var(--amber-l);color:var(--amber-t);border-radius:8px;padding:6px 8px;margin:0 0 8px}
+.cred-row{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:6px;align-items:center;padding:8px 0;border-top:1px solid var(--line-2)}
+.cred-row .money{min-width:0}
+.cred-row .cred-t{min-width:0}
+.cred-age{font-size:12px;font-weight:700;color:var(--muted);text-align:center}
+.cred-age.late{color:var(--red)}
+.cred-act{grid-column:1/-1;display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap}
+@media (min-width:700px){ .cred-row{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr) 54px auto} .cred-act{grid-column:auto} }
+.cnt-h{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 4px}
+.cnt-row{display:grid;grid-template-columns:1fr 90px 110px;gap:8px;align-items:center;padding:4px 0}
+.cnt-row input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:10px;font:inherit;text-align:right}
+.cnt-row b{text-align:right;font-size:13px}
+.cnt-total{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding:12px;border-radius:12px;background:var(--surface-2, #F1F5F9);font-size:17px}
+#modal .modal-card{max-height:90vh;overflow:auto}
+.cnt-foot{position:sticky;bottom:-1px;background:#fff;padding-bottom:4px;margin-top:8px}
+</style>
+</head>
+<body>
+<noscript><h1>Odi's Agence</h1><p>Application pour les agences mobile money (Orange Money, Wave, MTN, Moov, Djamo, Western Union…) : point d'ouverture et de fermeture en 2 minutes, écart avec le budget voté calculé tout seul, compteur de billets, crédits nommés, résumé WhatsApp au patron, fonctionne sans réseau. 7 jours d'essai gratuit. Née à Aboisso, en Côte d'Ivoire, pensée pour toutes les agences mobile money, partout. Une solution Odi'Service Digital.</p><p>Activez JavaScript pour utiliser l'application.</p></noscript>
+
+<div id="gate" class="gate"><div class="gate-card"><div class="stripe"></div><div class="gate-body" id="gate-body"><div class="spin" style="border-color:var(--line);border-top-color:var(--lagoon)"></div></div></div></div>
+
+<div id="app" class="hidden">
+  <div class="app-head">
+    <div class="top">
+      <div class="top-in">
+        <div class="brand"><span id="top-name">Odi's Agence</span><small id="top-date"></small></div>
+        <div class="top-right">
+          <span class="sync ok" id="sync" role="status"><i aria-hidden="true"></i><span>Synchronisé</span></span>
+          <span class="role" id="top-role"></span>
+          <button class="acct-btn" data-action="acct-menu" aria-haspopup="true" aria-label="Comptes et options"><span id="acct-btn">?</span><i id="acct-n" class="hidden">1</i></button>
+        </div>
+      </div>
+      <div class="stripe"></div>
+    </div>
+    <nav class="tabs" aria-label="Navigation"><div class="tabs-in" id="tabs"></div></nav>
+  </div>
+  <main id="main"></main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div id="acct-menu" class="acct-menu hidden" role="menu"></div>
+<div id="modal" class="modal hidden"></div>
+
+<script src="config.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+'use strict';
+
+/* ═════════ Configuration ═════════ */
+const CFG = window.ODIS_CONFIG || {};
+const GRACE_DAYS = 3, REMIND_DAYS = 3;   // doivent correspondre aux règles Firestore
+// Catalogue des opérateurs exerçant en Côte d'Ivoire. Chaque point de vente choisit les siens dans Réglages.
+const OP_CATALOG = [
+  { k:'om',     n:'Orange Money',     a:'OM',   c:'#FF7900', fg:'#FFFFFF', g:'Mobile money' },
+  { k:'wave',   n:'Wave',             a:'W',    c:'#1DC8FF', fg:'#04314A', g:'Mobile money' },
+  { k:'mtn',    n:'MTN MoMo',         a:'MTN',  c:'#FFCB05', fg:'#3A2E00', g:'Mobile money' },
+  { k:'moov',   n:'Moov Money',       a:'Moov', c:'#0A6EBD', fg:'#FFFFFF', g:'Mobile money' },
+  { k:'tom',    n:'Transfert Orange', a:'TO',   c:'#B4430E', fg:'#FFFFFF', g:'Mobile money' },
+  { k:'peya',   n:'Peya Pay',         a:'PP',   c:'#7C3AED', fg:'#FFFFFF', g:'Mobile money' },
+  { k:'tresor', n:'Trésor Money',     a:'TM',   c:'#0F766E', fg:'#FFFFFF', g:'Mobile money' },
+  { k:'djamo',  n:'Djamo',            a:'DJ',   c:'#111827', fg:'#FFFFFF', g:'Fintech' },
+  { k:'push',   n:'Push',             a:'PU',   c:'#12AD07', fg:'#FFFFFF', g:'Fintech' },
+  { k:'julaya', n:'Julaya',           a:'JU',   c:'#2563EB', fg:'#FFFFFF', g:'Fintech' },
+  { k:'cinetpay', n:'CinetPay',       a:'CP',   c:'#16A34A', fg:'#FFFFFF', g:'Fintech' },
+  { k:'feexpay', n:'FeexPay',         a:'FX',   c:'#EA580C', fg:'#FFFFFF', g:'Fintech' },
+  { k:'dunya',  n:'PayDunya',            a:'DU',   c:'#0D9488', fg:'#FFFFFF', g:'Fintech' },
+  { k:'paymetrust', n:'Paymetrust',   a:'PT',   c:'#1E3A8A', fg:'#FFFFFF', g:'Fintech' },
+  { k:'touchpoint', n:'Touchpoint',   a:'TP',   c:'#DB2777', fg:'#FFFFFF', g:'Fintech' },
+  { k:'syca',   n:'SycaPay',             a:'SY',   c:'#4B5563', fg:'#FFFFFF', g:'Fintech' },
+  { k:'wu',     n:'Western Union',    a:'WU',   c:'#FFDD00', fg:'#111111', g:'Transfert international' },
+  { k:'mg',     n:'MoneyGram',        a:'MG',   c:'#DA291C', fg:'#FFFFFF', g:'Transfert international' },
+  { k:'ria',    n:'Ria',              a:'RIA',  c:'#F26522', fg:'#FFFFFF', g:'Transfert international' },
+  { k:'nita',   n:'NITA',             a:'NT',   c:'#B45309', fg:'#FFFFFF', g:'Transfert international' }
+];
+const LOGOS = ['om','wave','mtn','moov','tresor','djamo','push','wu','mg','nita','ria','touchpoint','paymetrust','dunya','feexpay','cinetpay','julaya','peya','syca'];
+function opBadge(o, extra){
+  return LOGOS.includes(o.k)
+    ? `<span class="op-badge logo${extra?' '+extra:''}" aria-hidden="true"><img src="logos/${o.k}.png" alt="" loading="lazy"></span>`
+    : `<span class="op-badge${extra?' '+extra:''}" style="--c:${o.c};--fg:${o.fg}" aria-hidden="true">${o.a}</span>`;
+}
+const CUSTOM_KEYS = ['c1','c2','c3'], CUSTOM_COLORS = ['#475569','#9333EA','#0891B2'];
+const DEFAULT_OPS = ['om','wave','mtn','moov','tom'];
+function opInfo(k, ag){
+  const c = OP_CATALOG.find(o=>o.k===k); if(c) return c;
+  const i = CUSTOM_KEYS.indexOf(k), nm = String(((ag||AGENCE||{}).customOps||{})[k] || ('Autre ' + (i+1))).replace(/[<>"&'`]/g, '').slice(0,30);
+  return { k, n:nm, a:initials(nm).slice(0,3) || '?', c:CUSTOM_COLORS[Math.max(0,i)], fg:'#FFFFFF', g:'Autre' };
+}
+function opsFor(ag){
+  const custom = (ag && ag.customOps) || {};
+  let keys = (ag && Array.isArray(ag.ops) && ag.ops.length) ? ag.ops : DEFAULT_OPS;
+  keys = keys.filter(k=>OP_CATALOG.some(o=>o.k===k) || (CUSTOM_KEYS.includes(k) && custom[k]));
+  return (keys.length ? keys : DEFAULT_OPS).map(k=>opInfo(k, ag));
+}
+let OPS = opsFor(null);
+// Opérateurs d'un point déjà enregistré : ceux du PDV + ceux présents dans le point (si la liste a changé depuis).
+function opsOf(...pts){
+  const L = [...OPS];
+  pts.filter(Boolean).forEach(p=>Object.keys(p.soldes||{}).forEach(k=>{ if(!L.some(o=>o.k===k)) L.push(opInfo(k)); }));
+  return L;
+}
+const ESP_COLOR = '#0E9F8E', CRED_COLOR = '#9DB3B0';
+const DAY = 86400000;
+
+/* ═════════ Outils ═════════ */
+function localDate(d){ d = d || new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function monthKey(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); }
+function parseD(s){ const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); }
+function cap(s){ return s ? s.charAt(0).toUpperCase()+s.slice(1) : s; }
+function fmtDateLong(s){ return cap(parseD(s).toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})); }
+function fmtDateShort(s){ return parseD(s).toLocaleDateString('fr-FR',{day:'numeric',month:'short'}); }
+function fmtDay(d){ return d ? d.toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'}) : '—'; }
+function fmtTime(d){ return d ? d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}) : ''; }
+function monthLabel(k){ const [y,m] = k.split('-').map(Number); return cap(new Date(y,m-1,1).toLocaleDateString('fr-FR',{month:'long',year:'numeric'})); }
+function shiftMonth(k, n){ const [y,m] = k.split('-').map(Number); return monthKey(new Date(y, m-1+n, 1)); }
+const NF = new Intl.NumberFormat('fr-FR');
+function nfs(n){ return NF.format(Math.round(Number(n)||0)).replace(/[  ]/g,' '); }
+function fmt(n){ return nfs(n)+' F'; }
+function fmtS(n){ n = Math.round(Number(n)||0); return (n>0?'+':(n<0?'−':''))+nfs(Math.abs(n))+' F'; }
+function num(v){ const d = String(v==null?'':v).replace(/[^\d]/g,''); return d ? parseInt(d,10) : 0; }
+// Calcul dans un champ montant : « 5x100000 + 25000 », « 3*50 000 - 2 000 ». Renvoie null si ce n'est pas un calcul.
+function hasCalc(raw){ return /\d\s*[+x×X*\-]\s*\d/.test(String(raw||'')); }
+function evalAmount(raw){
+  const t = String(raw||'').replace(/[xX×]/g,'*').replace(/[^\d+*\-]/g,'');
+  if(!/^\d+([+*\-]\d+)*$/.test(t)) return null;
+  let total = 0; for(const term of t.match(/[+\-]?[^+\-]+/g)){ const sign = term[0]==='-' ? -1 : 1; const prod = term.replace(/^[+\-]/,'').split('*').reduce((a,b)=>a*parseInt(b,10), 1); total += sign*prod; }
+  return Math.max(0, Math.round(total));
+}
+function amountOf(raw){ if(hasCalc(raw)){ const r = evalAmount(raw); return r==null ? num(raw) : r; } return num(raw); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function $(s, r){ return (r||document).querySelector(s); }
+function ptTime(p){ return tsDate(p && p.srvAt) || new Date(p && p.at); }
+// Saisie faite après le jour du point (heure du serveur) : on le dit clairement au patron.
+function isLate(p){ return !!(p && p.date && localDate(ptTime(p)) > p.date); }
+function ptWhen(p){ const t = ptTime(p); return isLate(p) ? `le ${fmtDateShort(localDate(t))} à ${fmtTime(t)}` : `à ${fmtTime(t)}`; }
+function lateTag(p){ return isLate(p) ? ' <span class="badge wait">Saisi en retard</span>' : ''; }
+function tsDate(t){ if(!t) return null; if(t.toDate) return t.toDate(); if(t instanceof Date) return t; const d = new Date(t); return isNaN(d) ? null : d; }
+function lsGet(k, def){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; }catch(_){ return def; } }
+function lsSet(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(_){} }
+function genCode(n){ const A = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; let s = ''; const r = new Uint32Array(n); crypto.getRandomValues(r); r.forEach(x=>s+=A[x%A.length]); return s; }
+function agCode(id){ return 'AG-' + String(id||'').slice(0,6).toUpperCase(); }
+function waDigits(s){ return String(s||'').replace(/[^\d]/g,''); }
+
+let toastTimer;
+function toast(msg, kind){
+  const t = $('#toast'); t.textContent = msg; t.className = 'toast show' + (kind ? ' '+kind : '');
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>{ t.className = 'toast'; }, 3800);
+}
+async function copyText(t){
+  try{ if(navigator.clipboard && navigator.clipboard.writeText){ await navigator.clipboard.writeText(t); return true; } }catch(_){}
+  try{ const ta = document.createElement('textarea'); ta.value = t; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); const ok = document.execCommand('copy'); ta.remove(); return ok; }catch(_){ return false; }
+}
+
+/* ═════════ État ═════════ */
+let auth = null, db = null, FV = null, TS = null;
+let USER = null, PROFILE = null, PROFILE_LOADED = false, AID = null, AGENCE = null, SETTINGS = {};
+let POINTS = [], PAIEMENTS = [], TEAM = [], ALL_AG = [], ADMIN_FILTER = 'tous';
+let IS_ADMIN = false, ADMIN_READY = false;
+let VIEW = 'bord', GATE = 'login';
+let MONTH_B = monthKey(new Date()), MONTH_H = monthKey(new Date());
+const FORM = { type:'ouverture', date:localDate(), editing:false };
+let SYNC = 'ok';
+let LISTEN = { settings:null, profile:null, agence:null, points:null, paiements:null, team:null, all:null, sugs:null };
+let DRAFT = {};
+let CUR_ESP = null, CUR_CRED = null;   // détail du comptage des espèces et liste des crédits du formulaire en cours
+function draftKey(){ return 'odis_draft_' + (USER ? USER.uid : 'x'); }
+
+function stop(k){ if(LISTEN[k]){ try{ LISTEN[k](); }catch(_){} LISTEN[k] = null; } }
+function stopAll(){ Object.keys(LISTEN).forEach(stop); }
+
+/* ═════════ Réglages globaux (prix, lien Wave) ═════════ */
+function prix(){ return Number(SETTINGS.prix) || Number(CFG.prix) || 2000; }
+function prixSup(){ return Number(SETTINGS.prixSup) || Number(CFG.prixSup) || 1000; }
+function priceOf(a){ return a && Number(a.tarif) > 0 ? prixSup() : prix(); }   // tarif > 0 = PDV rattaché : toujours le prix PDV supp. actuel
+function myPrix(){ return priceOf(AGENCE); }
+// Lien Wave au bon montant : on remplace le paramètre amount du lien de base.
+function waveLinkFor(amount){ const l = waveLink(); if(!l) return ''; return /([?&])amount=\d+/.test(l) ? l.replace(/([?&])amount=\d+/, '$1amount='+amount) : l + (l.includes('?')?'&':'?') + 'amount=' + amount; }
+function periode(){ return Number(SETTINGS.periode) || Number(CFG.periode) || 30; }
+function waveLink(){ return SETTINGS.waveLink || CFG.waveLink || ''; }
+function waAdmin(){ return waDigits(SETTINGS.waAdmin || ''); }
+
+/* ═════════ Abonnement ═════════ */
+function created0(a){ return tsDate(a && a.createdAt); }
+function subStatus(a){
+  if(!a) return { k:'bad', label:'Inconnu', usable:false, left:0, text:'' };
+  const now = new Date(), exp = tsDate(a.exp), dec = tsDate(a.declared);
+  const left = exp ? Math.ceil((exp - now)/DAY) : 0;
+  const noTrial = !!(created0(a) && exp && exp <= created0(a));
+  if(dec && (now - dec) < GRACE_DAYS*DAY && noTrial) return { k:'info', label:'Paiement déclaré', usable:false, left,
+    text:`Paiement déclaré le ${fmtDay(dec)}. L'agence sera activée dès que l'administrateur aura vérifié le paiement.` };
+  if(dec && (now - dec) < GRACE_DAYS*DAY){
+    const until = new Date(dec.getTime() + GRACE_DAYS*DAY);
+    return { k:'info', label:'Paiement déclaré', usable:true, left, until,
+      text:`Paiement déclaré le ${fmtDay(dec)}. L'app reste utilisable jusqu'au ${fmtDay(until)}, le temps que l'administrateur vérifie le paiement.` };
+  }
+  const created = tsDate(a.createdAt), trial = !!(created && exp && (exp - created) > 0 && (exp - created) <= ((Number(CFG.essai)||7) + 1)*DAY);
+  if(exp && exp > now && trial) return { k:'warn', label:'Essai gratuit', trial:true, usable:true, left,
+    text:`Essai gratuit jusqu'au ${fmtDay(exp)}. Payez l'abonnement avant cette date pour continuer sans interruption.` };
+  if(exp && exp > now){
+    if(left <= REMIND_DAYS) return { k:'warn', label:'À renouveler', usable:true, left,
+      text:`L'abonnement se termine le ${fmtDay(exp)}. Renouvelez maintenant : les jours restants ne sont pas perdus.` };
+    return { k:'ok', label:'Actif', usable:true, left, text:`Abonnement valide jusqu'au ${fmtDay(exp)}.` };
+  }
+  return { k:'bad', label:'Suspendu', usable:false, left,
+    text: dec ? `Le paiement déclaré le ${fmtDay(dec)} n'a pas encore été validé et le délai de grâce est passé. La saisie est suspendue, les données sont conservées.`
+              : (created && exp && exp <= created) ? `Ce numéro de téléphone a déjà bénéficié de l'essai gratuit. Payez l'abonnement pour activer l'agence, puis touchez « J'ai payé ».`
+              : trial ? `L'essai gratuit s'est terminé le ${fmtDay(exp)}. La saisie est suspendue, les données sont conservées. Payez l'abonnement pour continuer.`
+              : `L'abonnement a expiré le ${fmtDay(exp)}. La saisie est suspendue, les données sont conservées. Payez pour réactiver.` };
+}
+function canWrite(){ return subStatus(AGENCE).usable; }
+
+/* ═════════ Calculs des points ═════════ */
+function calc(p){
+  const s = p.soldes || {};
+  const flt = Object.values(s).reduce((a,v)=>a+(Number(v)||0), 0);
+  const esp = Number(p.espece)||0, cr = Number(p.credits)||0;
+  const total = flt + esp + cr;
+  const budget = Number(p.budget)||0;
+  return { flt, esp, cr, total, budget, ecart: total - budget };
+}
+function tone(e){ return e<0 ? 'neg' : (e>0 ? 'pos' : 'zero'); }
+function toneLabel(e){ return e<0 ? 'Manquant' : (e>0 ? 'Surplus' : 'Équilibré'); }
+function toneSentence(e){ return e<0 ? 'Manquant par rapport au budget voté' : (e>0 ? 'Surplus par rapport au budget voté' : 'Le compte tombe juste sur le budget voté'); }
+function getPoint(date, type){ return POINTS.find(p=>p.date===date && p.type===type) || null; }
+function sortedPoints(){ return [...POINTS].sort((a,b)=> a.date===b.date ? (a.type==='ouverture'?-1:1) : (a.date<b.date?-1:1)); }
+function lastPoint(){ const s = sortedPoints(); return s.length ? s[s.length-1] : null; }
+function prevPoint(date, type){
+  let res = null;
+  sortedPoints().forEach(p=>{ if(p.date<date || (p.date===date && type==='fermeture' && p.type==='ouverture')) res = p; });
+  return res;
+}
+function isPendingProfile(){ return !!(PROFILE && PROFILE.role==='gerante' && PROFILE.status==='attente'); }
+let WAS_PENDING = false;
+function isPatron(){ return PROFILE && PROFILE.role==='patron'; }
+function yesterday(){ const d = new Date(); d.setDate(d.getDate()-1); return localDate(d); }
+function canEdit(p){ return canWrite() && (isPatron() || p.date >= yesterday()); }
+function budgetNow(){ return Number(AGENCE && AGENCE.budget) || 0; }
+function pointVals(p){ const v = {}; OPS.forEach(o=>v[o.k]=Number(p.soldes[o.k])||0); v.espece = p.espece; v.credits = p.credits; v.note = p.note||''; v._esp = p.espDetail||null; v._cred = p.credList||null; return v; }
+
+/* ═════════ Règle d'écart ═════════ */
+function rulerSpan(e, b){ return Math.max(Math.abs(e)*1.6, (b||0)*0.05, 10000); }
+function rulerHTML(e, b, light, id){
+  const span = rulerSpan(e, b);
+  return `<div class="ruler${light?' light':''}"${id?` id="${id}"`:''} data-e="${e}" data-b="${b}" role="img" aria-label="${toneLabel(e)} de ${fmt(Math.abs(e))}">
+    <div class="ruler-track"><div class="ruler-fill ${tone(e)}"></div><div class="ruler-zero"></div></div>
+    <div class="ruler-scale"><span>−${nfs(span)}</span><span>Budget</span><span>+${nfs(span)}</span></div></div>`;
+}
+function setRuler(el, e, b){
+  if(!el) return;
+  const span = rulerSpan(e, b), pct = Math.min(Math.abs(e)/span, 1) * 50;
+  const f = el.querySelector('.ruler-fill'); f.className = 'ruler-fill ' + tone(e);
+  const w = e===0 ? 1.2 : pct;
+  f.style.left = (e<0 ? 50-w : (e===0 ? 50-w/2 : 50)) + '%'; f.style.width = w + '%';
+  const sc = el.querySelectorAll('.ruler-scale span'); sc[0].textContent = '−'+nfs(span); sc[2].textContent = '+'+nfs(span);
+}
+function animateRulers(root){
+  (root||document).querySelectorAll('.ruler[data-e]').forEach(el=>{
+    requestAnimationFrame(()=>requestAnimationFrame(()=>setRuler(el, Number(el.dataset.e), Number(el.dataset.b))));
+  });
+}
+
+/* ═════════ Écrans d'accueil ═════════ */
+function showGate(html){
+  $('#app').classList.add('hidden'); $('#gate').classList.remove('hidden');
+  $('#gate-body').innerHTML = `<div class="g-brand">Odi's <span>Agence</span></div><p class="g-sub">Système de traçabilité, ouverture et fermeture</p>` + html + gateAccounts();
+  enhancePasswords($('#gate-body'));
+}
+function gateAccounts(){
+  if(USER) return '';
+  const others = accounts().filter(a=>a.app!==CUR_APP);
+  if(!others.length && !PREV_APP) return '';
+  return `<div class="g-accts"><p>${PREV_APP ? 'Ajout d\'un compte' : 'Autres comptes sur ce téléphone'}</p>
+    ${others.map(a=>`<button class="am-row" data-action="switch-acct" data-app="${esc(a.app)}"><span class="av">${esc(initials(a.agence||a.nom||a.email))}</span><span class="am-t"><b>${esc(a.agence||'Compte')}</b><small>${esc(a.email)}</small></span></button>`).join('')}
+    ${PREV_APP ? `<button class="link" data-action="cancel-add" style="margin-top:6px">Annuler et revenir</button>` : ''}</div>`;
+}
+function gateErr(msg){ const e = $('#g-err'); if(e){ e.className = 'g-err'; e.textContent = msg; } }
+function gateOk(msg){ const e = $('#g-err'); if(e){ e.className = 'g-ok'; e.textContent = msg; } }
+function setBusy(btn, busy, label){ if(!btn) return; btn.disabled = busy; if(label) btn.textContent = busy ? 'Patientez…' : label; }
+
+function renderGate(){
+  if(GATE==='login') showGate(`
+    <h2 class="g-title">Connexion</h2>
+    <form class="g-form" id="f-login" novalidate>
+      <div class="field"><label for="l-email">Adresse e-mail</label><input class="txt" id="l-email" type="email" autocomplete="email" inputmode="email" required></div>
+      <div class="field"><label for="l-pass">Mot de passe</label><input class="txt" id="l-pass" type="password" autocomplete="current-password" required></div>
+      <p class="g-err" id="g-err" role="alert"></p>
+      <button class="btn primary block" type="submit" id="l-btn">Se connecter</button>
+    </form>
+    <div class="g-links">
+      <button class="link" data-gate="create">Créer mon agence (${Number(CFG.essai)||7} jours d'essai gratuit)</button>
+      <button class="link" data-gate="join">Je suis gérant(e) : rejoindre une agence</button>
+      <button class="link" data-gate="reset">Mot de passe oublié</button>
+    </div>`);
+  else if(GATE==='create') showGate(`
+    <h2 class="g-title">Créer mon agence</h2>
+    <p class="muted small" style="margin-top:4px">Vous serez le patron ou la patronne de l'agence. ${Number(CFG.essai)||7} jours d'essai offerts, puis ${fmt(prix())} par mois via Wave.</p>
+    <form class="g-form" id="f-create" novalidate>
+      <div class="field"><label for="c-agence">Nom de l'agence</label><input class="txt" id="c-agence" maxlength="60" autocomplete="organization" required></div>
+      <div class="split2">
+        <div class="field"><label for="c-ville">Ville</label><input class="txt" id="c-ville" maxlength="40" required></div>
+        <div class="field"><label for="c-tel">Téléphone (WhatsApp)</label><input class="txt" id="c-tel" maxlength="25" type="tel" inputmode="tel" placeholder="0700000000" required></div>
+      </div>
+      <div class="field"><label for="c-nom">Votre nom</label><input class="txt" id="c-nom" maxlength="60" autocomplete="name" required></div>
+      <div class="field"><label for="c-email">Adresse e-mail</label><input class="txt" id="c-email" type="email" autocomplete="email" inputmode="email" required></div>
+      <div class="field"><label for="c-pass">Mot de passe</label><input class="txt" id="c-pass" type="password" autocomplete="new-password" required><small>8 caractères minimum.</small></div>
+      <div class="field"><label for="c-parrain">Code de parrainage <span class="muted">(facultatif)</span></label><input class="txt" id="c-parrain" maxlength="12" autocapitalize="characters" placeholder="AG-XXXXXX" value="${esc(parrainParam())}"><small>Si une agence vous a recommandé l'app, tapez son code.</small></div>
+      <p class="g-err" id="g-err" role="alert"></p>
+      <button class="btn primary block" type="submit" id="c-btn">Créer l'agence</button>
+    </form>
+    <div class="g-links"><button class="link" data-gate="login">J'ai déjà un compte</button></div>`);
+  else if(GATE==='join') showGate(`
+    <h2 class="g-title">Rejoindre une agence</h2>
+    <p class="muted small" style="margin-top:4px">Demandez à votre patron(ne) le code d'invitation affiché dans ses Réglages.</p>
+    <form class="g-form" id="f-join" novalidate>
+      <div class="field"><label for="j-code">Code d'invitation</label><input class="txt code-in" id="j-code" maxlength="10" autocomplete="off" required></div>
+      <div class="field"><label for="j-nom">Votre nom</label><input class="txt" id="j-nom" maxlength="60" autocomplete="name" required></div>
+      <div class="field"><label for="j-email">Adresse e-mail</label><input class="txt" id="j-email" type="email" autocomplete="email" inputmode="email" required></div>
+      <div class="field"><label for="j-pass">Mot de passe</label><input class="txt" id="j-pass" type="password" autocomplete="new-password" required><small>8 caractères minimum.</small></div>
+      <p class="g-err" id="g-err" role="alert"></p>
+      <button class="btn primary block" type="submit" id="j-btn">Rejoindre l'agence</button>
+    </form>
+    <div class="g-links"><button class="link" data-gate="login">J'ai déjà un compte</button></div>`);
+  else if(GATE==='reset') showGate(`
+    <h2 class="g-title">Mot de passe oublié</h2><p class="muted small" style="margin-top:6px">Gérant(e) sans accès à son adresse e-mail : demandez à votre patron(ne) de vous retirer de l'équipe et de créer un nouveau code, puis recréez votre compte.</p>
+    <p class="muted small" style="margin-top:4px">Vous recevrez un e-mail avec un lien pour choisir un nouveau mot de passe.</p>
+    <form class="g-form" id="f-reset" novalidate>
+      <div class="field"><label for="r-email">Adresse e-mail</label><input class="txt" id="r-email" type="email" autocomplete="email" inputmode="email" required></div>
+      <p class="g-err" id="g-err" role="alert"></p>
+      <button class="btn primary block" type="submit" id="r-btn">Envoyer le lien</button>
+    </form>
+    <div class="g-links"><button class="link" data-gate="login">Retour à la connexion</button></div>`);
+  else if(GATE==='pending') showGate(`
+    <h2 class="g-title">En attente de validation</h2>
+    <p class="muted" style="margin-top:6px">Bonjour ${esc(PROFILE && PROFILE.nom || '')}, votre demande pour rejoindre l'agence est bien arrivée. Votre patron(ne) doit l'accepter dans <b>Réglages, Équipe</b>. Cette page s'ouvrira toute seule dès que ce sera validé.</p>
+    <div class="g-links"><button class="link" data-action="logout">Se déconnecter</button></div>`);
+  else if(GATE==='orphan') showGate(`
+    <h2 class="g-title">Compte sans agence</h2>
+    <p class="muted small" style="margin-top:4px">Le compte ${esc(USER && USER.email)} n'est relié à aucune agence. Créez la vôtre ou rejoignez celle de votre patron(ne).</p>
+    ${orphanForms()}
+    <div class="g-links"><button class="link" data-action="logout">Se déconnecter</button></div>`);
+  setTimeout(()=>{ const f = $('#gate-body input'); if(f) f.focus(); }, 50);
+}
+function orphanForms(){
+  return `<form class="g-form" id="f-o-create" novalidate>
+      <h3 class="sub" style="margin-top:14px">Créer mon agence</h3>
+      <div class="field"><label for="oc-agence">Nom de l'agence</label><input class="txt" id="oc-agence" maxlength="60" required></div>
+      <div class="split2">
+        <div class="field"><label for="oc-ville">Ville</label><input class="txt" id="oc-ville" maxlength="40" required></div>
+        <div class="field"><label for="oc-tel">Téléphone (WhatsApp)</label><input class="txt" id="oc-tel" maxlength="25" type="tel" inputmode="tel" required></div>
+      </div>
+      <div class="field"><label for="oc-nom">Votre nom</label><input class="txt" id="oc-nom" maxlength="60" required></div>
+      <div class="field"><label for="oc-parrain">Code de parrainage <span class="muted">(facultatif)</span></label><input class="txt" id="oc-parrain" maxlength="12" autocapitalize="characters" placeholder="AG-XXXXXX" value="${esc(parrainParam())}"></div>
+      <button class="btn primary block" type="submit" id="oc-btn">Créer l'agence</button>
+    </form>
+    <form class="g-form" id="f-o-join" novalidate>
+      <h3 class="sub">Ou rejoindre une agence</h3>
+      <div class="split2">
+        <div class="field"><label for="oj-code">Code d'invitation</label><input class="txt code-in" id="oj-code" maxlength="10" autocomplete="off" required></div>
+        <div class="field"><label for="oj-nom">Votre nom</label><input class="txt" id="oj-nom" maxlength="60" required></div>
+      </div>
+      <button class="btn block" type="submit" id="oj-btn">Rejoindre</button>
+    </form>
+    <p class="g-err" id="g-err" role="alert"></p>`;
+}
+
+function authMsg(e){ const m = authMsgBase(e), c = (e && e.code) || ''; try{ console.error("Odi's Agence :", e); }catch(_){} return c && !m.includes('code :') ? m + ' (code : ' + c + ')' : m; }
+function authMsgBase(e){
+  const c = (e && e.code) || '';
+  if(c.includes('email-already-in-use')) return 'Cette adresse e-mail a déjà un compte. Connectez-vous à la place.';
+  if(c.includes('invalid-email')) return "L'adresse e-mail n'est pas valide.";
+  if(c.includes('weak-password')) return 'Mot de passe trop court : 8 caractères minimum.';
+  if(c.includes('invalid-credential') || c.includes('wrong-password') || c.includes('user-not-found') || c.includes('invalid-login')) return 'Adresse e-mail ou mot de passe incorrect.';
+  if(c.includes('too-many-requests')) return 'Trop de tentatives. Patientez quelques minutes puis réessayez.';
+  if(c.includes('network-request-failed') || c.includes('unavailable')) return "Pas de connexion internet. Vérifiez le réseau puis réessayez.";
+  if(c.includes('permission-denied')) return "Opération refusée par le serveur. Vérifiez le code ou réessayez.";
+  if(c.includes('missing-email')) return "Indiquez votre adresse e-mail.";
+  if(c.includes('operation-not-allowed')) return "La connexion par e-mail n'est pas activée dans Firebase : Authentication, Mode de connexion, Adresse e-mail/Mot de passe.";
+  if(c.includes('configuration-not-found')) return "Authentication n'est pas encore démarré dans Firebase : ouvrez Authentication et cliquez sur Commencer.";
+  if(c.includes('unauthorized-domain')) return "Cette adresse n'est pas autorisée dans Firebase : Authentication, Paramètres, Domaines autorisés.";
+  if(c.includes('api-key') || c.includes('invalid-api-key')) return "La clé de config.js ne correspond pas au projet Firebase.";
+  if(c==='not-found' || /does not exist/i.test((e&&e.message)||'')) return "La base Firestore n'existe pas encore : créez-la dans Firestore Database (mode production).";
+  console.error('Odi\'s Agence :', e);
+  return "Une erreur est survenue (code : " + (c || ((e && e.message) || 'inconnu').slice(0,80)) + "). Envoyez ce code à l'administrateur.";
+}
+
+async function doLogin(){
+  { const em = ($('#l-email').value||'').trim().toLowerCase(), ex = accounts().find(a=>a.app!==CUR_APP && String(a.email).toLowerCase()===em);
+    if(ex){ toast('Ce compte est déjà sur ce téléphone : bascule.'); switchAccount(ex.app); return; } }
+  const email = $('#l-email').value.trim(), pass = $('#l-pass').value;
+  if(!email || !pass){ gateErr('Renseignez votre e-mail et votre mot de passe.'); return; }
+  const b = $('#l-btn'); setBusy(b, true, 'Se connecter');
+  try{ await auth.signInWithEmailAndPassword(email, pass); }
+  catch(e){ gateErr(authMsg(e)); setBusy(b, false, 'Se connecter'); }
+}
+function readCreate(prefix){
+  const v = id => ($('#'+prefix+id) ? $('#'+prefix+id).value.trim() : '');
+  return { agence:v('agence'), ville:v('ville'), tel:v('tel'), nom:v('nom'), parrain:normParrain(v('parrain')) };
+}
+/* ═════════ Parrainage ═════════ */
+function normParrain(c){ c = String(c||'').toUpperCase().replace(/\s+/g,''); if(/^[A-Z0-9]{6}$/.test(c)) c = 'AG-' + c; return /^AG-[A-Z0-9]{6}$/.test(c) ? c : ''; }
+function parrainParam(){ try{ return normParrain(new URLSearchParams(location.search).get('parrain')) || lsGet('odis_parrain', ''); }catch(_){ return ''; } }
+try{ const pp = normParrain(new URLSearchParams(location.search).get('parrain')); if(pp) localStorage.setItem('odis_parrain', JSON.stringify(pp)); }catch(_){}
+function parrainLink(){ return location.origin + location.pathname.replace(/index\.html$/,'') + '?parrain=' + agCode(AID); }
+function parrainMsg(){ return `Bonjour ! J'utilise Odi's Agence pour faire le point d'ouverture et de fermeture de mon agence mobile money, sans cahier ni calculatrice. Essaie-la gratuitement pendant ${Number(CFG.essai)||7} jours avec mon code de parrainage ${agCode(AID)} :\n${parrainLink()}`; }
+function parrainCard(){
+  if(!isPatron()) return '';
+  const n = Number(AGENCE.bonusMois)||0;
+  return `<section class="panel"><h2>Parrainage : 1 mois offert</h2>
+    <p>Recommandez Odi's Agence à une autre agence. Quand elle paie son premier abonnement avec votre code, <b>vous recevez 1 mois gratuit</b>.</p>
+    <div class="invite" style="margin-top:12px"><b>${agCode(AID)}</b></div>
+    <div class="actions" style="margin-top:12px"><a class="btn wa" href="https://wa.me/?text=${encodeURIComponent(parrainMsg())}" target="_blank" rel="noopener">Partager sur WhatsApp</a><button class="btn" data-action="copy-parrain">Copier le lien</button></div>
+    <p class="small muted" style="margin-top:10px">${n ? `Merci ! Vous avez déjà gagné <b>${n} mois offert${n>1?'s':''}</b>.` : "Pas encore de mois offert : partagez votre code !"}</p></section>`;
+}
+function trialKey(tel){ const d = waDigits(tel); return d.length > 10 ? d.slice(-10) : d; }
+let NO_TRIAL = false;
+async function createAgency(uid, d){
+  const ref = db.collection('agences').doc(), key = trialKey(d.tel);
+  try{ NO_TRIAL = false; await writeAgency(uid, d, ref, key, false); }
+  catch(e){ if(!String(e && e.code).includes('permission-denied')) throw e; NO_TRIAL = true; await writeAgency(uid, d, db.collection('agences').doc(), key, true); }
+}
+async function writeAgency(uid, d, ref, key, used){
+  const exp = used ? new Date(Date.now() - DAY) : new Date(Date.now() + (Number(CFG.essai)||7)*DAY);
+  const batch = db.batch();
+  if(!used) batch.set(db.doc('trials/'+key), { aid:ref.id, at:FV.serverTimestamp() });
+  batch.set(ref, { nom:d.agence, ville:d.ville, telephone:d.tel, ownerUid:uid, ownerNom:d.nom,
+    exp:TS.fromDate(exp), declared:null, createdAt:FV.serverTimestamp(), budget:0, waPatron:waDigits(d.tel).slice(0,15), invite:'', trialKey:key, ...(d.parrain ? { parrainCode:d.parrain } : {}) });
+  batch.set(db.doc('users/'+uid), { agenceId:ref.id, role:'patron', nom:d.nom, email:(USER&&USER.email)||auth.currentUser.email||'', createdAt:FV.serverTimestamp() });
+  await batch.commit();
+}
+async function doCreate(){
+  const d = readCreate('c-'), email = $('#c-email').value.trim(), pass = $('#c-pass').value;
+  if(!d.agence || !d.ville || !d.tel || !d.nom || !email || !pass){ gateErr('Tous les champs sont obligatoires.'); return; }
+  if(trialKey(d.tel).length < 8){ gateErr('Numéro WhatsApp invalide : indiquez le numéro complet.'); return; }
+  if(pass.length < 8){ gateErr('Mot de passe trop court : 8 caractères minimum.'); return; }
+  const b = $('#c-btn'); setBusy(b, true, "Créer l'agence");
+  PENDING_SETUP = true;
+  try{
+    const cred = await auth.createUserWithEmailAndPassword(email, pass);
+    await cred.user.updateProfile({ displayName:d.nom }).catch(()=>{});
+    await createAgency(cred.user.uid, d);
+    PENDING_SETUP = false; toast(NO_TRIAL ? "Agence créée. Ce numéro a déjà utilisé l'essai gratuit : payez l'abonnement pour l'activer." : 'Agence créée. Bienvenue !'); bootUser(cred.user);
+  }catch(e){ PENDING_SETUP = false; gateErr(authMsg(e)); setBusy(b, false, "Créer l'agence"); if(auth.currentUser) bootUser(auth.currentUser); }
+}
+async function findInvite(code){
+  code = String(code||'').trim().toUpperCase();
+  if(code.length < 6 || code.length > 12) return null;
+  const s = await db.doc('invites/'+code).get();
+  return s.exists ? { code, agenceId:s.data().agenceId } : null;
+}
+async function joinAgency(uid, inv, nom){
+  await db.doc('users/'+uid).set({ agenceId:inv.agenceId, role:'gerante', status:'attente', nom:String(nom).slice(0,60), email:auth.currentUser.email||'', invite:inv.code, createdAt:FV.serverTimestamp() });
+}
+async function doJoin(){
+  const code = $('#j-code').value, nom = $('#j-nom').value.trim(), email = $('#j-email').value.trim(), pass = $('#j-pass').value;
+  if(!code || !nom || !email || !pass){ gateErr('Tous les champs sont obligatoires.'); return; }
+  if(pass.length < 8){ gateErr('Mot de passe trop court : 8 caractères minimum.'); return; }
+  const b = $('#j-btn'); setBusy(b, true, "Rejoindre l'agence");
+  try{
+    PENDING_SETUP = true;
+    const cred = await auth.createUserWithEmailAndPassword(email, pass);
+    await cred.user.updateProfile({ displayName:nom }).catch(()=>{});
+    const inv = await findInvite(code).catch(()=>null);
+    if(!inv){ PENDING_SETUP = false; toast("Compte créé, mais le code d'invitation est introuvable ou expiré. Demandez un nouveau code à votre patron(ne) et saisissez-le ici.", 'err'); bootUser(cred.user); return; }
+    try{ await joinAgency(cred.user.uid, inv, nom); }
+    catch(err){ PENDING_SETUP = false; toast("Compte créé, mais ce code d'invitation a expiré (7 jours). Demandez un nouveau code à votre patron(ne) et saisissez-le ici.", 'err'); bootUser(cred.user); return; }
+    PENDING_SETUP = false; toast('Demande envoyée : votre patron(ne) doit maintenant valider votre accès.'); bootUser(cred.user);
+  }catch(e){ PENDING_SETUP = false; gateErr(authMsg(e)); setBusy(b, false, "Rejoindre l'agence"); if(auth.currentUser) bootUser(auth.currentUser); }
+}
+async function doReset(){
+  const email = $('#r-email').value.trim();
+  if(!email){ gateErr('Indiquez votre adresse e-mail.'); return; }
+  const b = $('#r-btn'); setBusy(b, true, 'Envoyer le lien');
+  try{ await auth.sendPasswordResetEmail(email); gateOk('E-mail envoyé. Ouvrez le lien reçu, puis revenez vous connecter.'); }
+  catch(e){ gateErr(authMsg(e)); }
+  setBusy(b, false, 'Envoyer le lien');
+}
+async function doOrphanCreate(){
+  const d = readCreate('oc-');
+  if(!d.agence || !d.ville || !d.tel || !d.nom){ gateErr('Tous les champs sont obligatoires pour créer une agence.'); return; }
+  if(trialKey(d.tel).length < 8){ gateErr('Numéro WhatsApp invalide : indiquez le numéro complet.'); return; }
+  const b = $('#oc-btn'); setBusy(b, true, "Créer l'agence");
+  try{ await createAgency(USER.uid, d); toast(NO_TRIAL ? "Agence créée. Ce numéro a déjà utilisé l'essai gratuit : payez l'abonnement pour l'activer." : 'Agence créée.'); }
+  catch(e){ gateErr(authMsg(e)); setBusy(b, false, "Créer l'agence"); }
+}
+async function doOrphanJoin(){
+  const code = $('#oj-code').value, nom = $('#oj-nom').value.trim();
+  if(!code || !nom){ gateErr('Indiquez le code et votre nom.'); return; }
+  const b = $('#oj-btn'); setBusy(b, true, 'Rejoindre');
+  try{
+    const inv = await findInvite(code);
+    if(!inv){ gateErr("Code d'invitation introuvable."); setBusy(b, false, 'Rejoindre'); return; }
+    try{ await joinAgency(USER.uid, inv, nom); }catch(err){ gateErr("Ce code d'invitation a expiré (7 jours). Demandez un nouveau code à votre patron(ne)."); setBusy(b, false, 'Rejoindre'); return; }
+    toast('Demande envoyée : votre patron(ne) doit maintenant valider votre accès.');
+  }catch(e){ gateErr(authMsg(e)); setBusy(b, false, 'Rejoindre'); }
+}
+
+/* ═════════ Démarrage ═════════ */
+let PENDING_SETUP = false, BOOTED_UID = null;
+function configured(){
+  const f = CFG.firebase || {};
+  return !!(f.apiKey && f.projectId && !/COLLER/i.test(f.apiKey + f.projectId));
+}
+function boot(){
+  if(!window.firebase){
+    showGate(`<h2 class="g-title">Connexion nécessaire</h2><p class="muted" style="margin-top:6px">Le premier lancement a besoin d'internet pour charger l'application. Vérifiez la connexion puis rechargez la page.</p><div class="g-links"><button class="btn primary" onclick="location.reload()">Recharger</button></div>`);
+    return;
+  }
+  if(!configured()){
+    showGate(`<h2 class="g-title">Configuration à faire</h2><p class="muted" style="margin-top:6px">Le fichier <b>config.js</b> ne contient pas encore la configuration de votre projet Firebase. Suivez l'étape 2 du guide de mise en ligne, puis republiez le dossier.</p>`);
+    return;
+  }
+  FV = firebase.firestore.FieldValue; TS = firebase.firestore.Timestamp;
+  let start = lsGet('odis_active_app', '[DEFAULT]');
+  if(start !== '[DEFAULT]' && !accounts().some(a=>a.app===start)) start = '[DEFAULT]';
+  useApp(start);
+}
+
+/* ═════════ Plusieurs comptes sur le même téléphone (comme Gmail) ═════════
+   Chaque compte a sa propre instance Firebase, donc sa propre session : on bascule sans ressaisir le mot de passe. */
+let CUR_APP = '[DEFAULT]', AUTH_UNSUB = null, PREV_APP = null;
+const PERSIST_DONE = {};
+function accounts(){ return lsGet('odis_accounts', []); }
+function saveAccounts(L){ lsSet('odis_accounts', L); }
+function upsertAccount(info){
+  const L = accounts().filter(a=>a.app!==info.app && a.uid!==info.uid); L.push(info); saveAccounts(L);
+}
+function getApp(name){
+  const found = firebase.apps.find(a=>a.name===name);
+  if(found) return found;
+  return name==='[DEFAULT]' ? firebase.initializeApp(CFG.firebase) : firebase.initializeApp(CFG.firebase, name);
+}
+function useApp(name){
+  stopAll(); if(AUTH_UNSUB){ try{ AUTH_UNSUB(); }catch(_){} AUTH_UNSUB = null; }
+  USER = null; PROFILE = null; PROFILE_LOADED = false; AGENCE = null; AID = null; BOOTED_UID = null; POINTS = []; PAIEMENTS = []; TEAM = []; ALL_AG = [];
+  IS_ADMIN = false; ADMIN_READY = false; VIEW = 'bord'; closeMenu();
+  const app = getApp(name);
+  CUR_APP = name; lsSet('odis_active_app', name);
+  auth = app.auth(); db = app.firestore();
+  if(!PERSIST_DONE[name]){ PERSIST_DONE[name] = true; try{ db.enablePersistence({ synchronizeTabs:true }).catch(()=>{}); }catch(_){} }
+  showGate(`<div style="margin-top:24px"><div class="spin" style="border-color:var(--line);border-top-color:var(--lagoon)"></div></div>`);
+  AUTH_UNSUB = auth.onAuthStateChanged(u=>{
+    if(CUR_APP !== name) return;
+    if(!u){
+      stopAll(); USER = null; PROFILE = null; AGENCE = null; AID = null; BOOTED_UID = null; POINTS = [];
+      saveAccounts(accounts().filter(a=>a.app!==name));
+      GATE = 'login'; renderGate(); return;
+    }
+    if(PENDING_SETUP) return;   // l'inscription termine elle-même la mise en place
+    upsertAccount({ app:name, uid:u.uid, email:u.email||'', nom:u.displayName||'', agence:'', role:'' });
+    bootUser(u);
+  });
+}
+function switchAccount(name){ if(name===CUR_APP){ closeMenu(); return; } PREV_APP = null; useApp(name); }
+function addAccount(){ PREV_APP = CUR_APP; useApp('acc-' + Date.now().toString(36)); }
+function cancelAdd(){ const back = PREV_APP; PREV_APP = null; const cur = CUR_APP;
+  if(back){ useApp(back); try{ const a = firebase.apps.find(x=>x.name===cur); if(a && cur!=='[DEFAULT]') a.delete(); }catch(_){} } }
+function initials(t){ return String(t||'?').trim().split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase() || '?'; }
+
+/* Menu du compte (en haut à droite) */
+function closeMenu(){ const m = $('#acct-menu'); if(m) m.classList.add('hidden'); }
+function renderAcctMenu(){
+  const L = accounts(), m = $('#acct-menu');
+  m.innerHTML = `<p class="am-h">Comptes sur ce téléphone</p>
+    ${L.map(a=>`<button class="am-row${a.app===CUR_APP?' cur':''}" data-action="switch-acct" data-app="${esc(a.app)}">
+      <span class="av">${esc(initials(a.agence||a.nom||a.email))}</span>
+      <span class="am-t"><b>${esc(a.agence || (a.role==='admin'?'Console':'Compte'))}</b><small>${esc(a.email)}${a.role?` · ${a.role==='gerante'?'Gérant(e)':(a.role==='admin'?'Administrateur':'Patron(ne)')}`:''}</small></span>
+      ${a.app===CUR_APP?'<span class="am-ok">✓</span>':''}</button>`).join('')}
+    <button class="am-act" data-action="add-acct"><span class="av plus">+</span>Ajouter un compte</button>
+    <div class="am-sep"></div>
+    <button class="am-act" data-action="go-aide"><span class="av ic">📖</span>Aide et questions</button>
+    <button class="am-act" data-action="suggest"><span class="av ic">💡</span>Faire une suggestion</button>
+    ${SETTINGS.channelLink ? `<a class="am-act" href="${esc(SETTINGS.channelLink)}" target="_blank" rel="noopener"><span class="av ic">📣</span>Odi'Service Digital</a>` : ''}
+    <button class="am-act out" data-action="logout"><span class="av ic">🚪</span>Se déconnecter de ce compte</button>`;
+}
+function toggleMenu(){ const m = $('#acct-menu'); if(m.classList.contains('hidden')){ renderAcctMenu(); m.classList.remove('hidden'); } else closeMenu(); }
+
+/* Boîte à suggestions : le message part sur le WhatsApp de l'administrateur */
+let SUG_TYPE = 'Idée';
+function openSuggest(){
+  closeMenu(); SUG_TYPE = 'Idée';
+  const o = $('#modal'); o.classList.remove('hidden');
+  o.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="sug-t">
+    <div class="modal-top"><h2 id="sug-t">Faire une suggestion</h2><button class="modal-x" data-action="close-modal" aria-label="Fermer">×</button></div>
+    <p class="card-text">Une idée, un problème, une question ? Votre message arrive directement sur le WhatsApp de l'équipe Odi's Agence.</p>
+    <div class="sug-types" role="group" aria-label="Type de message">${['Idée','Problème','Question'].map(t=>`<button data-action="sug-type" data-t="${t}" aria-pressed="${t===SUG_TYPE}">${t==='Idée'?'💡':(t==='Problème'?'⚠️':'❓')} ${t}</button>`).join('')}</div>
+    <div class="field" style="margin-top:14px"><label for="sug-msg">Votre message</label><textarea class="txt" id="sug-msg" rows="5" placeholder="Exemple : ce serait bien de pouvoir…"></textarea></div>
+    <p class="g-err" id="sug-err"></p>
+    <button class="btn wa block" data-action="sug-send">Envoyer sur WhatsApp</button></div>`;
+  setTimeout(()=>{ const t = $('#sug-msg'); if(t) t.focus(); }, 50);
+}
+function closeModal(){ const o = $('#modal'); o.classList.add('hidden'); o.innerHTML = ''; }
+function sendSuggest(){
+  const msg = ($('#sug-msg').value||'').trim();
+  if(msg.length < 5){ $('#sug-err').textContent = 'Écrivez votre message avant d\'envoyer.'; return; }
+  const num = waAdmin() || waDigits(CFG.waAdmin || '');
+  const who = PROFILE ? `${PROFILE.nom||''} (${PROFILE.role==='gerante'?'gérante':'patron'})` : (USER ? USER.email : '');
+  const txt = `${SUG_TYPE==='Idée'?'💡':(SUG_TYPE==='Problème'?'⚠️':'❓')} ${SUG_TYPE} — Odi's Agence\n`
+    + (AGENCE ? `Agence : ${AGENCE.nom} (${agCode(AGENCE.id)})${AGENCE.ville?', '+AGENCE.ville:''}\n` : '')
+    + `De : ${who}\n\n${msg}`;
+  const url = num ? `https://wa.me/${num}?text=${encodeURIComponent(txt)}` : `https://wa.me/?text=${encodeURIComponent(txt)}`;
+  window.open(url, '_blank', 'noopener');
+  db.collection('suggestions').add({ type:SUG_TYPE, msg:msg.slice(0,1000), aid:String(AID||'').slice(0,40), agence:String(AGENCE?AGENCE.nom:'').slice(0,100), nom:String((PROFILE&&PROFILE.nom)||'').slice(0,100), role:(PROFILE&&['patron','gerante'].includes(PROFILE.role))?PROFILE.role:'', by:USER.uid, at:FV.serverTimestamp(), status:'nouveau' }).catch(()=>{});
+  closeModal(); toast('Merci ! WhatsApp s\'ouvre avec votre message : touchez Envoyer.');
+}
+
+/* Œil pour afficher ou masquer le mot de passe */
+const EYE = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+const EYE_OFF = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.9 17.9A10.6 10.6 0 0 1 12 19c-6.5 0-10-7-10-7a18.8 18.8 0 0 1 5.1-5.9M9.9 5.2A9.7 9.7 0 0 1 12 5c6.5 0 10 7 10 7a18.6 18.6 0 0 1-2.2 3.2M14.1 14.1a3 3 0 1 1-4.2-4.2"/><path d="M2 2l20 20"/></svg>';
+function enhancePasswords(root){
+  (root||document).querySelectorAll('input[type=password]:not([data-eye])').forEach(inp=>{
+    inp.setAttribute('data-eye','1');
+    const w = document.createElement('span'); w.className = 'pw-wrap';
+    inp.parentNode.insertBefore(w, inp); w.appendChild(inp);
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'pw-eye'; b.setAttribute('aria-label','Afficher le mot de passe'); b.innerHTML = EYE;
+    b.addEventListener('click', ()=>{ const show = inp.type==='password'; inp.type = show ? 'text' : 'password';
+      b.innerHTML = show ? EYE_OFF : EYE; b.setAttribute('aria-label', show ? 'Masquer le mot de passe' : 'Afficher le mot de passe'); inp.focus(); });
+    w.appendChild(b);
+  });
+}
+function bootUser(u){
+  if(BOOTED_UID === u.uid && LISTEN.profile) return;
+  stopAll(); BOOTED_UID = u.uid; VIEW = 'bord'; TEAM = []; WAS_PENDING = false;
+  USER = u; PROFILE = null; PROFILE_LOADED = false; AGENCE = null; AID = null; POINTS = [];
+  const adminEmail = String(CFG.adminEmail||'').trim().toLowerCase();
+  IS_ADMIN = !!adminEmail && String(u.email||'').toLowerCase() === adminEmail;
+  ADMIN_READY = IS_ADMIN && !!u.emailVerified;
+  DRAFT = lsGet(draftKey(), {});
+  showGate(`<div style="margin-top:24px"><div class="spin" style="border-color:var(--line);border-top-color:var(--lagoon)"></div><p class="muted" style="text-align:center;margin-top:12px">Chargement de votre agence…</p></div>`);
+  LISTEN.settings = db.doc('settings/app').onSnapshot(s=>{ SETTINGS = s.exists ? (s.data()||{}) : {}; scheduleRender(); }, ()=>{});
+  LISTEN.profile = db.doc('users/'+u.uid).onSnapshot(s=>{
+    PROFILE_LOADED = true;
+    PROFILE = s.exists ? s.data() : null;
+    const aid = PROFILE ? PROFILE.agenceId : null;
+    const pend = isPendingProfile();
+    if(aid !== AID || (WAS_PENDING && !pend)){ stop('agence'); stop('points'); stop('paiements'); stop('team'); AID = aid; AGENCE = null; POINTS = []; if(aid && !pend) listenAgency(aid); }
+    WAS_PENDING = pend;
+    if(!PROFILE && ADMIN_READY) listenAll();
+    route();
+  }, e=>{ PROFILE_LOADED = true; route(); });
+  if(ADMIN_READY) listenAll();
+}
+function listenAgency(aid){
+  LISTEN.agence = db.doc('agences/'+aid).onSnapshot(s=>{
+    AGENCE = s.exists ? { id:s.id, ...s.data({ serverTimestamps:'estimate' }) } : null;
+    OPS = opsFor(AGENCE);
+    if(!AGENCE && PROFILE){ route(); return; }
+    route();
+  }, ()=>{ route(); });
+  LISTEN.points = db.collection('agences/'+aid+'/points').onSnapshot({ includeMetadataChanges:true }, snap=>{
+    POINTS = snap.docs.map(d=>d.data()).filter(p=>p && p.date && p.type && p.soldes);
+    SYNC = snap.metadata.hasPendingWrites ? 'pending' : (snap.metadata.fromCache ? 'cache' : 'ok');
+    updateSync(); scheduleRender();
+  }, e=>{ SYNC = 'cache'; updateSync(); });
+  LISTEN.paiements = db.collection('agences/'+aid+'/paiements').onSnapshot(snap=>{
+    PAIEMENTS = snap.docs.map(d=>({ id:d.id, ...d.data({ serverTimestamps:'estimate' }) })).sort((a,b)=>(tsDate(b.validatedAt)||0)-(tsDate(a.validatedAt)||0));
+    scheduleRender();
+  }, ()=>{});
+}
+function listenTeam(){
+  if(LISTEN.team || !AID || !isPatron()) return;
+  LISTEN.team = db.collection('users').where('agenceId','==',AID).onSnapshot(snap=>{
+    TEAM = snap.docs.map(d=>({ uid:d.id, ...d.data() })); scheduleRender();
+  }, ()=>{});
+}
+function listenAll(){
+  if(LISTEN.all) return;
+  LISTEN.all = db.collection('agences').onSnapshot(snap=>{
+    ALL_AG = snap.docs.map(d=>({ id:d.id, ...d.data({ serverTimestamps:'estimate' }) }));
+    scheduleRender();
+  }, ()=>{});
+}
+function route(){
+  if(!USER || !PROFILE_LOADED) return;
+  if(!PROFILE && !IS_ADMIN){ GATE = 'orphan'; renderGate(); return; }
+  if(isPendingProfile()){ GATE = 'pending'; renderGate(); return; }
+  if(PROFILE && !AGENCE && !IS_ADMIN) return;   // en attente de l'agence
+  $('#gate').classList.add('hidden'); $('#app').classList.remove('hidden');
+  if(USER){ const role = PROFILE ? PROFILE.role : (IS_ADMIN ? 'admin' : ''); const ag = AGENCE ? AGENCE.nom : '';
+    const cur = accounts().find(a=>a.app===CUR_APP);
+    if(!cur || cur.agence!==ag || cur.role!==role || cur.aid!==(AID||'') || cur.nom!==(PROFILE&&PROFILE.nom||cur.nom)) upsertAccount({ app:CUR_APP, uid:USER.uid, email:USER.email||'', nom:(PROFILE&&PROFILE.nom)||USER.displayName||'', agence:ag, role, aid:AID||'' });
+    const av = $('#acct-btn'); if(av){ av.textContent = initials(ag || (PROFILE&&PROFILE.nom) || USER.email); av.title = (ag?ag+' · ':'') + (USER.email||''); }
+    const n = accounts().length; const bd = $('#acct-n'); if(bd){ bd.textContent = n; bd.classList.toggle('hidden', n<2); } }
+  if(PROFILE && isPatron()) listenTeam();
+  if(ADMIN_READY) listenAll();
+  if(!AGENCE && !['console','monagence'].includes(VIEW)) VIEW = IS_ADMIN ? 'console' : 'bord';
+  if(AGENCE && VIEW==='monagence') VIEW = 'bord';
+  render();
+  showNews();
+}
+function logout(){
+  closeMenu();
+  if(SYNC==='pending' && !confirm("Des saisies attendent encore d'être envoyées. Si vous vous déconnectez maintenant, elles seront perdues. Se déconnecter quand même ?")) return;
+  const others = accounts().filter(a=>a.app!==CUR_APP), cur = CUR_APP, curAuth = auth;
+  saveAccounts(others);
+  if(others.length){
+    const next = others[others.length-1].app;
+    curAuth.signOut().catch(()=>{}).finally(()=>{ try{ const a = firebase.apps.find(x=>x.name===cur); if(a && cur!=='[DEFAULT]') a.delete(); }catch(_){} });
+    useApp(next);
+  } else if(curAuth) curAuth.signOut();
+}
+
+/* ═════════ Synchronisation ═════════ */
+function updateSync(){
+  const el = $('#sync'); if(!el) return;
+  let cls, txt;
+  if(!navigator.onLine){ cls = 'off'; txt = 'Hors ligne'; }
+  else if(SYNC==='pending'){ cls = 'wait'; txt = 'Envoi en cours'; }
+  else if(SYNC==='cache'){ cls = 'wait'; txt = 'Connexion…'; }
+  else { cls = 'ok'; txt = 'Synchronisé'; }
+  if(!navigator.onLine && SYNC==='pending') txt = 'Hors ligne, envoi en attente';
+  el.className = 'sync ' + cls; el.querySelector('span').textContent = txt;
+}
+window.addEventListener('online', updateSync); window.addEventListener('offline', updateSync);
+let RENDER_T = null, PENDING_RENDER = false;
+function inputFocused(){ const a = document.activeElement, m = $('#main'); return !!(a && m && m.contains(a) && a.matches('input,textarea,select')); }
+function scheduleRender(){
+  clearTimeout(RENDER_T);
+  RENDER_T = setTimeout(()=>{
+    if(!USER || $('#app').classList.contains('hidden')) return;
+    if($('#point-form') || inputFocused()){ PENDING_RENDER = true; renderNav(); updateSync(); if($('#point-form')) updateLive(); return; }
+    PENDING_RENDER = false; render();
+  }, 120);
+}
+document.addEventListener('focusout', ()=>{
+  if(!PENDING_RENDER) return;
+  setTimeout(()=>{ if(PENDING_RENDER && !inputFocused() && !$('#point-form')){ PENDING_RENDER = false; render(); } }, 300);
+});
+function writeErr(e, what){
+  const c = (e && e.code) || '';
+  if(c.includes('permission-denied')) toast(`${what} a été refusé par le serveur : abonnement, date (aujourd'hui ou hier seulement) ou point modifié sur un autre téléphone. Votre saisie est gardée : rechargez l'app puis réessayez.`, 'err');
+  else toast(`${what} n'a pas pu être envoyé. Il sera réessayé au retour du réseau.`, 'err');
+}
+
+/* ═════════ Navigation ═════════ */
+function tabList(){
+  const t = [];
+  if(AGENCE){
+    t.push(['bord','Tableau de bord'],['ouverture','Ouverture'],['fermeture','Fermeture'],['historique','Historique'],['abonnement','Abonnement']);
+    if(isPatron()) t.push(['reglages','Réglages']);
+  } else if(IS_ADMIN) t.push(['monagence','Mon agence']);
+  if(IS_ADMIN) t.push(['console','Console']);
+  t.push(['aide','Aide']);
+  return t;
+}
+function renderNav(){
+  const today = localDate();
+  $('#top-date').textContent = fmtDateLong(today);
+  $('#top-name').textContent = AGENCE ? AGENCE.nom : "Odi's Agence";
+  $('#top-role').textContent = PROFILE ? (PROFILE.role==='patron' ? 'Patron(ne)' : 'Gérant(e)') : 'Administrateur';
+  const st = subStatus(AGENCE);
+  $('#tabs').innerHTML = tabList().map(([k,l])=>{
+    let dot = '';
+    if(AGENCE && (k==='ouverture' || k==='fermeture')){ const done = !!getPoint(today, k); dot = `<span class="tdot ${done?'ok':'wait'}" title="${done?"Fait aujourd'hui":"À faire aujourd'hui"}"></span>`; }
+    if(AGENCE && k==='abonnement' && st.k!=='ok') dot = `<span class="tdot ${st.k==='bad'?'bad':'wait'}"></span>`;
+    if(k==='console'){ const n = ALL_AG.filter(a=>tsDate(a.declared)).length; if(n) dot = `<span class="tdot wait" title="${n} paiement(s) à vérifier"></span>`; }
+    return `<button class="tab" data-view="${k}"${VIEW===k?' aria-current="page"':''}>${l}${dot}</button>`;
+  }).join('');
+}
+function go(v){
+  if(v==='ouverture' || v==='fermeture'){ if(FORM.type!==v) FORM.editing = false; FORM.type = v; }
+  VIEW = v; render(); window.scrollTo({ top:0 });
+}
+function render(){
+  if(!USER) return;
+  renderNav(); updateSync();
+  const m = $('#main');
+  const valid = tabList().map(t=>t[0]);
+  if(!valid.includes(VIEW)) VIEW = valid[0] || 'bord';
+  if(VIEW==='bord') renderBord(m);
+  else if(VIEW==='ouverture' || VIEW==='fermeture'){ FORM.type = VIEW; renderForm(m); }
+  else if(VIEW==='historique') renderHist(m);
+  else if(VIEW==='abonnement') renderAbonnement(m);
+  else if(VIEW==='reglages'){ renderReglages(m); inviteValidity(); }
+  else if(VIEW==='console') renderConsole(m);
+  else if(VIEW==='aide') renderAide(m);
+  else if(VIEW==='monagence') m.innerHTML = `<header class="view-head"><h1>Mon agence</h1><p>Votre compte administrateur n'est relié à aucune agence. Créez-en une pour suivre vos propres points.</p></header><section class="panel" style="max-width:520px">${orphanForms()}</section>`;
+}
+function teamNotice(){
+  if(!isPatron()) return '';
+  const n = TEAM.filter(u=>u.role==='gerante' && u.status==='attente').length;
+  return n ? `<div class="notice info"><span><b>${n} demande${n>1?'s':''}</b> pour rejoindre l'agence : vérifiez que c'est bien votre gérant(e).</span><button class="btn" data-view="reglages">Voir</button></div>` : '';
+}
+function missedNotice(){
+  const y = yesterday(), o = getPoint(y,'ouverture'), f = getPoint(y,'fermeture');
+  if(!o || f) return '';
+  if(isPatron()){
+    const msg = `Bonjour, la fermeture d'hier (${fmtDateLong(y).toLowerCase()}) n'a pas été faite dans Odi's Agence. Merci de la faire maintenant : onglet Fermeture, date d'hier.`;
+    return `<div class="notice"><span>La <b>fermeture d'hier</b> n'a pas été faite.</span><a class="btn wa" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Relancer sur WhatsApp</a></div>`;
+  }
+  return `<div class="notice"><span>Vous n'avez pas fait la <b>fermeture d'hier</b>. Vous pouvez encore la faire aujourd'hui.</span><button class="btn" data-action="do-missed">Faire la fermeture d'hier</button></div>`;
+}
+function pendingNotice(){
+  if(SYNC!=='pending') return '';
+  return `<div class="notice info"><span><b>Envoi en attente.</b> Vos saisies sont gardées sur ce téléphone et partiront dès le retour du réseau. Ne videz pas les données du navigateur et ne désinstallez pas l'app d'ici là.</span></div>`;
+}
+window.addEventListener('beforeunload', e=>{ if(SYNC==='pending'){ e.preventDefault(); e.returnValue = ''; } });
+function subNotice(){
+  const s = subStatus(AGENCE);
+  if(s.k==='ok') return '';
+  const cls = s.k==='bad' ? 'bad' : (s.k==='info' ? 'info' : '');
+  return `<div class="notice ${cls}"><span>${s.k==='bad' ? 'Abonnement suspendu : la saisie est bloquée.' : (s.k==='info' ? 'Paiement déclaré, en attente de validation.' : `${s.trial ? 'Essai gratuit' : 'Abonnement'} : plus que ${s.left} jour${s.left>1?'s':''}.`)}</span><button class="btn" data-view="abonnement">${s.trial ? 'Payer' : (s.k==='bad'||s.k==='warn' ? 'Renouveler' : 'Voir')}</button></div>`;
+}
+function budgetNotice(){
+  if(budgetNow()>0) return '';
+  return isPatron()
+    ? `<div class="notice"><span>Définissez le budget voté pour calculer les écarts.</span><button class="btn" data-view="reglages">Définir le budget</button></div>`
+    : `<div class="notice"><span>Le budget voté n'est pas encore défini. Demandez à votre patron(ne) de le saisir dans Réglages.</span></div>`;
+}
+
+/* ═════════ Installation sur l'écran d'accueil ═════════ */
+let INSTALL_EVT = null;
+window.addEventListener('beforeinstallprompt', e=>{ e.preventDefault(); INSTALL_EVT = e; scheduleRender(); });
+window.addEventListener('appinstalled', ()=>{ INSTALL_EVT = null; lsSet('odis_installed', true); scheduleRender(); });
+function isStandalone(){ return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true; }
+function installCard(force){
+  if(isStandalone()) return force ? `<section class="panel" style="margin-bottom:20px"><h2>Application installée</h2><p class="card-text">Odi's Agence est déjà installée sur cet appareil.</p></section>` : '';
+  const hidUntil = Number(lsGet('odis_install_hidden_until', 0)) || 0;
+  if(!force && Date.now() < hidUntil) return '';
+  const ua = navigator.userAgent || '';
+  const ios = /iphone|ipad|ipod/i.test(ua) || (/macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+  const inApp = /FBAN|FBAV|FB_IAB|Instagram|WhatsApp|Line\/|; wv\)|\bwv\b|GSA\//i.test(ua);
+  const iosOther = ios && /CriOS|FxiOS|EdgiOS|OPiOS/i.test(ua);
+  const desk = !ios && !/android|mobile/i.test(ua);
+  let txt, btn = '';
+  if(inApp) txt = `Ce lien est ouvert dans WhatsApp ou une autre app, qui ne permet pas l'installation. Touchez le menu <b>⋮</b> en haut à droite puis <b>« Ouvrir dans Chrome »</b>${ios ? ' (ou Safari sur iPhone)' : ''}, ou copiez l'adresse dans Chrome.`;
+  else if(iosOther) txt = `Sur iPhone, l'installation se fait depuis <b>Safari</b> : ouvrez l'adresse dans Safari, touchez <b>Partager</b> puis <b>« Sur l'écran d'accueil »</b>.`;
+  else if(ios) txt = `Touchez le bouton <b>Partager</b> de Safari (carré avec une flèche), puis <b>« Sur l'écran d'accueil »</b> et <b>Ajouter</b>.`;
+  else if(INSTALL_EVT){ txt = `Une icône Odi's Agence apparaîtra sur l'écran d'accueil, comme une vraie app.`; btn = '<button class="btn primary" data-action="install">Installer</button>'; }
+  else if(desk) txt = `Dans Chrome ou Edge, cliquez sur l'icône d'installation à droite de la barre d'adresse, ou sur le menu <b>⋮</b> puis <b>« Installer Odi's Agence »</b>.`;
+  else txt = `Dans Chrome, touchez le menu <b>⋮</b> en haut à droite, puis <b>« Installer l'application »</b> ou <b>« Ajouter à l'écran d'accueil »</b>. Si l'option n'apparaît pas, rechargez la page une fois.`;
+  if(inApp) btn = '<button class="btn primary" data-action="copy-url">Copier l\'adresse</button>';
+  return `<section class="panel install-card" style="margin-bottom:20px"><h2>Installer l'app sur ${desk ? 'cet ordinateur' : 'ce téléphone'}</h2><p class="card-text">${txt}</p>
+    <div class="card-act">${btn}${force ? '' : '<button class="btn" data-action="install-hide">Plus tard</button>'}</div></section>`;
+}
+
+/* ═════════ Tableau de bord ═════════ */
+function renderBord(m){
+  const today = localDate();
+  const o = getPoint(today,'ouverture'), f = getPoint(today,'fermeture');
+  const lp = f || o || lastPoint();
+  let h = `<header class="view-head"><h1>Tableau de bord</h1><p>L'écart compare, à chaque point, tout l'argent de l'agence (opérateurs, espèce et crédits) au budget voté.</p></header>`;
+  h += subNotice() + budgetNotice() + teamNotice() + missedNotice() + pendingNotice() + installCard();
+  if(!lp){
+    h += `<section class="panel empty"><h2>Aucun point enregistré</h2><p>Faites l'ouverture du jour pour voir l'écart avec le budget voté.</p><button class="btn primary" data-view="ouverture">Faire l'ouverture</button></section>`;
+  } else {
+    h += heroHTML(lp, o, f, today);
+    h += `<div class="row2">${dayCardHTML(o, f)}${repartitionHTML(lp)}</div>`;
+  }
+  h += monthHTML();
+  m.innerHTML = h; animateRulers(m);
+}
+function heroHTML(lp, o, f, today){
+  const c = calc(lp), kind = lp.type==='ouverture' ? 'Ouverture' : 'Fermeture';
+  const when = lp.date===today ? `${kind} d'aujourd'hui` : `${kind} du ${fmtDateShort(lp.date)}`;
+  const step = (p, label, view)=> p
+    ? `<li class="done"><span class="mark" aria-hidden="true">✓</span><span><span class="s-t">${label}</span><span class="s-m">Faite ${ptWhen(p)} par ${esc(p.byNom || (p.by==='patron'?'le patron / la patronne':'le gérant / la gérante'))}${lateTag(p)}</span></span></li>`
+    : `<li><span class="mark" aria-hidden="true"></span><span><span class="s-t">${label}</span><span class="s-m">À faire</span></span><button class="go" data-view="${view}">Commencer</button></li>`;
+  return `<section class="hero">
+    <div><p class="hero-k">Écart au dernier point</p><p class="hero-when">${when}</p>
+      <p class="ecart-big ${tone(c.ecart)}">${fmtS(c.ecart)}</p><p class="hero-tone">${toneSentence(c.ecart)}</p>${rulerHTML(c.ecart, c.budget, false)}</div>
+    <div><ol class="steps" aria-label="Points d'aujourd'hui">${step(o,"Ouverture d'aujourd'hui",'ouverture')}${step(f,"Fermeture d'aujourd'hui",'fermeture')}</ol>
+      <dl class="hero-kv"><div><dt>Opérateurs</dt><dd>${fmt(c.flt)}</dd></div><div><dt>Espèce en caisse</dt><dd>${fmt(c.esp)}</dd></div><div><dt>Crédits en cours</dt><dd>${fmt(c.cr)}</dd></div>
+        <div class="tot"><dt>Total constaté</dt><dd>${fmt(c.total)}</dd></div><div><dt>Budget voté</dt><dd>${fmt(c.budget)}</dd></div></dl></div>
+  </section>`;
+}
+function dayCardHTML(o, f){
+  let body;
+  if(o && f){
+    const co = calc(o), cf = calc(f), d = cf.total - co.total;
+    body = `<p class="card-text">${d===0 ? "Le total n'a pas bougé entre l'ouverture et la fermeture." : (d<0 ? `Le total a baissé de ${fmt(Math.abs(d))} pendant la journée.` : `Le total a augmenté de ${fmt(d)} pendant la journée.`)}</p>
+      <div class="trio"><div><small>Ouverture</small><b class="${tone(co.ecart)}">${fmtS(co.ecart)}</b></div><div><small>Fermeture</small><b class="${tone(cf.ecart)}">${fmtS(cf.ecart)}</b></div><div><small>Journée</small><b class="${tone(d)}">${fmtS(d)}</b></div></div>`;
+  } else if(o){
+    const co = calc(o);
+    body = `<p class="card-text">Ouverture faite. Faites la fermeture ce soir pour voir l'évolution de la journée.</p>
+      <div class="trio"><div><small>Ouverture</small><b class="${tone(co.ecart)}">${fmtS(co.ecart)}</b></div><div><small>Fermeture</small><b class="muted">—</b></div><div><small>Journée</small><b class="muted">—</b></div></div>
+      <div class="card-act"><button class="btn primary" data-view="fermeture">Faire la fermeture</button></div>`;
+  } else body = `<p class="card-text">La journée n'a pas encore commencé dans l'application.</p><div class="card-act"><button class="btn primary" data-view="ouverture">Faire l'ouverture</button></div>`;
+  return `<section class="panel"><h2>Journée d'aujourd'hui</h2>${body}</section>`;
+}
+function repartitionHTML(lp){
+  const c = calc(lp);
+  const parts = opsOf(lp).map(o=>({ n:o.n, v:Number(lp.soldes[o.k])||0, c:o.c })).filter(x=>x.v>0 || OPS.some(o=>o.n===x.n));
+  parts.push({ n:'Espèce en caisse', v:c.esp, c:ESP_COLOR }, { n:'Crédits en cours', v:c.cr, c:CRED_COLOR });
+  const tot = c.total || 1;
+  return `<section class="panel"><h2>Où se trouve l'argent</h2><p class="card-text">Répartition du total constaté au dernier point.</p>
+    <div class="stack" role="img" aria-label="Répartition du total constaté">${parts.filter(p=>p.v>0).map(p=>`<span style="flex:${p.v};background:${p.c}" title="${p.n} : ${fmt(p.v)}"></span>`).join('')}</div>
+    <ul class="legend">${parts.map(p=>`<li><span class="sw" style="background:${p.c}"></span>${p.n}<span class="v">${fmt(p.v)}</span><span class="pc">${Math.round(p.v/tot*100)} %</span></li>`).join('')}</ul></section>`;
+}
+function monthNavHTML(scope, mk){
+  const isCurrent = mk >= monthKey(new Date());
+  return `<div class="mnav"><button data-action="month" data-scope="${scope}" data-dir="-1" aria-label="Mois précédent">‹</button><span>${monthLabel(mk)}</span><button data-action="month" data-scope="${scope}" data-dir="1" aria-label="Mois suivant"${isCurrent?' disabled':''}>›</button></div>`;
+}
+function monthHTML(){
+  const pts = POINTS.filter(p=>p.date.startsWith(MONTH_B)), ferms = pts.filter(p=>p.type==='fermeture');
+  const days = new Set(pts.map(p=>p.date)).size, manq = ferms.filter(p=>calc(p).ecart<0).length;
+  let worst = null; pts.forEach(p=>{ const e = calc(p).ecart; if(e<0 && (!worst || e<worst.e)) worst = { p, e }; });
+  const avg = ferms.length ? ferms.reduce((s,p)=>s+calc(p).ecart,0)/ferms.length : null;
+  return `<div class="month-head"><h2>Suivi du mois</h2>${monthNavHTML('bord', MONTH_B)}</div>
+    <div class="stats">
+      <div><small>Jours suivis</small><b>${days}</b><em>${pts.length} point${pts.length>1?'s':''} enregistré${pts.length>1?'s':''}</em></div>
+      <div><small>Fermetures avec manquant</small><b class="${manq?'neg':''}">${manq}</b><em>sur ${ferms.length} fermeture${ferms.length>1?'s':''}</em></div>
+      <div><small>Plus gros manquant</small><b class="${worst?'neg':''}">${worst?fmtS(worst.e):'Aucun'}</b><em>${worst?(worst.p.type==='ouverture'?'Ouverture':'Fermeture')+' du '+fmtDateShort(worst.p.date):'sur ce mois'}</em></div>
+      <div><small>Écart moyen à la fermeture</small><b class="${avg===null?'':tone(Math.round(avg))}">${avg===null?'—':fmtS(avg)}</b><em>chaque jour compté séparément</em></div>
+    </div>
+    <section class="panel chart-panel"><h2>Écart par jour</h2>${chartHTML(MONTH_B, pts)}</section>`;
+}
+function chartHTML(mk, pts){
+  const [y,mo] = mk.split('-').map(Number), nd = new Date(y, mo, 0).getDate(), byDay = {};
+  pts.forEach(p=>{ (byDay[p.date] = byDay[p.date] || {})[p.type] = calc(p).ecart; });
+  const vals = []; Object.values(byDay).forEach(d=>{ if(d.ouverture!==undefined) vals.push(d.ouverture); if(d.fermeture!==undefined) vals.push(d.fermeture); });
+  if(!vals.length) return `<p class="card-text">Aucun point enregistré sur ce mois.</p>`;
+  const max = Math.max(...vals.map(v=>Math.abs(v)), 1000);
+  const W = (window.innerWidth >= 900 ? 1120 : 760), H = 230, pl = 6, pr = 6, top = 14, bot = 30, half = (H-top-bot)/2, mid = top+half, bw = (W-pl-pr)/nd;
+  let s = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Écarts par jour, ${monthLabel(mk)}"><line class="c-zero" x1="${pl}" x2="${W-pr}" y1="${mid}" y2="${mid}"></line>`;
+  for(let d=1; d<=nd; d++){
+    const ds = `${mk}-${String(d).padStart(2,'0')}`, x = pl+(d-1)*bw, v = byDay[ds];
+    if(v && v.fermeture!==undefined){ const e = v.fermeture, hh = Math.max(2, Math.abs(e)/max*half), yy = e<0 ? mid : mid-hh;
+      s += `<rect x="${(x+bw*0.18).toFixed(1)}" y="${yy.toFixed(1)}" width="${(bw*0.64).toFixed(1)}" height="${hh.toFixed(1)}" rx="2" class="${e<0?'c-neg':(e>0?'c-pos':'c-eq')}"><title>${fmtDateShort(ds)}, fermeture : ${fmtS(e)}</title></rect>`; }
+    if(v && v.ouverture!==undefined){ const cy = mid - (v.ouverture/max)*half;
+      s += `<circle cx="${(x+bw/2).toFixed(1)}" cy="${cy.toFixed(1)}" r="3.4" class="c-ouv"><title>${fmtDateShort(ds)}, ouverture : ${fmtS(v.ouverture)}</title></circle>`; }
+    if(d===1 || d%5===0) s += `<text class="c-lbl" x="${(x+bw/2).toFixed(1)}" y="${H-9}" text-anchor="middle">${d}</text>`;
+  }
+  s += `</svg>`;
+  return `<div class="chart-scroll">${s}</div><div class="c-legend"><span><i style="background:var(--green)"></i>Surplus à la fermeture</span><span><i style="background:var(--red)"></i>Manquant à la fermeture</span><span><i style="background:var(--surface);border:2px solid var(--sky);border-radius:50%"></i>Écart à l'ouverture</span><span>Ligne pointillée : budget voté</span></div>`;
+}
+
+/* ═════════ Formulaire de point ═════════ */
+function renderForm(m){
+  const type = FORM.type, date = FORM.date, rec = getPoint(date, type);
+  if(rec && FORM.editing && !canEdit(rec)) FORM.editing = false;
+  const isToday = date===localDate();
+  let h = `<header class="view-head"><h1>${type==='ouverture'?'Ouverture':'Fermeture'}</h1><p>${type==='ouverture'
+      ? "Faites le point au démarrage : le solde de chaque opérateur, l'espèce en caisse et le total des crédits en cours."
+      : "Faites le point à la fermeture avec les mêmes éléments qu'à l'ouverture. Sans manquant, l'écart reste au même niveau."}</p></header>`;
+  const maxDate = localDate(), minDate = isPatron() ? '' : yesterday();
+  h += `<div class="datebar"><label for="f-date">Date du point</label><input type="date" id="f-date" value="${date}" max="${maxDate}"${minDate?` min="${minDate}"`:''}>${isToday?`<span class="chip">Aujourd'hui</span>`:`<button class="link" data-action="today">Revenir à aujourd'hui</button>`}</div>`;
+  h += subNotice() + budgetNotice();
+  if(rec && !FORM.editing){ m.innerHTML = h + recordedHTML(rec); animateRulers(m); return; }
+  if(!canWrite()){
+    m.innerHTML = h + `<section class="panel empty"><h2>Saisie suspendue</h2><p>L'abonnement de l'agence n'est plus actif. Vos données sont conservées : renouvelez l'abonnement pour reprendre les points.</p><button class="btn primary" data-view="abonnement">Renouveler l'abonnement</button></section>`;
+    return;
+  }
+  m.innerHTML = h + formHTML(type, date, rec);
+  updateLive();
+}
+function formHTML(type, date, rec){
+  const key = type+'|'+date, src = (DRAFT[key] && (!rec || (DRAFT[key]._t||0) > ptTime(rec).getTime())) ? DRAFT[key] : (rec ? pointVals(rec) : null), prev = prevPoint(date, type);
+  const val0 = k => (src && src[k]!=='' && src[k]!==undefined && src[k]!==null) ? nfs(src[k]) : '';
+  CUR_ESP = (src && src._esp) ? { ...src._esp } : null;
+  CUR_CRED = (src && Array.isArray(src._cred)) ? src._cred.map(c=>({ ...c })) : null;
+  let credCarried = false;
+  if(!src && prev && Array.isArray(prev.credList) && prev.credList.length){ CUR_CRED = prev.credList.map(c=>({ ...c })); credCarried = true; }
+  const val = k => (k==='credits' && CUR_CRED && CUR_CRED.length) ? nfs(credSum()) : val0(k);
+  let notice = '';
+  if(type==='fermeture' && !getPoint(date,'ouverture')) notice += `<div class="notice info"><span>Aucune ouverture enregistrée pour cette date : la variation de la journée ne pourra pas être calculée.</span></div>`;
+  if(rec && FORM.editing) notice += `<div class="notice info"><span>Vous modifiez ${type==='ouverture'?"l'ouverture":'la fermeture'} déjà enregistrée.</span><button class="btn" data-action="cancel-edit">Annuler la modification</button></div>`;
+  const row = (id, badge, label, hint) => `<div class="op-row">${badge}<div class="op-name"><label for="in-${id}">${label}</label>${hint||''}</div><div class="money"><input id="in-${id}" class="amount" inputmode="numeric" autocomplete="off" placeholder="0" value="${val(id)}"><span>F</span></div></div>`;
+  const ops = OPS.map(o=>row(o.k, opBadge(o), o.n, prev?`<small>Dernier point : ${fmt(prev.soldes[o.k])}</small>`:'')).join('');
+  const esp = row('espece', `<span class="op-badge" style="--c:${ESP_COLOR};--fg:#fff" aria-hidden="true">Cash</span>`, 'Espèce en caisse', `<small>${prev?'Dernier point : '+fmt(prev.espece)+'. ':''}Billets et pièces comptés.</small>`)
+    + `<div class="esp-tools"><button class="btn sm" data-action="esp-count">Compter billets et pièces</button><span class="muted small">ou tapez un calcul : 5x100000+25000</span><span id="esp-detail" class="esp-detail small">${espDetailText(CUR_ESP)}</span></div>`;
+  const cred = row('credits', `<span class="op-badge" style="--c:${CRED_COLOR};--fg:#0B3B3C" aria-hidden="true">Créd</span>`, 'Crédits en cours', (prev && !(prev.credList && prev.credList.length))?`<small>Dernier point : ${fmt(prev.credits)}. <button class="link" data-action="reuse-credits" data-v="${Number(prev.credits)||0}">Reprendre ce montant</button></small>`:`<small>Total des dépôts faits à crédit et non encore remboursés.</small>`)
+    + `<div id="cred-box" class="cred-box">${credListHTML(credCarried)}</div>`;
+  return `${notice}<div class="form-grid" id="point-form">
+    <div>
+      <section class="block"><h2>Soldes des opérateurs</h2><p class="muted small">Le solde affiché sur chaque application au moment du point.</p>${ops}</section>
+      <section class="block"><h2>Caisse et crédits</h2>${esp}${cred}</section>
+      <section class="block"><h2>Note</h2><textarea id="in-note" class="txt" rows="2" placeholder="Facultatif">${esc(src&&src.note||'')}</textarea></section>
+    </div>
+    <aside class="live">
+      <h2>Résultat du point</h2>
+      <div class="lrow"><span>Opérateurs</span><b id="l-flt">0 F</b></div>
+      <div class="lrow"><span>Espèce en caisse</span><b id="l-esp">0 F</b></div>
+      <div class="lrow"><span>Crédits en cours</span><b id="l-cr">0 F</b></div>
+      <div class="lrow tot"><span>Total constaté</span><b id="l-tot">0 F</b></div>
+      <div class="lrow"><span>Budget voté</span><b>${budgetNow()?fmt(budgetNow()):'Non défini'}</b></div>
+      <div class="live-ecart" id="l-box" aria-live="polite"><div class="lbl" id="l-lbl">Écart</div><div class="val" id="l-val">—</div>${rulerHTML(0, budgetNow(), true, 'l-ruler')}</div>
+      <p class="live-var" id="l-var"></p><p class="live-miss" id="l-miss"></p>
+      <button class="btn primary block" data-action="save">Enregistrer ${type==='ouverture'?"l'ouverture":'la fermeture'}</button>
+    </aside></div>`;
+}
+/* ═════════ Compteur d'espèces et liste des crédits ═════════ */
+const BILLETS = [10000, 5000, 2000, 1000, 500], PIECES = [500, 250, 200, 100, 50, 25, 10, 5];
+function espTotal(e){
+  if(!e) return 0; let t = (Number(e.l)||0) * (Number(e.lv)||0) + (Number(e.x)||0);
+  BILLETS.forEach(b=>t += (Number(e['b'+b])||0)*b); PIECES.forEach(c=>t += (Number(e['p'+c])||0)*c); return t;
+}
+function espDetailText(e){
+  if(!e) return '';
+  const parts = [];
+  if(Number(e.l)) parts.push(`${e.l} liasse${e.l>1?'s':''} de ${nfs(e.lv)}`);
+  BILLETS.forEach(b=>{ if(Number(e['b'+b])) parts.push(`${e['b'+b]} × ${nfs(b)}`); });
+  PIECES.forEach(c=>{ if(Number(e['p'+c])) parts.push(`${e['p'+c]} pièce${e['p'+c]>1?'s':''} de ${c}`); });
+  if(Number(e.x)) parts.push(`autre ${nfs(e.x)}`);
+  return parts.length ? 'Comptage : ' + parts.join(' · ') : '';
+}
+function openEspCounter(){
+  const e = CUR_ESP || { lv:100000 }, o = $('#modal'); o.classList.remove('hidden');
+  const line = (k, label, step) => `<div class="cnt-row"><span>${label}</span><input class="cnt-in" data-k="${k}" inputmode="numeric" placeholder="0" value="${Number(e[k])||''}"><b data-sub="${k}">0 F</b></div>`;
+  o.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="cnt-t">
+    <div class="modal-top"><h2 id="cnt-t">Compter les espèces</h2><button class="modal-x" data-action="close-modal" aria-label="Fermer">×</button></div>
+    <p class="card-text">Tapez seulement le <b>nombre</b> de liasses, de billets et de pièces : l'app fait le calcul.</p>
+    <h3 class="cnt-h">Liasses</h3>
+    <div class="cnt-row"><span>Nombre de liasses</span><input class="cnt-in" data-k="l" inputmode="numeric" placeholder="0" value="${Number(e.l)||''}"><b data-sub="l">0 F</b></div>
+    <div class="cnt-row"><span>Montant d'une liasse</span><input class="cnt-in" data-k="lv" inputmode="numeric" value="${nfs(Number(e.lv)||100000)}"><b></b></div>
+    <h3 class="cnt-h">Billets</h3>${BILLETS.map(b=>line('b'+b, nfs(b)+' F')).join('')}
+    <h3 class="cnt-h">Pièces (jetons)</h3>${PIECES.map(c=>line('p'+c, c+' F')).join('')}
+    <h3 class="cnt-h">Autre</h3><div class="cnt-row"><span>Autre montant</span><input class="cnt-in" data-k="x" inputmode="numeric" placeholder="0" value="${Number(e.x)?nfs(e.x):''}"><b></b></div>
+    <div class="cnt-foot"><div class="cnt-total"><span>Total des espèces</span><b id="cnt-total">0 F</b></div>
+    <div class="actions" style="margin-top:10px"><button class="btn primary" data-action="esp-apply">Utiliser ce total</button><button class="btn" data-action="close-modal">Annuler</button></div></div>
+  </div>`;
+  updateEspCounter();
+}
+function readEspCounter(){ const e = {}; document.querySelectorAll('#modal .cnt-in').forEach(i=>{ const n = num(i.value); if(n) e[i.dataset.k] = n; }); if(!e.lv) e.lv = 100000; return e; }
+function updateEspCounter(){
+  const e = readEspCounter();
+  document.querySelectorAll('#modal [data-sub]').forEach(b=>{ const k = b.dataset.sub; const n = Number(e[k])||0;
+    b.textContent = fmt(k==='l' ? n*(e.lv||0) : n*Number(k.slice(1))); });
+  $('#cnt-total').textContent = fmt(espTotal(e));
+}
+function applyEspCounter(){
+  const e = readEspCounter(), t = espTotal(e);
+  const keep = Object.keys(e).filter(k=>k!=='lv' && e[k]).length; CUR_ESP = keep ? e : null; if(CUR_ESP && !CUR_ESP.l) delete CUR_ESP.lv;
+  closeModal(); const el = $('#in-espece'); if(el){ el.value = keep ? nfs(t) : el.value; }
+  const d = $('#esp-detail'); if(d) d.textContent = espDetailText(CUR_ESP);
+  onFormInput();
+}
+function credSum(){ return (CUR_CRED||[]).reduce((a,c)=>a+(Number(c.m)||0), 0); }
+function daysSince(d){ if(!d) return 0; const a = parseD(d), b = parseD(localDate()); return Math.max(0, Math.round((b-a)/864e5)); }
+function credAge(d){ const n = daysSince(d); return n===0 ? "aujourd'hui" : (n===1 ? 'hier' : `${n} j`); }
+function credListHTML(carried){
+  const L = CUR_CRED || [];
+  const rows = L.map((c,i)=>{ const n = daysSince(c.d), late = n>=7;
+    const tel = waDigits(c.t), wa = tel ? (tel.length===10 && tel[0]==='0' ? '225'+tel : tel) : '';
+    const msg = `Bonjour ${c.n||''}, petit rappel pour le dépôt de ${fmt(c.m)} fait à crédit le ${fmtDateShort(c.d||localDate())} au point ${AGENCE?AGENCE.nom:''}. Merci de passer régulariser.`;
+    return `<div class="cred-row" data-ci="${i}">
+      <input class="txt cred-n" data-cf="n" maxlength="40" placeholder="Nom du client" value="${esc(c.n||'')}" aria-label="Nom">
+      <div class="money"><input class="cred-m" data-cf="m" inputmode="numeric" placeholder="0" value="${c.m?nfs(c.m):''}" aria-label="Montant"><span>F</span></div>
+      <input class="txt cred-t" data-cf="t" inputmode="tel" maxlength="15" placeholder="Téléphone" value="${esc(c.t||'')}" aria-label="Téléphone">
+      <span class="cred-age${late?' late':''}" title="Depuis le ${esc(c.d||'')}">${credAge(c.d)}</span>
+      <span class="cred-act">${wa?`<a class="btn sm wa" href="https://wa.me/${wa}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener" title="Relancer sur WhatsApp">Relancer</a>`:''}<button class="btn sm" data-action="cred-paid" data-i="${i}" title="Remboursé">Remboursé ✓</button></span>
+    </div>`; }).join('');
+  return `<div class="cred-head"><b>Détail des crédits</b><span class="muted small">${L.length ? `${L.length} client${L.length>1?'s':''} · total ${fmt(credSum())}` : 'Facultatif : notez à qui vous avez fait un dépôt à crédit.'}</span></div>
+    ${carried ? `<p class="small cred-carry">Liste reprise du dernier point : cochez « Remboursé » pour ceux qui ont payé.</p>` : ''}
+    ${rows}<button class="btn sm" data-action="cred-add">+ Ajouter un crédit</button>`;
+}
+function refreshCred(carried){ const b = $('#cred-box'); if(b) b.innerHTML = credListHTML(carried); syncCredTotal(); onFormInput(); }
+function syncCredTotal(){
+  const el = $('#in-credits'); if(!el) return;
+  if(CUR_CRED && CUR_CRED.length){ el.value = nfs(credSum()); el.readOnly = true; el.title = 'Calculé à partir de la liste des crédits'; }
+  else { el.readOnly = false; el.title = ''; }
+  const h = document.querySelector('#cred-box .cred-head .muted'); if(h && CUR_CRED && CUR_CRED.length) h.textContent = `${CUR_CRED.length} client${CUR_CRED.length>1?'s':''} · total ${fmt(credSum())}`;
+}
+function cleanCred(L){
+  return (L||[]).filter(c=>c && (String(c.n||'').trim() || Number(c.m))).slice(0,100).map(c=>({
+    n:String(c.n||'').trim().slice(0,40), m:Math.max(0, Math.round(Number(c.m)||0)), t:waDigits(c.t).slice(0,15), d: /^\d{4}-\d{2}-\d{2}$/.test(c.d||'') ? c.d : FORM.date }));
+}
+function credListView(L){
+  if(!L || !L.length) return '';
+  return `<h3 class="sub">Crédits en cours : ${L.length} client${L.length>1?'s':''}</h3><div class="tbl-wrap"><table class="cmp"><thead><tr><th>Client</th><th>Montant</th><th>Depuis</th></tr></thead><tbody>${L.map(c=>`<tr><td>${esc(c.n||'—')}${c.t?` <span class="muted small">${esc(c.t)}</span>`:''}</td><td>${fmt(c.m)}</td><td class="${daysSince(c.d)>=7?'neg':''}">${credAge(c.d)}</td></tr>`).join('')}<tr class="sum"><td>Total</td><td>${fmt(L.reduce((a,c)=>a+(Number(c.m)||0),0))}</td><td></td></tr></tbody></table></div>`;
+}
+function readForm(){
+  const v = {}, missing = [];
+  OPS.forEach(o=>{ const raw = $('#in-'+o.k).value.trim(); v[o.k] = raw==='' ? '' : amountOf(raw); if(raw==='') missing.push(o.n); });
+  [['espece','Espèce en caisse'],['credits','Crédits en cours']].forEach(([k,n])=>{ const raw = $('#in-'+k).value.trim(); v[k] = raw==='' ? '' : amountOf(raw); if(raw==='') missing.push(n); });
+  v.note = $('#in-note').value;
+  v._esp = CUR_ESP; v._cred = CUR_CRED;
+  return { v, missing };
+}
+function formatAmount(el){
+  if(hasCalc(el.value) || /[+x×X*\-]\s*$/.test(el.value)) return;   // calcul en cours de saisie : on ne reformate pas
+  const fromEnd = el.value.length - (el.selectionStart==null ? el.value.length : el.selectionStart);
+  const d = el.value.replace(/[^\d]/g,''); el.value = d ? nfs(parseInt(d,10)) : '';
+  const pos = Math.max(0, el.value.length - fromEnd); try{ el.setSelectionRange(pos, pos); }catch(_){}
+}
+function onFormInput(){ const { v } = readForm(); v._t = Date.now(); DRAFT[FORM.type+'|'+FORM.date] = v; lsSet(draftKey(), DRAFT); updateLive(); }
+function updateLive(){
+  if(!$('#point-form')) return;
+  syncCredTotal();
+  const { v, missing } = readForm(), soldes = {}; OPS.forEach(o=>soldes[o.k] = Number(v[o.k])||0);
+  const budget = budgetNow(), c = calc({ soldes, espece:v.espece, credits:v.credits, budget });
+  $('#l-flt').textContent = fmt(c.flt); $('#l-esp').textContent = fmt(c.esp); $('#l-cr').textContent = fmt(c.cr); $('#l-tot').textContent = fmt(c.total);
+  const started = missing.length < OPS.length + 2, show = budget && started, complete = show && missing.length===0;
+  $('#l-box').className = 'live-ecart ' + (complete ? tone(c.ecart) : '');
+  $('#l-lbl').textContent = !budget ? 'Budget non défini' : (complete ? toneLabel(c.ecart) : (show ? 'Écart provisoire, saisie incomplète' : 'Écart'));
+  $('#l-val').textContent = show ? fmtS(c.ecart) : '—';
+  setRuler($('#l-ruler'), show ? c.ecart : 0, budget);
+  const vr = $('#l-var'); vr.innerHTML = '';
+  if(FORM.type==='fermeture' && complete){ const o = getPoint(FORM.date, 'ouverture'); if(o){ const d = c.total - calc(o).total; vr.innerHTML = `Depuis l'ouverture : <strong class="${tone(d)}">${fmtS(d)}</strong>`; } }
+  $('#l-miss').textContent = missing.length===0 ? 'Tous les montants sont renseignés.' : (missing.length===1 ? `Reste à renseigner : ${missing[0]}.` : `${missing.length} montants restent à renseigner.`);
+  document.querySelectorAll('#point-form .money').forEach(mn=>mn.classList.toggle('filled', mn.querySelector('input').value.trim()!==''));
+}
+function savePoint(){
+  if(!canWrite()){ toast("L'abonnement n'est plus actif : renouvelez-le pour enregistrer.", 'err'); go('abonnement'); return; }
+  if(!budgetNow()){ toast(isPatron() ? "Définissez d'abord le budget voté dans Réglages." : "Le budget voté n'est pas défini : prévenez votre patron(ne).", 'err'); return; }
+  const { v, missing } = readForm();
+  if(missing.length){
+    toast('Renseignez : ' + missing.join(', ') + '.', 'err');
+    const firstId = [...OPS.map(o=>o.k),'espece','credits'].find(k=>$('#in-'+k).value.trim()===''); if(firstId) $('#in-'+firstId).focus();
+    return;
+  }
+  const { type, date } = FORM, existing = getPoint(date, type);
+  { const pv = prevPoint(date, type);
+    if(pv){
+      const odd = [];
+      [...OPS.map(o=>[o.k,o.n,Number((pv.soldes||{})[o.k])||0]), ['espece','Espèce en caisse',Number(pv.espece)||0], ['credits','Crédits en cours',Number(pv.credits)||0]].forEach(([k,n,a])=>{
+        const b = Number(v[k])||0;
+        if(Math.abs(b-a) >= 50000 && ((a>0 && b>0 && (b/a>=5 || a/b>=5)) || (a===0 && b>=500000) || (b===0 && a>=500000))) odd.push(`• ${n} : ${fmt(a)} → ${fmt(b)}`);
+      });
+      if(odd.length && !confirm(`Vérifiez ces montants, ils sont très différents du point précédent :\n\n${odd.join('\n')}\n\nUn zéro de trop ou de moins ? Touchez Annuler pour corriger, ou OK s'ils sont justes.`)) return;
+    } }
+  const p = { date, type, soldes:{}, espece:v.espece, credits:v.credits, note:(v.note||'').trim().slice(0,500),
+    budget: existing ? Number(existing.budget)||budgetNow() : budgetNow(),
+    at:new Date().toISOString(), by:USER.uid, role:PROFILE.role, byNom:PROFILE.nom||'', srvAt:FV.serverTimestamp(), created: existing ? (existing.created || existing.at) : new Date().toISOString() };
+  if(existing && existing.soldes) Object.keys(existing.soldes).forEach(k=>{ if(!OPS.some(o=>o.k===k)) p.soldes[k] = Number(existing.soldes[k])||0; });   // opérateur retiré depuis : on garde son solde
+  OPS.forEach(o=>p.soldes[o.k] = v[o.k]);
+  if(CUR_ESP && espTotal(CUR_ESP)===Number(v.espece)) p.espDetail = { ...CUR_ESP };
+  const cl = cleanCred(CUR_CRED); if(cl.length){ p.credList = cl; p.credits = cl.reduce((a,c)=>a+c.m, 0); }
+  const pid = `${date}_${type}`, dkey = type+'|'+date;
+  const done = ()=>{ delete DRAFT[dkey]; lsSet(draftKey(), DRAFT); };
+  writePoint(p, existing, pid).then(done).catch(e=>{
+    if(String((e && e.code)||'').includes('permission-denied')) return pointDenied(p, pid, done);
+    writeErr(e, existing ? 'La modification' : 'Le point'); scheduleRender();
+  });
+  db.doc('agences/'+AID).update({ lastAt:FV.serverTimestamp() }).catch(()=>{});
+  FORM.editing = false;
+  const e = calc(p).ecart;
+  toast(`${type==='ouverture'?'Ouverture':'Fermeture'} enregistrée. ${toneLabel(e)} : ${fmtS(e)}.`);
+  setTimeout(()=>{ render(); window.scrollTo({ top:0 }); }, 60);
+}
+// Écriture d'un point : création simple, ou modification avec archivage de l'ancienne version.
+function writePoint(p, existing, pid){
+  if(!existing) return db.doc(`agences/${AID}/points/${pid}`).set(p);
+  const oldRev = Number(existing.rev)||0; p.rev = oldRev + 1;
+  if(existing.soldes) Object.keys(existing.soldes).forEach(k=>{ if(p.soldes[k]===undefined) p.soldes[k] = Number(existing.soldes[k])||0; });
+  const b = db.batch();
+  b.set(db.doc(`agences/${AID}/revisions/${pid}_r${oldRev}`), { pid, rev:oldRev, old:existing, by:USER.uid, byNom:PROFILE.nom||'', at:FV.serverTimestamp() });
+  b.set(db.doc(`agences/${AID}/points/${pid}`), p);
+  return b.commit();
+}
+// Point refusé : 1) le point existe peut-être déjà sur le serveur (saisi ailleurs) → on propose de le remplacer proprement ;
+// 2) sinon, on demande au serveur quelle condition bloque et on l'affiche clairement.
+async function pointDenied(p, pid, done){
+  let srv = null;
+  try{ const snap = await db.doc(`agences/${AID}/points/${pid}`).get({ source:'server' }); if(snap.exists) srv = snap.data(); }catch(_){}
+  if(srv){
+    const who = srv.byNom || (srv.role==='patron' ? 'le patron / la patronne' : 'un autre compte');
+    const lab = p.type==='ouverture' ? "L'ouverture" : 'La fermeture';
+    if(confirm(`${lab} de ce jour a déjà été enregistrée par ${who} (${ptWhen(srv)}).\n\nRemplacer par votre saisie ? L'ancienne version reste gardée dans l'historique.`)){
+      const q = { ...p, soldes:{ ...p.soldes }, budget: Number(srv.budget)||p.budget, created: srv.created || srv.at || p.created };
+      delete q.rev;
+      try{ await writePoint(q, srv, pid); done(); toast(`${lab} mise à jour. L'ancienne version est gardée.`); scheduleRender(); return; }
+      catch(e2){ /* on passe au diagnostic */ }
+    } else { scheduleRender(); return; }
+  }
+  toast('Le serveur a refusé le point. Recherche de la cause…', 'err');
+  const fails = await diagnosePoint(p);
+  showDenied(fails, p);
+  scheduleRender();
+}
+const DIAG_TESTS = [
+  ['membre', "Votre compte n'est pas (ou plus) accepté dans cette agence. Le patron doit vous accepter dans Réglages, Équipe."],
+  ['abonnement', "L'abonnement de l'agence n'est pas actif côté serveur. Le patron doit payer ou attendre la validation."],
+  ['champs', "Version de l'app trop ancienne. Fermez complètement l'app et rouvrez-la (deux fois si besoin)."],
+  ['montants', 'Un montant saisi est invalide (négatif ou trop grand).'],
+  ['heure-serveur', "Version de l'app trop ancienne. Fermez complètement l'app et rouvrez-la."],
+  ['auteur-id', "Problème de compte : déconnectez-vous puis reconnectez-vous."],
+  ['auteur-nom', "Votre nom a changé : déconnectez-vous puis reconnectez-vous."],
+  ['auteur-role', "Problème de compte : déconnectez-vous puis reconnectez-vous."],
+  ['budget', "Le budget voté a changé : rechargez l'app avant de saisir."],
+  ['operateurs', "La liste des opérateurs a changé : rechargez l'app avant de saisir."],
+  ['date-format', 'Date du point invalide.'],
+  ['date-calcul', 'Date du point invalide.'],
+  ['date-recente', "La date du point n'est ni aujourd'hui ni hier pour le serveur. Vérifiez la DATE et l'HEURE du téléphone (Paramètres, Date et heure automatiques)."],
+  ['point-complet', ''],
+  ['creation', "La règle du serveur refuse le point. Publiez les règles Firebase version 6 (ou plus récente)."],
+  ['point-existe', "Ce point existe déjà sur le serveur (saisi sur un autre téléphone). Rechargez l'app."]
+];
+async function diagnosePoint(p){
+  const fails = [];
+  for(const [t, msg] of DIAG_TESTS){
+    try{ await db.collection('diag').add({ t, d:p, aid:AID }); if(t==='point-existe') fails.push([t, msg]); }
+    catch(e){ if(t!=='point-existe' && t!=='point-complet') fails.push([t, msg]); }
+  }
+  // « creation » n'est utile que si toutes les autres conditions passent (règle trop lourde ou anciennes règles publiées).
+  return fails.length > 1 ? fails.filter(([t])=>t!=='creation') : fails;
+}
+function showDenied(fails, p){
+  const o = $('#modal'); o.classList.remove('hidden');
+  const now = new Date();
+  const lines = fails.length ? fails : [['?', "Aucune cause trouvée côté serveur : fermez complètement l'app, rouvrez-la et réessayez."]];
+  const report = [`Odi's Agence ${APP_VERSION} (${SW_VERSION}) · ${AGENCE?AGENCE.nom:''}`, `Compte : ${USER&&USER.email} (${PROFILE&&PROFILE.role})`, `Point : ${p.type} du ${p.date}`, `Téléphone : ${now.toLocaleString('fr-FR')}`, 'Refus : ' + lines.map(([t])=>t).join(', ')].join('\n');
+  const wa = waDigits((SETTINGS && SETTINGS.waAdmin) || CFG.waAdmin || '');
+  o.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="den-t">
+    <div class="modal-top"><h2 id="den-t">Point refusé par le serveur</h2><button class="modal-x" data-action="close-modal" aria-label="Fermer">×</button></div>
+    <p class="card-text">Votre saisie est gardée sur ce téléphone. Voici ce qui bloque :</p>
+    <ul style="margin:10px 0 0 18px;line-height:1.5">${lines.map(([t,m])=>`<li style="margin-bottom:6px">${esc(m)}</li>`).join('')}</ul>
+    <p class="small muted" style="margin-top:12px">Date et heure de ce téléphone : <b>${esc(now.toLocaleString('fr-FR'))}</b></p>
+    <div class="actions" style="margin-top:14px">${wa?`<a class="btn wa" href="https://wa.me/${wa}?text=${encodeURIComponent(report)}" target="_blank" rel="noopener">Envoyer le diagnostic</a>`:''}<button class="btn" data-action="close-modal">Fermer</button></div>
+  </div>`;
+  try{ console.warn(report); }catch(_){}
+}
+function summaryText(p){
+  const c = calc(p), T = p.type==='ouverture' ? 'Ouverture' : 'Fermeture';
+  const L = [`${AGENCE?AGENCE.nom:"Odi's Agence"}, ${T.toLowerCase()} du ${fmtDateLong(p.date).toLowerCase()}${isLate(p) ? `, saisie en retard ${ptWhen(p)}` : ` à ${fmtTime(ptTime(p))}`}`, ''];
+  opsOf(p).filter(o=>p.soldes[o.k]!==undefined).forEach(o=>L.push(`${o.n} : ${fmt(p.soldes[o.k])}`));
+  L.push(`Espèce en caisse : ${fmt(c.esp)}`, `Crédits en cours : ${fmt(c.cr)}`, '', `Total constaté : ${fmt(c.total)}`, `Budget voté : ${fmt(c.budget)}`, `Écart : ${fmtS(c.ecart)} (${toneLabel(c.ecart)})`);
+  if(p.type==='fermeture'){ const o = getPoint(p.date,'ouverture'); if(o) L.push(`Depuis l'ouverture : ${fmtS(c.total - calc(o).total)}`); }
+  if(p.credList && p.credList.length){ L.push('', `Crédits (${p.credList.length}) :`); p.credList.forEach(c=>L.push(`• ${c.n||'—'} : ${fmt(c.m)} (${credAge(c.d)})`)); }
+  if(p.note) L.push('', 'Note : ' + p.note);
+  L.push('', `Saisi par ${p.byNom || (p.by==='patron'?'le patron / la patronne':'le gérant / la gérante')}`);
+  return L.join('\n');
+}
+function recordedHTML(rec){
+  const c = calc(rec), o = rec.type==='fermeture' ? getPoint(rec.date,'ouverture') : null, dv = o ? c.total - calc(o).total : 0;
+  const wa = waDigits(AGENCE && AGENCE.waPatron);
+  return `<section class="panel rec">
+    <div class="rec-head"><span class="badge">${rec.type==='ouverture'?'Ouverture':'Fermeture'} enregistrée</span><span class="muted">${ptWhen(rec)} par ${esc(rec.byNom || (rec.by==='patron'?'le patron / la patronne':'le gérant / la gérante'))}${lateTag(rec)}</span>${Number(rec.rev)>0?`<span class="badge wait">Modifiée ${rec.rev} fois</span>`:''}</div>
+    <div class="rec-grid">
+      <div><p class="muted">Écart par rapport au budget voté</p><p class="ecart-big ${tone(c.ecart)}">${fmtS(c.ecart)}</p><p class="rec-tone ${tone(c.ecart)}">${toneLabel(c.ecart)}</p>${rulerHTML(c.ecart, c.budget, true)}${o?`<p class="rec-var">Depuis l'ouverture : <strong class="${tone(dv)}">${fmtS(dv)}</strong></p>`:''}</div>
+      <dl class="kv">${opsOf(rec).filter(op=>rec.soldes[op.k]!==undefined).map(op=>`<div><dt>${op.n}</dt><dd>${fmt(rec.soldes[op.k])}</dd></div>`).join('')}
+        <div><dt>Espèce en caisse</dt><dd>${fmt(rec.espece)}</dd></div><div><dt>Crédits en cours</dt><dd>${fmt(rec.credits)}</dd></div>
+        <div class="tot"><dt>Total constaté</dt><dd>${fmt(c.total)}</dd></div><div><dt>Budget voté</dt><dd>${fmt(c.budget)}</dd></div></dl>
+    </div>
+    ${rec.espDetail?`<p class="small muted" style="margin-top:8px">${esc(espDetailText(rec.espDetail))}</p>`:''}
+    ${credListView(rec.credList)}
+    ${o?`<h3 class="sub">Ouverture et fermeture du ${fmtDateShort(rec.date)}</h3>${compareTable(o, rec)}`:''}
+    ${rec.note?`<p class="note"><strong>Note :</strong> ${esc(rec.note)}</p>`:''}
+    ${Number(rec.rev)>0 ? `<div class="share"><h3>Modifications</h3><p>Ce point a été modifié ${rec.rev} fois. Chaque ancienne version est conservée et ne peut pas être effacée.</p>
+      <div class="actions" style="margin-top:12px"><button class="btn" data-action="show-revs" data-pid="${rec.date}_${rec.type}">Voir les anciennes versions</button></div><div id="revs-${rec.date}_${rec.type}"></div></div>` : ''}
+    ${!isPatron() ? `<div class="share"><h3>Prévenir le patron / la patronne</h3><p>${wa?'Le résumé part vers le WhatsApp du patron / de la patronne.':'Choisissez le contact de votre patron(ne) dans WhatsApp.'}</p>
+      <div class="actions" style="margin-top:12px"><a class="btn wa" href="https://wa.me/${wa}?text=${encodeURIComponent(summaryText(rec))}" target="_blank" rel="noopener">Envoyer le résumé sur WhatsApp</a><button class="btn" data-action="copy-summary" data-date="${rec.date}" data-type="${rec.type}">Copier le résumé</button></div></div>` : ''}
+    <div class="actions">
+      ${rec.type==='ouverture' && !getPoint(rec.date,'fermeture') ? `<button class="btn primary" data-view="fermeture">Passer à la fermeture</button>` : ''}
+      ${canEdit(rec)?`<button class="btn" data-action="edit">Modifier</button>`:''}
+      ${isPatron() && canWrite() && !(Number(rec.rev)>0)?`<button class="btn danger" data-action="del" data-date="${rec.date}" data-type="${rec.type}">Supprimer</button>`:''}
+    </div>
+  </section>`;
+}
+function compareTable(o, f){
+  const co = calc(o), cf = calc(f), rows = opsOf(o,f).map(op=>[op.n, Number(o.soldes[op.k])||0, Number(f.soldes[op.k])||0]);
+  rows.push(['Espèce en caisse', co.esp, cf.esp], ['Crédits en cours', co.cr, cf.cr]);
+  return `<div class="tbl-wrap"><table class="cmp"><thead><tr><th>Élément</th><th>Ouverture</th><th>Fermeture</th><th>Variation</th></tr></thead><tbody>${rows.map(([n,a,b])=>`<tr><td>${n}</td><td>${fmt(a)}</td><td>${fmt(b)}</td><td class="muted">${b-a===0?'—':fmtS(b-a)}</td></tr>`).join('')}
+    <tr class="sum"><td>Total constaté</td><td>${fmt(co.total)}</td><td>${fmt(cf.total)}</td><td class="${tone(cf.total-co.total)}">${fmtS(cf.total-co.total)}</td></tr>
+    <tr class="sum"><td>Écart avec le budget</td><td class="${tone(co.ecart)}">${fmtS(co.ecart)}</td><td class="${tone(cf.ecart)}">${fmtS(cf.ecart)}</td><td></td></tr></tbody></table></div>`;
+}
+function singleTable(p){
+  const c = calc(p);
+  return `<div class="tbl-wrap"><table class="cmp" style="min-width:0"><thead><tr><th>${p.type==='ouverture'?'Ouverture':'Fermeture'}</th><th>Montant</th></tr></thead><tbody>${opsOf(p).filter(op=>p.soldes[op.k]!==undefined).map(op=>`<tr><td>${op.n}</td><td>${fmt(p.soldes[op.k])}</td></tr>`).join('')}
+    <tr><td>Espèce en caisse</td><td>${fmt(c.esp)}</td></tr><tr><td>Crédits en cours</td><td>${fmt(c.cr)}</td></tr>
+    <tr class="sum"><td>Total constaté</td><td>${fmt(c.total)}</td></tr><tr class="sum"><td>Écart avec le budget</td><td class="${tone(c.ecart)}">${fmtS(c.ecart)}</td></tr></tbody></table></div>`;
+}
+
+/* ═════════ Historique ═════════ */
+const HIST_OPEN = new Set();
+document.addEventListener('toggle', e=>{ const d = e.target; if(d.matches && d.matches('details.day')){ if(d.open) HIST_OPEN.add(d.dataset.date); else HIST_OPEN.delete(d.dataset.date); } }, true);
+function renderHist(m){
+  const pts = POINTS.filter(p=>p.date.startsWith(MONTH_H)), dates = [...new Set(pts.map(p=>p.date))].sort().reverse();
+  let h = `<header class="view-head"><h1>Historique</h1><p>Chaque jour est évalué séparément : les écarts ne s'additionnent pas d'un jour à l'autre.</p></header>`;
+  h += `<div class="month-head" style="margin-top:0"><h2>${dates.length} jour${dates.length>1?'s':''} enregistré${dates.length>1?'s':''}</h2>${monthNavHTML('hist', MONTH_H)}</div>`;
+  if(!dates.length){ m.innerHTML = h + `<section class="panel empty"><h2>Aucun point sur ce mois</h2><p>Les ouvertures et fermetures enregistrées apparaîtront ici.</p></section>`; return; }
+  const cell = (label, val, cls) => `<span class="d-cell"><small>${label}</small>${val===null?'<em>—</em>':`<b class="${cls}">${fmtS(val)}</b>`}</span>`;
+  h += `<div class="days">` + dates.map(d=>{
+    const o = getPoint(d,'ouverture'), f = getPoint(d,'fermeture'), eo = o ? calc(o).ecart : null, ef = f ? calc(f).ecart : null, vr = (o && f) ? calc(f).total - calc(o).total : null;
+    const btns = [o,f].filter(Boolean).map(p=>{ const lab = p.type==='ouverture' ? "l'ouverture" : 'la fermeture';
+      return (canEdit(p)?`<button class="btn" data-action="edit-point" data-date="${p.date}" data-type="${p.type}">Modifier ${lab}</button>`:'') + (isPatron() && canWrite() && !(Number(p.rev)>0)?`<button class="btn danger" data-action="del" data-date="${p.date}" data-type="${p.type}">Supprimer ${lab}</button>`:''); }).join('');
+    const who = [o,f].filter(Boolean).map(p=>`<p class="small muted" style="margin-top:6px"><strong>${p.type==='ouverture'?'Ouverture':'Fermeture'}</strong> faite ${ptWhen(p)} par ${esc(p.byNom || (p.role==='patron'?'le patron / la patronne':'le gérant / la gérante'))}${lateTag(p)}</p>`).join('');
+    const notes = [o,f].filter(p=>p && p.note).map(p=>`<p class="note"><strong>${p.type==='ouverture'?'Ouverture':'Fermeture'} :</strong> ${esc(p.note)}</p>`).join('');
+    return `<details class="day" data-date="${d}"${HIST_OPEN.has(d)?' open':''}><summary><span class="d-date">${fmtDateLong(d)}</span>${cell('Ouverture', eo, eo===null?'':tone(eo))}${cell('Fermeture', ef, ef===null?'':tone(ef))}${cell('Journée', vr, vr===null?'':tone(vr))}<span class="chev" aria-hidden="true"></span></summary>
+      <div class="day-body">${o&&f ? compareTable(o,f) : singleTable(o||f)}${who}${notes}${btns?`<div class="actions">${btns}</div>`:''}</div></details>`;
+  }).join('') + `</div>`;
+  m.innerHTML = h;
+}
+
+/* ═════════ Abonnement ═════════ */
+function declareMsg(){
+  return `Bonjour, paiement de l'abonnement Odi's Agence effectué.\nAgence : ${AGENCE.nom} (${agCode(AGENCE.id)})\nVille : ${AGENCE.ville||'—'}\nMontant : ${fmt(myPrix())} par Wave${AGENCE.tarif?' (tarif PDV supplémentaire)':''}\nDéclaré par : ${PROFILE.nom||''}\nDate : ${fmtDateLong(localDate())}`;
+}
+function renderAbonnement(m){
+  const s = subStatus(AGENCE), dec = tsDate(AGENCE.declared), link = waveLinkFor(myPrix()), adm = waAdmin();
+  const pct = s.left > 0 ? Math.min(100, Math.max(4, s.left/periode()*100)) : 0;
+  const daysHTML = s.left > 0 ? `<b>${s.left}</b><span class="muted">jour${s.left>1?'s':''} restant${s.left>1?'s':''}</span>` : `<b>${Math.abs(s.left)}</b><span class="muted">jour${Math.abs(s.left)>1?'s':''} de retard</span>`;
+  m.innerHTML = `<header class="view-head"><h1>Abonnement</h1><p>${fmt(myPrix())} pour ${periode()} jours, payés par Wave. Code de l'agence : <b>${agCode(AGENCE.id)}</b>.</p></header>
+  <div class="row2">
+    <section class="sub-card ${s.k}">
+      <span class="pill ${s.k}"><i></i>${s.label}</span>
+      <div class="sub-days">${daysHTML}</div>
+      <div class="meter" aria-hidden="true"><span style="width:${pct}%"></span></div>
+      <p style="margin-top:12px">${s.text}</p>
+      <div class="actions" style="margin-top:16px">
+        ${link ? `<a class="btn wave" href="${esc(link)}" target="_blank" rel="noopener">Payer ${fmt(myPrix())} avec Wave</a>` : `<span class="muted small">Lien de paiement non configuré : contactez l'administrateur.</span>`}
+        <button class="btn primary" data-action="declare"${dec||AGENCE.blockDeclare?' disabled':''}>${dec?'Paiement déclaré':"J'ai payé"}</button>
+      </div>
+      ${AGENCE.blockDeclare && !dec ? `<div class="notice bad" style="margin-top:14px;margin-bottom:0"><span>Votre dernière déclaration de paiement n'a pas été retrouvée dans Wave. Contactez l'administrateur pour régulariser.</span>${adm?`<a class="btn wa" href="https://wa.me/${adm}?text=${encodeURIComponent("Bonjour, ma déclaration de paiement Odi's Agence a été rejetée. Agence : "+AGENCE.nom+" ("+agCode(AGENCE.id)+").")}" target="_blank" rel="noopener">Contacter</a>`:''}</div>` : ''}
+      ${dec ? `<div class="share"><h3>Prévenir l'administrateur</h3><p>Envoyez ce message pour qu'il vérifie et valide votre paiement.</p>
+        <div class="msg" id="decl-msg">${esc(declareMsg())}</div>
+        <div class="actions" style="margin-top:12px"><a class="btn wa" href="https://wa.me/${adm}?text=${encodeURIComponent(declareMsg())}" target="_blank" rel="noopener">Envoyer sur WhatsApp</a><button class="btn" data-action="copy-decl">Copier le message</button></div></div>`
+      : `<p class="small muted" style="margin-top:12px">Après le paiement dans Wave, revenez ici et touchez « J'ai payé ». L'app reste utilisable ${GRACE_DAYS} jours, le temps de la vérification.</p>`}
+    </section>
+    <section class="panel">
+      <h2>Comment ça marche</h2>
+      <ol class="plist">
+        <li><span><b>1.</b> Touchez « Payer avec Wave » : la somme est déjà remplie.</span></li>
+        <li><span><b>2.</b> Validez le paiement dans l'application Wave.</span></li>
+        <li><span><b>3.</b> Revenez ici et touchez « J'ai payé », puis envoyez le message.</span></li>
+        <li><span><b>4.</b> Après vérification, l'abonnement est prolongé de ${periode()} jours.</span></li>
+      </ol>
+      <h3 class="sub">Paiements validés</h3>
+      ${PAIEMENTS.length ? `<ul class="plist">${PAIEMENTS.map(p=>`<li><span>${fmtDay(tsDate(p.validatedAt))}</span><b>${fmt(p.montant)}</b><span class="muted">jusqu'au ${fmtDay(tsDate(p.newExp))}</span></li>`).join('')}</ul>` : `<p class="card-text">Aucun paiement validé pour l'instant.</p>`}
+    </section>
+  </div>
+  <div style="margin-top:20px">${multiPdvCard()}</div>
+  <div style="margin-top:20px">${parrainCard()}</div>
+  <div style="margin-top:20px">${installCard(true)}</div>`;
+}
+
+/* ═════════ Nouveautés (affichées une fois après chaque mise à jour) ═════════ */
+const APP_VERSION = '2.4';
+const SW_VERSION = 'odis-v25';
+const NEWS = [
+  `Nouveaux prix pour tous : ${fmt(prix())} par mois pour le point de vente principal, ${fmt(prixSup())} par point de vente ajouté.`,
+  `L'essai gratuit passe à ${Number(CFG.essai)||7} jours pour les nouvelles agences.`,
+  "Parrainage : recommandez l'app avec votre code (onglet Abonnement). Quand l'agence parrainée paie son premier abonnement, vous recevez 1 mois offert.",
+  "Le raccourci du menu vers notre chaîne s'appelle maintenant « Odi'Service Digital ».",
+  "Compter les espèces : touchez « Compter billets et pièces » et tapez seulement le nombre de liasses, de billets et de pièces. L'app fait le total.",
+  "Calcul direct dans les montants : tapez par exemple 5x100000+25000, l'app affiche 525 000.",
+  "Crédits par client : notez le nom, le montant et le téléphone de chaque dépôt à crédit. La liste passe d'un point à l'autre, « Remboursé » la retire, et un bouton relance le client sur WhatsApp.",
+  "Un point saisi le lendemain est marqué « Saisi en retard » pour le patron.",
+  "Si un point est refusé, l'app affiche la cause exacte."
+];
+function showNews(){
+  if(lsGet('odis_seen_version','') === APP_VERSION) return;
+  if(!lsGet('odis_seen_any', false)){ lsSet('odis_seen_any', true); lsSet('odis_seen_version', APP_VERSION); return; }   // premier lancement : pas de « nouveautés »
+  const o = $('#modal'); if(!o.classList.contains('hidden')) return;
+  o.classList.remove('hidden');
+  o.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="news-t">
+    <div class="modal-top"><h2 id="news-t">Nouveautés de la version ${APP_VERSION}</h2><button class="modal-x" data-action="news-ok" aria-label="Fermer">×</button></div>
+    <ul class="news">${NEWS.map(n=>`<li>${n}</li>`).join('')}</ul>
+    <button class="btn primary block" data-action="news-ok">J'ai compris</button></div>`;
+}
+
+/* ═════════ Aide et questions fréquentes ═════════ */
+function renderAide(m){
+  const B = 1000000, ex = { om:300000, wave:150000, mtn:50000, moov:40000, esp:380000, cr:60000 };
+  const tot = ex.om+ex.wave+ex.mtn+ex.moov+ex.esp+ex.cr, ec = tot - B;
+  const Q = [
+    ["Pourquoi j'ai un manquant ?", `L'écart compare tout l'argent de l'agence au budget voté. S'il est négatif, il manque de l'argent par rapport au budget. Comparez l'ouverture et la fermeture opérateur par opérateur (Historique, puis touchez le jour) pour voir où se trouve la différence. Pensez aussi à une erreur de saisie, à une dépense payée avec la caisse ou à un crédit oublié.`],
+    ["Comment changer le budget voté ?", `Patron(ne) : Réglages, puis Budget voté. Le nouveau budget s'applique aux prochains points. Les points déjà enregistrés gardent le budget de leur jour, c'est normal.`],
+    ["Comment choisir mes opérateurs ?", `Patron(ne) : Réglages, puis Opérateurs de ce point de vente. Cochez ceux que vous faites, ajoutez si besoin jusqu'à 3 opérateurs libres. Le gérant ou la gérante ne saisira que ceux-là.`],
+    ["J'ai plusieurs points de vente, comment faire ?", `Créez un compte par point de vente (une adresse e-mail par PDV), puis passez de l'un à l'autre avec le rond en haut à droite, « Ajouter un compte ». Le 2e PDV et les suivants peuvent passer au tarif de ${fmt(prixSup())} par mois : onglet Abonnement de ce PDV.`],
+    ["Comment compter les espèces plus vite ?", `Sous « Espèce en caisse », touchez « Compter billets et pièces » : tapez seulement le nombre de liasses, de chaque billet et de chaque pièce, puis « Utiliser ce total ». Vous pouvez aussi taper un calcul dans n'importe quel montant, par exemple 5x100000+25000.`],
+    ["Comment noter les dépôts à crédit ?", `Sous « Crédits en cours », touchez « Ajouter un crédit » : nom du client, montant, téléphone. Le total se calcule tout seul. La liste est reprise au point suivant : touchez « Remboursé » quand le client paie, ou « Relancer » pour lui envoyer un rappel sur WhatsApp. Un crédit de 7 jours ou plus s'affiche en rouge.`],
+    ["Comment ajouter un gérant ou une gérante ?", `Patron(ne) : Réglages, Équipe, « Créer un code ». Donnez ce code à votre gérant(e) (valable 7 jours). Il ou elle crée son compte avec « Je suis gérant(e) », puis vous acceptez sa demande dans Réglages, Équipe. Tant que vous n'avez pas accepté, elle ne voit rien de l'agence.`],
+    ["Le gérant ou la gérante a oublié son mot de passe", `Sur l'écran de connexion, « Mot de passe oublié » envoie un lien à son adresse e-mail. S'il ou elle n'a plus accès à cette adresse : le patron ou la patronne le ou la retire dans Réglages, Équipe, puis crée un nouveau code. Elle recrée son compte avec une autre adresse e-mail. Ses anciens points restent dans l'agence.`],
+    ["Une saisie a été modifiée : comment le voir ?", `Le point affiche « Modifiée N fois ». Touchez « Voir les anciennes versions » : chaque version est gardée avec l'heure et le nom de la personne. Personne ne peut effacer une ancienne version.`],
+    ["Il n'y a pas de réseau, je perds mes saisies ?", `Non. Enregistrez normalement : le point est gardé sur le téléphone et part dès que le réseau revient. Le voyant en haut affiche « Envoi en attente », puis « Synchronisé ». Ne videz pas les données du navigateur entre-temps.`],
+    ["Comment payer l'abonnement ?", `Onglet Abonnement, puis « Payer avec Wave » : le montant est déjà rempli. Revenez ensuite toucher « J'ai payé » et envoyez le message. L'app reste utilisable ${GRACE_DAYS} jours le temps de la vérification, puis l'abonnement est prolongé de ${periode()} jours.`],
+    ["Comment marche le parrainage ?", `Patron(ne) : onglet Abonnement, rubrique Parrainage. Partagez votre code (ou votre lien) avec une autre agence. Elle le tape en créant son agence. Quand elle paie son premier abonnement, votre abonnement est prolongé d'1 mois offert.`],
+    ["Qui voit mes données ?", `Seuls les comptes de votre agence (patron(ne) et gérant(e)s) voient vos points. L'administrateur d'Odi's Agence voit le nom de l'agence, la ville, le téléphone et l'état de l'abonnement pour gérer les paiements. Les données sont stockées chez Google (Firebase), chiffrées pendant l'envoi et sur les serveurs. Pour tout supprimer, demandez-le via « Faire une suggestion ».`]
+  ];
+  const tuto = SETTINGS.tutoLink, chan = SETTINGS.channelLink;
+  m.innerHTML = `<header class="view-head"><h1>Aide</h1><p>Le calcul de l'écart, les questions fréquentes et les liens utiles. <span class="small muted">Version ${APP_VERSION} (${SW_VERSION})</span></p></header>
+  <section class="panel" style="margin-bottom:16px"><h2>Comment l'écart est calculé</h2>
+    <p>À chaque point, l'app additionne tout l'argent de l'agence et le compare au budget voté.</p>
+    <dl class="kv" style="margin-top:12px">
+      <div><dt>Opérateurs (exemple)</dt><dd>${fmt(ex.om+ex.wave+ex.mtn+ex.moov)}</dd></div>
+      <div><dt>+ Espèce en caisse</dt><dd>${fmt(ex.esp)}</dd></div>
+      <div><dt>+ Crédits en cours</dt><dd>${fmt(ex.cr)}</dd></div>
+      <div class="tot"><dt>= Total constaté</dt><dd>${fmt(tot)}</dd></div>
+      <div><dt>− Budget voté</dt><dd>${fmt(B)}</dd></div>
+      <div class="tot"><dt>= Écart</dt><dd class="${tone(ec)}">${fmtS(ec)} (${toneLabel(ec).toLowerCase()})</dd></div>
+    </dl>
+    <p class="card-text" style="margin-top:10px">Chaque jour est évalué séparément : un manquant d'hier ne s'ajoute pas à celui d'aujourd'hui.</p>
+  </section>
+  ${tuto||chan ? `<section class="panel" style="margin-bottom:16px"><h2>Liens utiles</h2><div class="actions">${tuto?`<a class="btn primary" href="${esc(tuto)}" target="_blank" rel="noopener">▶ Voir la vidéo tutoriel</a>`:''}${chan?`<a class="btn wa" href="${esc(chan)}" target="_blank" rel="noopener">Rejoindre la chaîne WhatsApp</a>`:''}</div></section>` : ''}
+  <section class="panel"><h2>Questions fréquentes</h2>
+    <div class="faq">${Q.map(([q,r])=>`<details><summary>${q}</summary><p>${r}</p></details>`).join('')}</div>
+    <div class="actions"><button class="btn" data-action="suggest">Une autre question ? Écrivez-nous</button></div>
+  </section>`;
+}
+
+/* ═════════ Réglages du patron ═════════ */
+function inviteValidity(){
+  const el = $('#inv-valid'); if(!el || !AGENCE || !AGENCE.invite) return;
+  db.doc('invites/'+AGENCE.invite).get().then(s=>{
+    const t = s.exists ? tsDate(s.data().createdAt) : null; if(!$('#inv-valid')) return;
+    if(!t){ $('#inv-valid').textContent = "Code introuvable : créez-en un nouveau."; return; }
+    const end = new Date(t.getTime() + 7*DAY);
+    $('#inv-valid').innerHTML = end > new Date() ? `Valable jusqu'au <b>${fmtDay(end)}</b>. Il sert à tous les gérants et gérantes qui rejoignent d'ici là.` : `<span style="color:var(--red);font-weight:700">Code expiré</span> : touchez « Changer le code » avant de le donner.`;
+  }).catch(()=>{});
+}
+function opsPanel(a){
+  const sel = OPS.map(o=>o.k), custom = a.customOps || {};
+  const groups = [...new Set(OP_CATALOG.map(o=>o.g))];
+  return `<section class="panel set ops-set"><h2>Opérateurs de ce point de vente</h2>
+    <p>Cochez les opérateurs que vous faites dans ce point de vente. Le gérant ou la gérante ne saisira que ceux-là. Les points déjà enregistrés ne changent pas.</p>
+    ${groups.map(g=>`<p class="ops-g">${g}</p><div class="ops-grid">${OP_CATALOG.filter(o=>o.g===g).map(o=>`<label class="op-chk"><input type="checkbox" value="${o.k}" ${sel.includes(o.k)?'checked':''}>${opBadge(o)}<span>${o.n}</span></label>`).join('')}</div>`).join('')}
+    <p class="ops-g">Autres opérateurs (facultatif)</p>
+    <div class="ops-custom">${CUSTOM_KEYS.map((k,i)=>`<input class="txt" id="op-${k}" maxlength="30" placeholder="Autre opérateur ${i+1}, ex. Ecobank Xpress" value="${esc(custom[k]||'')}">`).join('')}</div>
+    <div class="inline"><button class="btn primary" data-action="save-ops">Enregistrer les opérateurs</button></div>
+  </section>`;
+}
+function saveOps(){
+  const ops = [...document.querySelectorAll('.ops-set .op-chk input:checked')].map(i=>i.value);
+  const customOps = {};
+  CUSTOM_KEYS.forEach(k=>{ const v = ($('#op-'+k).value||'').replace(/[<>"&'`]/g,'').trim().slice(0,30); if(v){ customOps[k] = v; ops.push(k); } });
+  if(!ops.length){ toast('Choisissez au moins un opérateur.', 'err'); return; }
+  db.doc('agences/'+AID).update({ ops, customOps }).then(()=>toast(`${ops.length} opérateur${ops.length>1?'s':''} enregistré${ops.length>1?'s':''}.`)).catch(err=>writeErr(err, 'Les opérateurs'));
+}
+function renderReglages(m){
+  const a = AGENCE, team = TEAM.filter(u=>u.role==='gerante');
+  m.innerHTML = `<header class="view-head"><h1>Réglages</h1><p>Budget voté, équipe, informations de l'agence et sauvegarde.</p></header>
+  <div class="sets">
+    <section class="panel set"><h2>Budget voté</h2>
+      <p>Le montant total que l'agence doit toujours représenter : opérateurs, espèce et crédits réunis. Les points déjà enregistrés gardent leur budget.</p>
+      <div class="inline"><div class="money"><input id="set-budget" class="amount" inputmode="numeric" autocomplete="off" placeholder="1 000 000" value="${a.budget?nfs(a.budget):''}"><span>F</span></div><button class="btn primary" data-action="save-budget">Enregistrer le budget</button></div>
+    </section>
+    ${opsPanel(a)}
+    <section class="panel set"><h2>Équipe</h2>
+      <p>Votre gérant(e) crée son compte avec ce code (lien « Je suis gérant(e) » sur l'écran de connexion). Changez le code dès que tout le monde a rejoint.</p>
+      <div class="invite">${a.invite ? `<b class="inv-code">${esc(a.invite)}</b><button class="btn sm" data-action="copy-invite">Copier</button>` : '<span class="muted">Aucun code actif.</span>'}<button class="btn sm primary" data-action="new-invite">${a.invite?'Changer le code':'Créer un code'}</button>${a.invite?'<button class="btn sm danger" data-action="del-invite">Désactiver</button>':''}</div>
+      ${a.invite?'<p class="small muted" id="inv-valid" style="margin-top:8px"></p>':''}
+      <ul class="team">${team.length ? team.map(u=>u.status==='attente'
+        ? `<li class="pend"><span><b>${esc(u.nom)}</b> <span class="muted">${esc(u.email)}</span> <span class="badge wait">Demande en attente</span></span><span class="tdact"><button class="btn sm primary" data-action="approve-member" data-uid="${u.uid}" data-nom="${esc(u.nom)}">Accepter</button><button class="btn sm danger" data-action="remove-member" data-uid="${u.uid}" data-nom="${esc(u.nom)}">Refuser</button></span></li>`
+        : `<li><span><b>${esc(u.nom)}</b> <span class="muted">${esc(u.email)}</span></span><button class="btn sm danger" data-action="remove-member" data-uid="${u.uid}" data-nom="${esc(u.nom)}">Retirer</button></li>`).join('') : '<li class="muted">Aucun gérant ni gérante pour l\'instant.</li>'}</ul>
+    </section>
+    <section class="panel set"><h2>Informations de l'agence</h2>
+      <div class="inline">
+        <div class="field"><label for="set-nom">Nom de l'agence</label><input id="set-nom" class="txt" value="${esc(a.nom)}"></div>
+        <div class="field"><label for="set-ville">Ville</label><input id="set-ville" class="txt" value="${esc(a.ville||'')}"></div>
+      </div>
+      <div class="inline">
+        <div class="field"><label for="set-tel">Téléphone</label><input id="set-tel" class="txt" type="tel" inputmode="tel" value="${esc(a.telephone||'')}"></div>
+        <div class="field"><label for="set-wa">WhatsApp du patron / de la patronne (résumés)</label><input id="set-wa" class="txt" inputmode="tel" value="${esc(a.waPatron||'')}" placeholder="2250700000000"><small>Indicatif compris, sans + ni espace.</small></div>
+      </div>
+      <div class="inline"><button class="btn primary" data-action="save-info">Enregistrer</button></div>
+    </section>
+    <section class="panel set"><h2>Sauvegarde</h2><p>Les données sont en ligne et visibles sur chaque téléphone de l'équipe. Exportez-les de temps en temps : c'est votre copie de secours. L'import reprend aussi les points d'une ancienne version de l'app.</p>
+      <div class="inline"><button class="btn primary" data-action="export">Exporter les données</button><label class="btn" for="import-file">Importer un fichier</label><input type="file" id="import-file" accept=".json,application/json" class="hidden"></div>
+    </section>
+  </div>`;
+}
+async function newInvite(){
+  const old = AGENCE.invite, code = genCode(10);
+  try{
+    const b = db.batch();
+    b.set(db.doc('invites/'+code), { agenceId:AID, createdBy:USER.uid, createdAt:FV.serverTimestamp() });
+    if(old) b.delete(db.doc('invites/'+old));
+    b.update(db.doc('agences/'+AID), { invite:code });
+    await b.commit(); toast(`Nouveau code d'invitation : ${code}.`);
+  }catch(e){ writeErr(e, "Le code d'invitation"); }
+}
+async function delInvite(){
+  const old = AGENCE.invite; if(!old) return;
+  try{ const b = db.batch(); b.delete(db.doc('invites/'+old)); b.update(db.doc('agences/'+AID), { invite:'' }); await b.commit(); toast("Code d'invitation désactivé."); }
+  catch(e){ writeErr(e, 'La désactivation'); }
+}
+function exportData(){
+  const data = { app:"Odi's Agence", agence:AGENCE.nom, exporte_le:new Date().toISOString(), budget:{ montant:budgetNow() }, points:POINTS };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `odis-agence-${localDate()}.json`;
+  document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 800);
+  toast('Données exportées.');
+}
+function importData(input){
+  const file = input.files && input.files[0]; if(!file) return;
+  if(!canWrite()){ toast("L'abonnement n'est plus actif : import impossible.", 'err'); input.value = ''; return; }
+  const r = new FileReader();
+  r.onload = async () => {
+    try{
+      const d = JSON.parse(r.result);
+      if(!d || !Array.isArray(d.points)){ toast("Fichier non reconnu : il ne contient pas de points d'ouverture ou de fermeture.", 'err'); return; }
+      const all = d.points.filter(p=>p && /^\d{4}-\d{2}-\d{2}$/.test(p.date) && (p.type==='ouverture'||p.type==='fermeture') && p.soldes);
+      const pts = all.filter(p=>!getPoint(p.date, p.type)), skipped = all.length - pts.length;
+      let okN = 0, koN = 0;
+      for(let i=0; i<pts.length; i+=400){
+        const b = db.batch(), chunk = pts.slice(i, i+400);
+        chunk.forEach(p=>{
+          const pos = x => { const n = Number(x); return Number.isFinite(n) ? Math.min(99999999999, Math.max(0, n)) : 0; };
+          const soldes = {}; Object.keys(p.soldes||{}).filter(k=>OP_CATALOG.some(o=>o.k===k)||CUSTOM_KEYS.includes(k)).forEach(k=>soldes[k] = pos(p.soldes[k]));
+          if(!Object.keys(soldes).length) DEFAULT_OPS.forEach(k=>soldes[k]=0);
+          b.set(db.doc(`agences/${AID}/points/${p.date}_${p.type}`), { date:p.date, type:p.type, soldes, espece:pos(p.espece), credits:pos(p.credits),
+            note:String(p.note||'').slice(0,500), budget:pos(p.budget)||budgetNow(), at:String(p.at||new Date().toISOString()), by:USER.uid, role:'patron', byNom:String(p.byNom||'').slice(0,60), srvAt:FV.serverTimestamp(), created:String(p.created||p.at||new Date().toISOString()) });
+        });
+        try{ await b.commit(); okN += chunk.length; }catch(e){ koN += chunk.length; }
+      }
+      toast(`${okN} point${okN>1?'s':''} importé${okN>1?'s':''}${skipped ? `, ${skipped} déjà présent${skipped>1?'s':''} (non remplacé${skipped>1?'s':''})` : ''}${koN ? `, ${koN} refusé${koN>1?'s':''} par le serveur` : ''}.`, koN?'err':'');
+    }catch(e){ toast("Lecture impossible : le fichier est abîmé ou ce n'est pas une sauvegarde de l'application.", 'err'); }
+    input.value = '';
+  };
+  r.readAsText(file);
+}
+
+/* ═════════ Console administrateur ═════════ */
+function renderConsole(m){
+  if(!ADMIN_READY){
+    m.innerHTML = `<header class="view-head"><h1>Console</h1><p>Gestion des abonnements de toutes les agences.</p></header>
+    <section class="panel" style="max-width:620px"><h2>Confirmez votre adresse e-mail</h2>
+      <p>Pour protéger la console, l'adresse ${esc(USER.email)} doit être confirmée. Ouvrez l'e-mail de confirmation, touchez le lien, puis revenez ici.</p>
+      <div class="actions"><button class="btn primary" data-action="send-verify">Envoyer l'e-mail de confirmation</button><button class="btn" data-action="check-verify">J'ai confirmé</button></div></section>`;
+    return;
+  }
+  const rows = ALL_AG.map(a=>({ a, s:subStatus(a) })).sort((x,y)=>{
+    const order = { info:0, bad:1, warn:2, ok:3 }; return ((y.a.tarifDemande?1:0)-(x.a.tarifDemande?1:0)) || (order[x.s.k]-order[y.s.k]) || String(x.a.nom).localeCompare(String(y.a.nom));
+  });
+  const count = k => rows.filter(r=>r.s.k===k).length;
+  const usable = rows.filter(r=>r.s.usable).length;
+  const shown = rows.filter(r=> ADMIN_FILTER==='tous' || r.s.k===ADMIN_FILTER);
+  const F = (k,l,n) => `<button data-action="filter" data-f="${k}" aria-pressed="${ADMIN_FILTER===k}">${l}${n!==undefined?` (${n})`:''}</button>`;
+  m.innerHTML = `<header class="view-head"><h1>Console</h1><p>Vérifiez les paiements dans Wave Business avant de valider. Valider ajoute ${periode()} jours à l'échéance, ou à aujourd'hui si elle est dépassée.</p></header>
+  <div class="kpis">
+    <div class="kpi"><small>Agences actives</small><b>${usable} / ${rows.length}</b></div>
+    <div class="kpi"><small>Paiements à vérifier</small><b>${count('info')}</b></div>
+    <div class="kpi"><small>Suspendues</small><b>${count('bad')}</b></div>
+    <div class="kpi"><small>Revenu mensuel attendu</small><b>${fmt(rows.filter(r=>r.s.usable).reduce((t,r)=>t+priceOf(r.a),0))}</b></div>
+  </div>
+  <section class="panel"><h2>Agences</h2>
+    <div class="filters" role="group" aria-label="Filtrer">${F('tous','Toutes',rows.length)}${F('info','À vérifier',count('info'))}${F('warn','À renouveler',count('warn'))}${F('bad','Suspendues',count('bad'))}${F('ok','Actives',count('ok'))}</div>
+    <div class="tbl-wrap"><table class="adm"><thead><tr><th>Agence</th><th>Contact</th><th>Échéance</th><th>Statut</th><th>Actions</th></tr></thead><tbody>
+    ${shown.length ? shown.map(({a,s})=>{ const dec = tsDate(a.declared), exp = tsDate(a.exp);
+      return `<tr class="${dec||a.tarifDemande?'attn':''}">
+        <td><div class="name">${esc(a.nom)}</div><div class="subl">${agCode(a.id)} · ${esc(a.ville||'—')}</div>${a.parrainCode?(()=>{ const pr = parrainOf(a); return `<div class="subl" style="color:var(--teal-t, #0C7A60);font-weight:700">Parrainée par ${esc(pr?pr.nom:a.parrainCode+' (introuvable)')}${a.parrainPaid?' · mois offert ✓':''}</div>`; })():''}${Number(a.bonusMois)>0?`<div class="subl">${a.bonusMois} mois offert(s) par parrainage</div>`:''}${Number(a.tarif)>0?`<div class="subl">PDV sup. (${fmt(priceOf(a))}) de ${esc((ALL_AG.find(x=>x.id===a.groupe)||{}).nom||'—')}</div>`:''}${a.tarifDemande?(()=>{ const mn = ALL_AG.find(x=>x.id===a.tarifDemande); const ms = mn ? subStatus(mn) : null;
+  return `<div class="subl" style="color:var(--sky-t);font-weight:700">Demande tarif ${fmt(prixSup())} · principale : ${esc(mn?mn.nom:'introuvable')}</div>${mn?`<div class="subl">Principale : ${esc(ms.label)} · patron(ne) ${esc(mn.ownerNom||'')} ${esc(mn.telephone||'')} · ${(PAY_COUNT[mn.id]||0)} paiement(s) validé(s)</div>`:''}`; })():''}</td>
+        <td>${esc(a.ownerNom||'')}<div class="subl">${esc(a.telephone||'')}</div>${lastSeen(a)}</td>
+        <td>${fmtDay(exp)}<div class="subl">${s.left>0?`dans ${s.left} j`:`dépassée de ${Math.abs(s.left)} j`}</div></td>
+        <td><span class="pill ${s.k}"><i></i>${s.label}</span>${dec?`<div class="subl">déclaré le ${fmtDay(dec)}</div>`:''}${a.blockDeclare?`<div class="subl" style="color:var(--red);font-weight:700">Déclaration bloquée</div>`:''}</td>
+        <td><div class="tdact"><button class="btn sm primary" data-action="validate" data-id="${a.id}">Valider +${periode()} j${Number(a.tarif)>0?' ('+fmt(priceOf(a))+')':''}</button>${dec?`<button class="btn sm danger" data-action="reject" data-id="${a.id}">Rejeter</button>`:''}${a.blockDeclare?`<button class="btn sm" data-action="unblock" data-id="${a.id}">Débloquer</button>`:''}${a.tarifDemande?`<button class="btn sm primary" data-action="tarif-ok" data-id="${a.id}">Accorder ${fmt(prixSup())}</button><button class="btn sm" data-action="tarif-no" data-id="${a.id}">Refuser</button>`:''}${(s.k==='warn'||s.k==='bad')&&!dec?`<button class="btn sm wa" data-action="remind" data-id="${a.id}">Relancer</button>`:''}${a.id!==AID?`<button class="btn sm danger" data-action="del-agency" data-id="${a.id}" title="Supprimer l'agence et toutes ses données">Supprimer</button>`:''}</div></td></tr>`; }).join('')
+      : `<tr><td colspan="5" class="muted">Aucune agence dans cette catégorie.</td></tr>`}
+    </tbody></table></div>
+  </section>
+  <section class="panel set" style="margin-top:18px;max-width:760px"><h2>Paramètres de l'abonnement</h2>
+    <p>S'appliquent à toutes les agences dès l'enregistrement.</p>
+    <div class="inline"><div class="field" style="flex:2"><label for="adm-link">Lien de paiement Wave</label><input id="adm-link" class="txt" value="${esc(waveLink())}"></div></div>
+    <div class="inline">
+      <div class="field"><label for="adm-prix">Prix 1er PDV (F)</label><input id="adm-prix" class="txt" inputmode="numeric" value="${prix()}"></div>
+      <div class="field"><label for="adm-sup">Prix PDV supp. (F)</label><input id="adm-sup" class="txt" inputmode="numeric" value="${prixSup()}"></div>
+      <div class="field"><label for="adm-per">Durée (jours)</label><input id="adm-per" class="txt" inputmode="numeric" value="${periode()}"></div>
+      <div class="field"><label for="adm-tuto">Lien vidéo tutoriel</label><input id="adm-tuto" class="txt" value="${esc(SETTINGS.tutoLink||'')}" placeholder="https://…"></div>
+      <div class="field"><label for="adm-chan">Lien chaîne WhatsApp</label><input id="adm-chan" class="txt" value="${esc(SETTINGS.channelLink||'')}" placeholder="https://whatsapp.com/channel/…"></div>
+      <div class="field"><label for="adm-wa">Votre WhatsApp</label><input id="adm-wa" class="txt" inputmode="tel" value="${esc(SETTINGS.waAdmin||'')}" placeholder="2250700000000"></div>
+    </div>
+    <p class="small muted" style="margin-top:8px">Le montant du lien Wave est ajusté automatiquement (paramètre amount) : le prix du premier point de vente ou celui des points supplémentaires.</p>
+    <div class="inline"><button class="btn primary" data-action="save-settings">Enregistrer les paramètres</button></div>
+  </section>
+  ${suggestionsPanel()}`;
+  listenSuggestions(); loadPayCounts();
+}
+function lastSeen(a){
+  const t = tsDate(a.lastAt); if(!t) return `<div class="subl">Aucune saisie</div>`;
+  const d = Math.floor((Date.now() - t) / DAY);
+  return `<div class="subl" style="${d>=3?'color:var(--red);font-weight:700':''}">Dernière saisie : ${d<=0?'aujourd\'hui':(d===1?'hier':'il y a '+d+' j')}</div>`;
+}
+function remindAgency(id){
+  const a = ALL_AG.find(x=>x.id===id); if(!a) return;
+  let num = waDigits(a.waPatron || a.telephone || ''); if(num.length===10) num = '225' + num;
+  const s = subStatus(a), amount = priceOf(a);
+  const msg = `Bonjour ${a.ownerNom||''}, ici Odi's Agence. ${s.k==='bad' ? `L'abonnement de ${a.nom} est arrivé à échéance : la saisie est suspendue, mais vos données sont conservées.` : `L'abonnement de ${a.nom} se termine dans ${s.left} jour${s.left>1?'s':''}.`}\nPour continuer : ${fmt(amount)} par Wave${waveLinkFor(amount)?` ici : ${waveLinkFor(amount)}`:''}\nPuis dans l'app : Abonnement, « J'ai payé ». Merci !`;
+  window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+}
+let SUGS = [], SUG_FILTER = 'nouveau';
+function listenSuggestions(){
+  if(LISTEN.sugs || !ADMIN_READY) return;
+  LISTEN.sugs = db.collection('suggestions').onSnapshot(snap=>{
+    SUGS = snap.docs.map(d=>({ id:d.id, ...d.data({ serverTimestamps:'estimate' }) })).sort((x,y)=>(tsDate(y.at)||0)-(tsDate(x.at)||0));
+    if(VIEW==='console') scheduleRender();
+  }, ()=>{});
+}
+function suggestionsPanel(){
+  const L = SUGS.filter(x=>SUG_FILTER==='tous' || (x.status||'nouveau')===SUG_FILTER), n = k => SUGS.filter(x=>(x.status||'nouveau')===k).length;
+  const F = (k,l,c) => `<button data-action="sug-filter" data-f="${k}" aria-pressed="${SUG_FILTER===k}">${l}${c!==undefined?` (${c})`:''}</button>`;
+  const ST = { nouveau:'Nouveau', afaire:'À faire', fait:'Fait', refuse:'Refusé' };
+  return `<section class="panel" style="margin-top:18px"><h2>Suggestions des utilisateurs</h2>
+    <div class="filters">${F('nouveau','Nouvelles',n('nouveau'))}${F('afaire','À faire',n('afaire'))}${F('fait','Faites',n('fait'))}${F('refuse','Refusées',n('refuse'))}${F('tous','Toutes',SUGS.length)}</div>
+    <ul class="plist sugs">${L.length ? L.map(x=>`<li><span class="sg-h"><b>${x.type==='Problème'?'⚠️':(x.type==='Question'?'❓':'💡')} ${esc(x.type||'')}</b> · ${esc(x.agence||'—')} · ${esc(x.nom||'')} <span class="muted">${tsDate(x.at)?fmtDay(tsDate(x.at)):''}</span></span>
+      <span class="sg-m">${esc(x.msg||'')}</span>
+      <span class="tdact">${Object.entries(ST).filter(([k])=>k!==(x.status||'nouveau')).map(([k,l])=>`<button class="btn sm" data-action="sug-status" data-id="${x.id}" data-s="${k}">${l}</button>`).join('')}</span></li>`).join('') : '<li class="muted">Aucune suggestion dans cette catégorie.</li>'}</ul>
+  </section>`;
+}
+const PAY_COUNT = {};   // nombre de paiements validés par agence (rempli à la demande)
+function loadPayCounts(){ ALL_AG.filter(a=>a.tarifDemande && PAY_COUNT[a.tarifDemande]===undefined).forEach(a=>{ PAY_COUNT[a.tarifDemande] = 0;
+  db.collection('agences/'+a.tarifDemande+'/paiements').get().then(q=>{ PAY_COUNT[a.tarifDemande] = q.size; scheduleRender(); }).catch(()=>{}); }); }
+function parrainOf(a){ return a && a.parrainCode ? (ALL_AG.find(x=>x.id!==a.id && agCode(x.id)===a.parrainCode) || null) : null; }
+async function validateAgency(id){
+  const a = ALL_AG.find(x=>x.id===id); if(!a) return;
+  const now = new Date(), exp = tsDate(a.exp) || now, base = exp > now ? exp : now, nexp = new Date(base.getTime() + periode()*DAY);
+  if(!confirm(`Valider le paiement de ${a.nom} ? L'abonnement ira jusqu'au ${fmtDay(nexp)}.`)) return;
+  try{
+    const b = db.batch();
+    b.update(db.doc('agences/'+id), { exp:TS.fromDate(nexp), declared:null, blockDeclare:false });
+    b.set(db.collection('agences/'+id+'/paiements').doc(), { montant:priceOf(a), periode:periode(), validatedAt:FV.serverTimestamp(), newExp:TS.fromDate(nexp), declaredAt:a.declared||null });
+    const pr = a.parrainCode && !a.parrainPaid ? parrainOf(a) : null;
+    let bonus = '';
+    if(pr && confirm(`${a.nom} a été parrainée par ${pr.nom}. Offrir 1 mois gratuit (${periode()} jours) à ${pr.nom} ?`)){
+      const pe = tsDate(pr.exp) || now, pb = pe > now ? pe : now, pn = new Date(pb.getTime() + periode()*DAY);
+      b.update(db.doc('agences/'+pr.id), { exp:TS.fromDate(pn), bonusMois:(Number(pr.bonusMois)||0)+1 });
+      b.update(db.doc('agences/'+id), { parrainPaid:true });
+      bonus = ` ${pr.nom} reçoit 1 mois offert (jusqu'au ${fmtDay(pn)}).`;
+    }
+    await b.commit(); toast(`${a.nom} : abonnement prolongé jusqu'au ${fmtDay(nexp)}.${bonus}`);
+    if(pr && bonus && pr.waPatron){ const msg = `Bonjour ${pr.ownerNom||''}, ici Odi's Agence. Merci d'avoir recommandé l'application à ${a.nom} ! Comme promis, votre abonnement de ${pr.nom} est prolongé d'1 mois offert.`; if(confirm('Prévenir le parrain sur WhatsApp ?')) window.open(`https://wa.me/${waDigits(pr.waPatron).length===10?'225'+waDigits(pr.waPatron):waDigits(pr.waPatron)}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener'); }
+  }catch(e){ writeErr(e, 'La validation'); }
+}
+async function rejectAgency(id){
+  const a = ALL_AG.find(x=>x.id===id); if(!a) return;
+  if(!confirm(`Rejeter le paiement déclaré par ${a.nom} ? À faire seulement si le paiement est introuvable dans Wave Business.`)) return;
+  try{ await db.doc('agences/'+id).update({ declared:null, blockDeclare:true }); toast(`Paiement de ${a.nom} rejeté. L'agence ne pourra pas redéclarer tant que vous ne l'aurez pas débloquée.`); }
+  catch(e){ writeErr(e, 'Le rejet'); }
+}
+
+async function deleteAgency(id){
+  const a = ALL_AG.find(x=>x.id===id); if(!a) return;
+  const typed = prompt(`Supprimer définitivement « ${a.nom} » ?\n\nTous ses points, paiements et comptes (patron(ne) et gérant(e)s) seront effacés. Cette action est irréversible.\n\nPour confirmer, tapez SUPPRIMER :`);
+  if(typed===null) return;
+  if(typed.trim().toUpperCase()!=='SUPPRIMER'){ toast('Suppression annulée : le mot SUPPRIMER n\'a pas été saisi.', 'err'); return; }
+  try{
+    toast(`Suppression de ${a.nom} en cours…`);
+    const refs = [];
+    for(const sub of ['points','paiements','revisions']){ const q = await db.collection('agences/'+id+'/'+sub).get(); q.docs.forEach(d=>refs.push(d.ref)); }
+    const us = await db.collection('users').where('agenceId','==',id).get(); us.docs.forEach(d=>refs.push(d.ref));
+    if(a.invite) refs.push(db.doc('invites/'+a.invite));
+    for(let i=0; i<refs.length; i+=400){ const b = db.batch(); refs.slice(i, i+400).forEach(r=>b.delete(r)); await b.commit(); }
+    await db.doc('agences/'+id).delete();
+    toast(`${a.nom} a été supprimée.`);
+  }catch(e){ toast(`La suppression a échoué${e && e.code ? ' (code : '+e.code+')' : ''}. Vérifiez la connexion et que les règles Firestore sont à jour.`, 'err'); }
+}
+
+/* Redessine le graphique quand on passe de téléphone à ordinateur (rotation, fenêtre redimensionnée) */
+let WIDE = window.innerWidth >= 900;
+window.addEventListener('resize', ()=>{ const w = window.innerWidth >= 900; if(w !== WIDE){ WIDE = w; if(VIEW==='bord' || VIEW==='historique') scheduleRender(); } });
+
+/* Plusieurs points de vente : tarif dégressif */
+function multiPdvCard(){
+  if(!isPatron()) return '';
+  const main = AGENCE.groupe ? (accounts().find(a=>a.aid===AGENCE.groupe) || null) : null;
+  if(Number(AGENCE.tarif) > 0) return `<section class="panel"><h2>Tarif point de vente supplémentaire</h2>
+    <p>Ce point de vente est rattaché à ${main ? `<b>${esc(main.agence)}</b>` : 'votre agence principale'} : <b>${fmt(myPrix())} par mois</b> au lieu de ${fmt(prix())}.</p></section>`;
+  if(AGENCE.tarifDemande){ const m2 = accounts().find(a=>a.aid===AGENCE.tarifDemande);
+    return `<section class="panel"><h2>Tarif point de vente supplémentaire</h2><p>Demande envoyée${m2?` (rattachement à <b>${esc(m2.agence)}</b>)`:''}. Elle sera validée par l'administrateur.</p>
+    <div class="actions"><button class="btn" data-action="tarif-cancel">Annuler la demande</button></div></section>`; }
+  const others = accounts().filter(a=>a.aid && a.aid!==AID && a.role==='patron');
+  return `<section class="panel"><h2>Vous avez plusieurs points de vente ?</h2>
+    <p>Le premier point de vente est à <b>${fmt(prix())}</b> par mois, chaque point de vente supplémentaire à <b>${fmt(prixSup())}</b>.</p>
+    ${others.length ? `<div class="field" style="margin-top:14px"><label for="tarif-main">Agence principale</label><select id="tarif-main" class="txt">${others.map(a=>`<option value="${esc(a.aid)}">${esc(a.agence)} (${esc(a.email)})</option>`).join('')}</select></div>
+      <div class="actions"><button class="btn primary" data-action="tarif-ask">Demander le tarif à ${fmt(prixSup())}</button></div>`
+    : `<p class="card-text">Pour en profiter, ajoutez d'abord le compte de votre agence principale sur ce téléphone (rond en haut à droite, puis « Ajouter un compte »). Revenez ensuite ici.</p>`}</section>`;
+}
+async function tarifAsk(){
+  const main = $('#tarif-main') ? $('#tarif-main').value : ''; if(!main) return;
+  const m = accounts().find(a=>a.aid===main);
+  try{ await db.doc('agences/'+AID).update({ tarifDemande:main });
+    toast('Demande envoyée.');
+    const adm = waAdmin(); if(adm && confirm("Prévenir l'administrateur sur WhatsApp ?")) window.open(`https://wa.me/${adm}?text=${encodeURIComponent(`Bonjour, je demande le tarif point de vente supplémentaire (${fmt(prixSup())}/mois).\nPDV : ${AGENCE.nom} (${agCode(AID)})\nAgence principale : ${m?m.agence:''} (${agCode(main)})\nPatron : ${PROFILE.nom||''}`)}`, '_blank', 'noopener');
+  }catch(e){ writeErr(e, 'La demande'); }
+}
+async function tarifDecide(id, accept){
+  const a = ALL_AG.find(x=>x.id===id); if(!a) return;
+  const main = ALL_AG.find(x=>x.id===a.tarifDemande);
+  if(accept && !confirm(`Accorder ${fmt(prixSup())}/mois à ${a.nom}, rattaché à ${main?main.nom:'une agence introuvable'} ?`)) return;
+  try{ await db.doc('agences/'+id).update(accept ? { tarif:prixSup(), groupe:a.tarifDemande, tarifDemande:null } : { tarifDemande:null });
+    toast(accept ? 'Tarif accordé.' : 'Demande refusée.'); }catch(e){ writeErr(e, 'La décision'); }
+}
+
+/* Anciennes versions d'un point (archivées à chaque modification) */
+async function showRevisions(pid){
+  const box = $('#revs-'+pid); if(!box) return;
+  box.innerHTML = '<p class="card-text">Chargement…</p>';
+  try{
+    const q = await db.collection('agences/'+AID+'/revisions').where('pid','==',pid).get();
+    const L = q.docs.map(d=>d.data()).sort((a,b)=>(a.rev||0)-(b.rev||0));
+    if(!L.length){ box.innerHTML = '<p class="card-text">Aucune ancienne version trouvée.</p>'; return; }
+    box.innerHTML = `<ul class="plist">${L.map(r=>{ const o = r.old || {}, c = calc(o), at = tsDate(r.at);
+      return `<li><span><b>Version ${(r.rev||0)+1}</b> · saisie à ${(o.at||o.srvAt)?fmtTime(ptTime(o)):'—'} par ${esc(o.byNom||'—')}</span><span>Total ${fmt(c.total)} · écart <b class="${tone(c.ecart)}">${fmtS(c.ecart)}</b></span><span class="muted">remplacée ${at?'le '+fmtDay(at)+' à '+fmtTime(at):''} par ${esc(r.byNom||'—')}</span></li>`; }).join('')}</ul>`;
+  }catch(e){ box.innerHTML = '<p class="card-text">Impossible de charger les anciennes versions pour le moment.</p>'; }
+}
+
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeMenu(); closeModal(); } });
+
+/* ═════════ Événements ═════════ */
+document.addEventListener('submit', e=>{
+  e.preventDefault();
+  const id = e.target.id;
+  if(id==='f-login') doLogin(); else if(id==='f-create') doCreate(); else if(id==='f-join') doJoin(); else if(id==='f-reset') doReset();
+  else if(id==='f-o-create') doOrphanCreate(); else if(id==='f-o-join') doOrphanJoin();
+});
+document.addEventListener('click', async e=>{
+  if(!e.target.closest('#acct-menu') && !e.target.closest('[data-action=acct-menu]')) closeMenu();
+  if(e.target.id==='modal'){ closeModal(); return; }
+  const g = e.target.closest('[data-gate]'); if(g){ GATE = g.dataset.gate; renderGate(); return; }
+  const v = e.target.closest('[data-view]'); if(v && !v.closest('#gate')){ e.preventDefault(); go(v.dataset.view); return; }
+  const a = e.target.closest('[data-action]'); if(!a) return;
+  const act = a.dataset.action;
+  if(act==='logout') logout();
+  else if(act==='acct-menu'){ e.stopPropagation(); toggleMenu(); }
+  else if(act==='switch-acct') switchAccount(a.dataset.app);
+  else if(act==='add-acct'){ closeMenu(); addAccount(); }
+  else if(act==='cancel-add') cancelAdd();
+  else if(act==='suggest') openSuggest();
+  else if(act==='go-aide'){ closeMenu(); go('aide'); }
+  else if(act==='close-modal') closeModal();
+  else if(act==='news-ok'){ lsSet('odis_seen_version', APP_VERSION); closeModal(); }
+  else if(act==='sug-type'){ SUG_TYPE = a.dataset.t; document.querySelectorAll('[data-action=sug-type]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.t===SUG_TYPE)); }
+  else if(act==='sug-send') sendSuggest();
+  else if(act==='today'){ FORM.date = localDate(); FORM.editing = false; render(); }
+  else if(act==='save') savePoint();
+  else if(act==='edit'){ FORM.editing = true; render(); }
+  else if(act==='cancel-edit'){ delete DRAFT[FORM.type+'|'+FORM.date]; lsSet(draftKey(), DRAFT); FORM.editing = false; render(); }
+  else if(act==='edit-point'){ FORM.type = a.dataset.type; FORM.date = a.dataset.date; FORM.editing = true; VIEW = a.dataset.type; render(); window.scrollTo({ top:0 }); }
+  else if(act==='del'){
+    const lab = a.dataset.type==='ouverture' ? "l'ouverture" : 'la fermeture';
+    if(!confirm(`Supprimer ${lab} du ${fmtDateShort(a.dataset.date)} ? Cette action est définitive.`)) return;
+    db.doc(`agences/${AID}/points/${a.dataset.date}_${a.dataset.type}`).delete().catch(err=>writeErr(err, 'La suppression'));
+    FORM.editing = false; toast(`${a.dataset.type==='ouverture'?'Ouverture':'Fermeture'} supprimée.`);
+  }
+  else if(act==='esp-count') openEspCounter();
+  else if(act==='esp-apply') applyEspCounter();
+  else if(act==='cred-add'){ CUR_CRED = CUR_CRED || []; CUR_CRED.push({ n:'', m:0, t:'', d:FORM.date }); refreshCred(); const r = document.querySelectorAll('#cred-box .cred-n'); if(r.length) r[r.length-1].focus(); }
+  else if(act==='cred-paid'){ const i = Number(a.dataset.i); const c = CUR_CRED && CUR_CRED[i]; if(c && (!c.m || confirm(`${c.n||'Ce client'} a remboursé ${fmt(c.m)} ? Il sera retiré de la liste.`))){ CUR_CRED.splice(i,1); refreshCred(); } }
+  else if(act==='reuse-credits'){ const el = $('#in-credits'); el.value = nfs(Number(a.dataset.v)||0); onFormInput(); el.focus(); }
+  else if(act==='copy-summary'){ const p = getPoint(a.dataset.date, a.dataset.type); if(p) copyText(summaryText(p)).then(ok=>toast(ok?'Résumé copié.':'Copie impossible : utilisez le bouton WhatsApp.', ok?'':'err')); }
+  else if(act==='month'){
+    const dir = Number(a.dataset.dir), cur = monthKey(new Date());
+    if(a.dataset.scope==='bord'){ const n = shiftMonth(MONTH_B, dir); if(n<=cur) MONTH_B = n; } else { const n = shiftMonth(MONTH_H, dir); if(n<=cur) MONTH_H = n; }
+    render();
+  }
+  else if(act==='declare'){
+    if(!confirm('Confirmez-vous avoir payé ' + fmt(myPrix()) + ' par Wave ?')) return;
+    a.disabled = true;
+    db.doc('agences/'+AID).update({ declared:FV.serverTimestamp() }).then(()=>toast("Paiement déclaré. Envoyez maintenant le message à l'administrateur.")).catch(err=>{ a.disabled = false; writeErr(err, 'La déclaration'); });
+  }
+  else if(act==='copy-parrain') copyText(parrainMsg()).then(ok=>toast(ok?'Lien de parrainage copié.':'Copie impossible : utilisez le bouton WhatsApp.', ok?'':'err'));
+  else if(act==='copy-decl') copyText(declareMsg()).then(ok=>toast(ok?'Message copié.':'Copie impossible : utilisez le bouton WhatsApp.', ok?'':'err'));
+  else if(act==='save-ops') saveOps();
+  else if(act==='do-missed'){ FORM.date = yesterday(); FORM.editing = false; go('fermeture'); }
+  else if(act==='save-budget'){
+    const n = num($('#set-budget').value); if(n<=0){ toast('Saisissez un budget supérieur à zéro.', 'err'); return; }
+    db.doc('agences/'+AID).update({ budget:n }).then(()=>toast(`Budget enregistré : ${fmt(n)}.`)).catch(err=>writeErr(err, 'Le budget'));
+  }
+  else if(act==='save-info'){
+    const nom = $('#set-nom').value.trim(), w = waDigits($('#set-wa').value);
+    if(!nom){ toast("Le nom de l'agence est obligatoire.", 'err'); return; }
+    if(w && (w.length<8 || w.length>15)){ toast('Numéro WhatsApp invalide : indicatif compris, entre 8 et 15 chiffres.', 'err'); return; }
+    db.doc('agences/'+AID).update({ nom, ville:$('#set-ville').value.trim(), telephone:$('#set-tel').value.trim(), waPatron:w }).then(()=>toast('Informations enregistrées.')).catch(err=>writeErr(err, 'La modification'));
+  }
+  else if(act==='new-invite') newInvite();
+  else if(act==='del-invite') delInvite();
+  else if(act==='copy-invite') copyText(AGENCE.invite).then(ok=>toast(ok?'Code copié.':'Copie impossible.', ok?'':'err'));
+  else if(act==='approve-member'){
+    db.doc('users/'+a.dataset.uid).update({ status:'ok' }).then(()=>toast(`${a.dataset.nom} peut maintenant utiliser l'app.`)).catch(err=>writeErr(err, 'La validation'));
+  }
+  else if(act==='remove-member'){
+    if(!confirm(`Retirer ${a.dataset.nom} de l'agence ? Son compte n'aura plus accès aux points.`)) return;
+    db.doc('users/'+a.dataset.uid).delete().then(async ()=>{ if(AGENCE && AGENCE.invite) await newInvite(); toast(`${a.dataset.nom} a été retirée. Le code d'invitation a été changé.`); }).catch(err=>writeErr(err, 'Le retrait'));
+  }
+  else if(act==='export') exportData();
+  else if(act==='install'){ if(INSTALL_EVT){ INSTALL_EVT.prompt(); INSTALL_EVT.userChoice.finally(()=>{ INSTALL_EVT = null; render(); }); } }
+  else if(act==='install-hide'){ lsSet('odis_install_hidden_until', Date.now() + 2*DAY); render(); }
+  else if(act==='copy-url'){ const ok = await copyText(location.origin + '/'); toast(ok ? 'Adresse copiée. Collez-la dans Chrome.' : location.origin); }
+  else if(act==='filter'){ ADMIN_FILTER = a.dataset.f; render(); }
+  else if(act==='validate') validateAgency(a.dataset.id);
+  else if(act==='reject') rejectAgency(a.dataset.id);
+  else if(act==='del-agency') deleteAgency(a.dataset.id);
+  else if(act==='remind') remindAgency(a.dataset.id);
+  else if(act==='sug-filter'){ SUG_FILTER = a.dataset.f; render(); }
+  else if(act==='sug-status') db.doc('suggestions/'+a.dataset.id).update({ status:a.dataset.s }).catch(e=>writeErr(e,'La mise à jour'));
+  else if(act==='unblock'){ const ag = ALL_AG.find(x=>x.id===a.dataset.id); if(ag && confirm(`Autoriser ${ag.nom} à déclarer de nouveau un paiement ?`)) db.doc('agences/'+ag.id).update({ blockDeclare:false }).then(()=>toast('Agence débloquée.')).catch(e=>writeErr(e,'Le déblocage')); }
+  else if(act==='show-revs') showRevisions(a.dataset.pid);
+  else if(act==='tarif-ask') tarifAsk();
+  else if(act==='tarif-cancel') db.doc('agences/'+AID).update({ tarifDemande:null }).then(()=>toast('Demande annulée.')).catch(e=>writeErr(e,'L\'annulation'));
+  else if(act==='tarif-ok') tarifDecide(a.dataset.id, true);
+  else if(act==='tarif-no') tarifDecide(a.dataset.id, false);
+  else if(act==='save-settings'){
+    const p = num($('#adm-prix').value), per = num($('#adm-per').value), link = $('#adm-link').value.trim(), w = waDigits($('#adm-wa').value);
+    if(p<=0 || per<=0){ toast('Le prix et la durée doivent être supérieurs à zéro.', 'err'); return; }
+    if(link && !/^https:\/\//.test(link)){ toast('Le lien Wave doit commencer par https://', 'err'); return; }
+    const sup = num($('#adm-sup').value) || 2000;
+    const tuto = $('#adm-tuto').value.trim(), chan = $('#adm-chan').value.trim();
+    if((tuto && !/^https:\/\//.test(tuto)) || (chan && !/^https:\/\//.test(chan))){ toast('Les liens doivent commencer par https://', 'err'); return; }
+    db.doc('settings/app').set({ prix:p, prixSup:sup, periode:per, waveLink:link, waAdmin:w, tutoLink:tuto, channelLink:chan }, { merge:true }).then(()=>toast('Paramètres enregistrés.')).catch(err=>writeErr(err, 'Les paramètres'));
+  }
+  else if(act==='send-verify'){ try{ await USER.sendEmailVerification(); toast('E-mail de confirmation envoyé. Pensez à regarder dans les spams.'); }catch(err){ toast(authMsg(err), 'err'); } }
+  else if(act==='check-verify'){
+    try{ await USER.reload(); const u = auth.currentUser; await u.getIdToken(true);
+      if(u.emailVerified){ ADMIN_READY = true; listenAll(); toast('Adresse confirmée. Console activée.'); render(); }
+      else toast("L'adresse n'est pas encore confirmée. Touchez le lien reçu par e-mail.", 'err');
+    }catch(err){ toast(authMsg(err), 'err'); }
+  }
+});
+document.addEventListener('input', e=>{
+  if(e.target.matches('#modal .cnt-in')){ if(e.target.dataset.k==='lv' || e.target.dataset.k==='x') formatAmount(e.target); updateEspCounter(); return; }
+  if(e.target.matches('#cred-box [data-cf]')){
+    const r = e.target.closest('[data-ci]'), i = Number(r.dataset.ci), f = e.target.dataset.cf;
+    if(f==='m') formatAmount(e.target);
+    if(CUR_CRED && CUR_CRED[i]) CUR_CRED[i][f] = f==='m' ? num(e.target.value) : e.target.value;
+    syncCredTotal();
+  }
+  if(e.target.id==='in-espece' && CUR_ESP && amountOf(e.target.value)!==espTotal(CUR_ESP)){ CUR_ESP = null; const d = $('#esp-detail'); if(d) d.textContent = ''; }
+  if(e.target.matches('input.amount')) formatAmount(e.target);
+  if(e.target.matches('.code-in')) e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'');
+  if(e.target.closest('#point-form')) onFormInput();
+});
+document.addEventListener('focusout', e=>{
+  if(e.target.matches && e.target.matches('input.amount') && hasCalc(e.target.value)){ const r = evalAmount(e.target.value); if(r!=null){ e.target.value = nfs(r); if(e.target.closest('#point-form')) onFormInput(); } }
+});
+document.addEventListener('change', e=>{
+  if(e.target.id==='f-date'){ let v = e.target.value; if(!v) return; if(v > localDate()) v = localDate(); if(!isPatron() && v < yesterday()) v = yesterday(); FORM.date = v; FORM.editing = false; render(); }
+  if(e.target.id==='import-file') importData(e.target);
+});
+
+if('serviceWorker' in navigator && location.protocol==='https:') navigator.serviceWorker.register('sw.js').catch(()=>{});
+boot();
+</script>
+</body>
+</html>
