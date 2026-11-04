@@ -1,6 +1,6 @@
 // Service worker d'Odi's Agence : permet l'installation et l'ouverture sans réseau.
 // Changez VERSION à chaque mise à jour pour renouveler le cache.
-const VERSION = 'odis-v25';
+const VERSION = 'odis-v26';
 const SHELL = ['./', './index.html', './config.js', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png', './logos/om.png', './logos/wave.png', './logos/mtn.png', './logos/moov.png', './logos/tresor.png', './logos/djamo.png', './logos/push.png', './logos/wu.png', './logos/mg.png', './logos/nita.png', './logos/ria.png', './logos/touchpoint.png', './logos/paymetrust.png', './logos/dunya.png', './logos/feexpay.png', './logos/cinetpay.png', './logos/julaya.png', './logos/peya.png', './logos/syca.png'];
 
 // Installation tolérante : un fichier manquant (un logo par exemple) n'empêche pas l'installation.

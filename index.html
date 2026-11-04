@@ -59,6 +59,8 @@ button{cursor:pointer}
 .g-form{display:grid;gap:12px;margin-top:14px}
 .g-links{display:grid;gap:8px;margin-top:18px;justify-items:center;text-align:center}
 .g-err{color:var(--red);font-weight:600;font-size:14px;min-height:20px}
+.g-legal{font-size:12.5px;color:var(--muted, #64748B);text-align:center;margin:8px 0 0;line-height:1.4}
+.g-legal a{color:inherit;text-decoration:underline}
 .g-ok{color:var(--green);font-weight:600;font-size:14px}
 .field{display:grid;gap:6px;min-width:0}
 .field label{font-weight:700;font-size:14px;color:var(--title)}
@@ -843,6 +845,7 @@ function renderGate(){
       <button class="link" data-gate="create">Créer mon agence (${Number(CFG.essai)||7} jours d'essai gratuit)</button>
       <button class="link" data-gate="join">Je suis gérant(e) : rejoindre une agence</button>
       <button class="link" data-gate="reset">Mot de passe oublié</button>
+      <a class="link" href="https://odiservicedigital.com/confidentialite.html" target="_blank" rel="noopener">Politique de confidentialité</a>
     </div>`);
   else if(GATE==='create') showGate(`
     <h2 class="g-title">Créer mon agence</h2>
@@ -859,6 +862,7 @@ function renderGate(){
       <div class="field"><label for="c-parrain">Code de parrainage <span class="muted">(facultatif)</span></label><input class="txt" id="c-parrain" maxlength="12" autocapitalize="characters" placeholder="AG-XXXXXX" value="${esc(parrainParam())}"><small>Si une agence vous a recommandé l'app, tapez son code.</small></div>
       <p class="g-err" id="g-err" role="alert"></p>
       <button class="btn primary block" type="submit" id="c-btn">Créer l'agence</button>
+      <p class="g-legal">En créant un compte, vous acceptez la <a href="https://odiservicedigital.com/confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a>.</p>
     </form>
     <div class="g-links"><button class="link" data-gate="login">J'ai déjà un compte</button></div>`);
   else if(GATE==='join') showGate(`
@@ -871,6 +875,7 @@ function renderGate(){
       <div class="field"><label for="j-pass">Mot de passe</label><input class="txt" id="j-pass" type="password" autocomplete="new-password" required><small>8 caractères minimum.</small></div>
       <p class="g-err" id="g-err" role="alert"></p>
       <button class="btn primary block" type="submit" id="j-btn">Rejoindre l'agence</button>
+      <p class="g-legal">En créant un compte, vous acceptez la <a href="https://odiservicedigital.com/confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a>.</p>
     </form>
     <div class="g-links"><button class="link" data-gate="login">J'ai déjà un compte</button></div>`);
   else if(GATE==='reset') showGate(`
@@ -904,6 +909,7 @@ function orphanForms(){
       <div class="field"><label for="oc-nom">Votre nom</label><input class="txt" id="oc-nom" maxlength="60" required></div>
       <div class="field"><label for="oc-parrain">Code de parrainage <span class="muted">(facultatif)</span></label><input class="txt" id="oc-parrain" maxlength="12" autocapitalize="characters" placeholder="AG-XXXXXX" value="${esc(parrainParam())}"></div>
       <button class="btn primary block" type="submit" id="oc-btn">Créer l'agence</button>
+      <p class="g-legal">En créant un compte, vous acceptez la <a href="https://odiservicedigital.com/confidentialite.html" target="_blank" rel="noopener">politique de confidentialité</a>.</p>
     </form>
     <form class="g-form" id="f-o-join" novalidate>
       <h3 class="sub">Ou rejoindre une agence</h3>
@@ -1868,7 +1874,7 @@ function renderAbonnement(m){
 
 /* ═════════ Nouveautés (affichées une fois après chaque mise à jour) ═════════ */
 const APP_VERSION = '2.4';
-const SW_VERSION = 'odis-v25';
+const SW_VERSION = 'odis-v26';
 const NEWS = [
   `Nouveaux prix pour tous : ${fmt(prix())} par mois pour le point de vente principal, ${fmt(prixSup())} par point de vente ajouté.`,
   `L'essai gratuit passe à ${Number(CFG.essai)||7} jours pour les nouvelles agences.`,
