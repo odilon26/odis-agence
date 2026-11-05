@@ -19,6 +19,7 @@ window.ODIS_CONFIG = {
 
   // Valeurs par défaut de l'abonnement (modifiables ensuite dans la Console de l'app)
   waveLink: "https://pay.wave.com/m/M_ci_w8OF1owScWak/c/ci/?amount=2000",
+  omLink: "https://multi.app.orange-money.com/app/v1/kapptivate/qrcode/odyssee/?id=codgen1-9442f147e10b4911882b8a608f9117ad&v=1&amount=2000",
   prix: 2000,
   prixSup: 1000,
   periode: 30,

@@ -108,6 +108,7 @@ main{max-width:1100px;margin:0 auto;padding:28px 20px 96px}
 .btn.danger:hover{background:var(--red-l)}
 .btn.wa{background:#1FA855;border-color:#1FA855;color:#fff}
 .btn.wave{background:var(--wave);border-color:var(--wave);color:var(--wave-ink)}
+.btn.om{background:#FF7900;border-color:#FF7900;color:#fff}
 .btn.block{width:100%;padding:13px 18px;font-size:15px}
 .btn.sm{padding:6px 12px;font-size:13px}
 .btn[disabled]{opacity:.45;cursor:not-allowed}
@@ -732,6 +733,8 @@ function myPrix(){ return priceOf(AGENCE); }
 function waveLinkFor(amount){ const l = waveLink(); if(!l) return ''; return /([?&])amount=\d+/.test(l) ? l.replace(/([?&])amount=\d+/, '$1amount='+amount) : l + (l.includes('?')?'&':'?') + 'amount=' + amount; }
 function periode(){ return Number(SETTINGS.periode) || Number(CFG.periode) || 30; }
 function waveLink(){ return SETTINGS.waveLink || CFG.waveLink || ''; }
+function omLink(){ return SETTINGS.omLink || CFG.omLink || ''; }
+function omLinkFor(amount){ const l = omLink(); if(!l) return ''; return /([?&])amount=\d+/.test(l) ? l.replace(/([?&])amount=\d+/,'$1amount='+amount) : l + (l.includes('?')?'&':'?') + 'amount=' + amount; }
 function waAdmin(){ return waDigits(SETTINGS.waAdmin || ''); }
 
 /* ═════════ Abonnement ═════════ */
@@ -849,7 +852,7 @@ function renderGate(){
     </div>`);
   else if(GATE==='create') showGate(`
     <h2 class="g-title">Créer mon agence</h2>
-    <p class="muted small" style="margin-top:4px">Vous serez le patron ou la patronne de l'agence. ${Number(CFG.essai)||7} jours d'essai offerts, puis ${fmt(prix())} par mois via Wave.</p>
+    <p class="muted small" style="margin-top:4px">Vous serez le patron ou la patronne de l'agence. ${Number(CFG.essai)||7} jours d'essai offerts, puis ${fmt(prix())} par mois via Wave ou Orange Money.</p>
     <form class="g-form" id="f-create" novalidate>
       <div class="field"><label for="c-agence">Nom de l'agence</label><input class="txt" id="c-agence" maxlength="60" autocomplete="organization" required></div>
       <div class="split2">
@@ -1832,13 +1835,13 @@ function renderHist(m){
 
 /* ═════════ Abonnement ═════════ */
 function declareMsg(){
-  return `Bonjour, paiement de l'abonnement Odi's Agence effectué.\nAgence : ${AGENCE.nom} (${agCode(AGENCE.id)})\nVille : ${AGENCE.ville||'—'}\nMontant : ${fmt(myPrix())} par Wave${AGENCE.tarif?' (tarif PDV supplémentaire)':''}\nDéclaré par : ${PROFILE.nom||''}\nDate : ${fmtDateLong(localDate())}`;
+  return `Bonjour, paiement de l'abonnement Odi's Agence effectué.\nAgence : ${AGENCE.nom} (${agCode(AGENCE.id)})\nVille : ${AGENCE.ville||'—'}\nMontant : ${fmt(myPrix())} par Wave ou Orange Money${AGENCE.tarif?' (tarif PDV supplémentaire)':''}\nDéclaré par : ${PROFILE.nom||''}\nDate : ${fmtDateLong(localDate())}`;
 }
 function renderAbonnement(m){
-  const s = subStatus(AGENCE), dec = tsDate(AGENCE.declared), link = waveLinkFor(myPrix()), adm = waAdmin();
+  const s = subStatus(AGENCE), dec = tsDate(AGENCE.declared), link = waveLinkFor(myPrix()), olink = omLinkFor(myPrix()), adm = waAdmin();
   const pct = s.left > 0 ? Math.min(100, Math.max(4, s.left/periode()*100)) : 0;
   const daysHTML = s.left > 0 ? `<b>${s.left}</b><span class="muted">jour${s.left>1?'s':''} restant${s.left>1?'s':''}</span>` : `<b>${Math.abs(s.left)}</b><span class="muted">jour${Math.abs(s.left)>1?'s':''} de retard</span>`;
-  m.innerHTML = `<header class="view-head"><h1>Abonnement</h1><p>${fmt(myPrix())} pour ${periode()} jours, payés par Wave. Code de l'agence : <b>${agCode(AGENCE.id)}</b>.</p></header>
+  m.innerHTML = `<header class="view-head"><h1>Abonnement</h1><p>${fmt(myPrix())} pour ${periode()} jours, payés par Wave ou Orange Money. Code de l'agence : <b>${agCode(AGENCE.id)}</b>.</p></header>
   <div class="row2">
     <section class="sub-card ${s.k}">
       <span class="pill ${s.k}"><i></i>${s.label}</span>
@@ -1846,20 +1849,22 @@ function renderAbonnement(m){
       <div class="meter" aria-hidden="true"><span style="width:${pct}%"></span></div>
       <p style="margin-top:12px">${s.text}</p>
       <div class="actions" style="margin-top:16px">
-        ${link ? `<a class="btn wave" href="${esc(link)}" target="_blank" rel="noopener">Payer ${fmt(myPrix())} avec Wave</a>` : `<span class="muted small">Lien de paiement non configuré : contactez l'administrateur.</span>`}
+        ${link ? `<a class="btn wave" href="${esc(link)}" target="_blank" rel="noopener">Payer ${fmt(myPrix())} avec Wave</a>` : ''}
+        ${olink ? `<a class="btn om" href="${esc(olink)}" target="_blank" rel="noopener">Payer ${fmt(myPrix())} avec Orange Money</a>` : ''}
+        ${!link && !olink ? `<span class="muted small">Lien de paiement non configuré : contactez l'administrateur.</span>` : ''}
         <button class="btn primary" data-action="declare"${dec||AGENCE.blockDeclare?' disabled':''}>${dec?'Paiement déclaré':"J'ai payé"}</button>
       </div>
-      ${AGENCE.blockDeclare && !dec ? `<div class="notice bad" style="margin-top:14px;margin-bottom:0"><span>Votre dernière déclaration de paiement n'a pas été retrouvée dans Wave. Contactez l'administrateur pour régulariser.</span>${adm?`<a class="btn wa" href="https://wa.me/${adm}?text=${encodeURIComponent("Bonjour, ma déclaration de paiement Odi's Agence a été rejetée. Agence : "+AGENCE.nom+" ("+agCode(AGENCE.id)+").")}" target="_blank" rel="noopener">Contacter</a>`:''}</div>` : ''}
+      ${AGENCE.blockDeclare && !dec ? `<div class="notice bad" style="margin-top:14px;margin-bottom:0"><span>Votre dernière déclaration de paiement n'a pas été retrouvée (Wave ou Orange Money). Contactez l'administrateur pour régulariser.</span>${adm?`<a class="btn wa" href="https://wa.me/${adm}?text=${encodeURIComponent("Bonjour, ma déclaration de paiement Odi's Agence a été rejetée. Agence : "+AGENCE.nom+" ("+agCode(AGENCE.id)+").")}" target="_blank" rel="noopener">Contacter</a>`:''}</div>` : ''}
       ${dec ? `<div class="share"><h3>Prévenir l'administrateur</h3><p>Envoyez ce message pour qu'il vérifie et valide votre paiement.</p>
         <div class="msg" id="decl-msg">${esc(declareMsg())}</div>
         <div class="actions" style="margin-top:12px"><a class="btn wa" href="https://wa.me/${adm}?text=${encodeURIComponent(declareMsg())}" target="_blank" rel="noopener">Envoyer sur WhatsApp</a><button class="btn" data-action="copy-decl">Copier le message</button></div></div>`
-      : `<p class="small muted" style="margin-top:12px">Après le paiement dans Wave, revenez ici et touchez « J'ai payé ». L'app reste utilisable ${GRACE_DAYS} jours, le temps de la vérification.</p>`}
+      : `<p class="small muted" style="margin-top:12px">Après le paiement dans Wave ou Orange Money, revenez ici et touchez « J'ai payé ». L'app reste utilisable ${GRACE_DAYS} jours, le temps de la vérification.</p>`}
     </section>
     <section class="panel">
       <h2>Comment ça marche</h2>
       <ol class="plist">
-        <li><span><b>1.</b> Touchez « Payer avec Wave » : la somme est déjà remplie.</span></li>
-        <li><span><b>2.</b> Validez le paiement dans l'application Wave.</span></li>
+        <li><span><b>1.</b> Touchez « Payer avec Wave » ou « Payer avec Orange Money » : la somme est déjà remplie.</span></li>
+        <li><span><b>2.</b> Validez le paiement dans l'application choisie.</span></li>
         <li><span><b>3.</b> Revenez ici et touchez « J'ai payé », puis envoyez le message.</span></li>
         <li><span><b>4.</b> Après vérification, l'abonnement est prolongé de ${periode()} jours.</span></li>
       </ol>
@@ -1874,7 +1879,7 @@ function renderAbonnement(m){
 
 /* ═════════ Nouveautés (affichées une fois après chaque mise à jour) ═════════ */
 const APP_VERSION = '2.4';
-const SW_VERSION = 'odis-v26';
+const SW_VERSION = 'odis-v27';
 const NEWS = [
   `Nouveaux prix pour tous : ${fmt(prix())} par mois pour le point de vente principal, ${fmt(prixSup())} par point de vente ajouté.`,
   `L'essai gratuit passe à ${Number(CFG.essai)||7} jours pour les nouvelles agences.`,
@@ -1912,7 +1917,7 @@ function renderAide(m){
     ["Le gérant ou la gérante a oublié son mot de passe", `Sur l'écran de connexion, « Mot de passe oublié » envoie un lien à son adresse e-mail. S'il ou elle n'a plus accès à cette adresse : le patron ou la patronne le ou la retire dans Réglages, Équipe, puis crée un nouveau code. Elle recrée son compte avec une autre adresse e-mail. Ses anciens points restent dans l'agence.`],
     ["Une saisie a été modifiée : comment le voir ?", `Le point affiche « Modifiée N fois ». Touchez « Voir les anciennes versions » : chaque version est gardée avec l'heure et le nom de la personne. Personne ne peut effacer une ancienne version.`],
     ["Il n'y a pas de réseau, je perds mes saisies ?", `Non. Enregistrez normalement : le point est gardé sur le téléphone et part dès que le réseau revient. Le voyant en haut affiche « Envoi en attente », puis « Synchronisé ». Ne videz pas les données du navigateur entre-temps.`],
-    ["Comment payer l'abonnement ?", `Onglet Abonnement, puis « Payer avec Wave » : le montant est déjà rempli. Revenez ensuite toucher « J'ai payé » et envoyez le message. L'app reste utilisable ${GRACE_DAYS} jours le temps de la vérification, puis l'abonnement est prolongé de ${periode()} jours.`],
+    ["Comment payer l'abonnement ?", `Onglet Abonnement, puis « Payer avec Wave » ou « Payer avec Orange Money » : le montant est déjà rempli. Revenez ensuite toucher « J'ai payé » et envoyez le message. L'app reste utilisable ${GRACE_DAYS} jours le temps de la vérification, puis l'abonnement est prolongé de ${periode()} jours.`],
     ["Comment marche le parrainage ?", `Patron(ne) : onglet Abonnement, rubrique Parrainage. Partagez votre code (ou votre lien) avec une autre agence. Elle le tape en créant son agence. Quand elle paie son premier abonnement, votre abonnement est prolongé d'1 mois offert.`],
     ["Qui voit mes données ?", `Seuls les comptes de votre agence (patron(ne) et gérant(e)s) voient vos points. L'administrateur d'Odi's Agence voit le nom de l'agence, la ville, le téléphone et l'état de l'abonnement pour gérer les paiements. Les données sont stockées chez Google (Firebase), chiffrées pendant l'envoi et sur les serveurs. Pour tout supprimer, demandez-le via « Faire une suggestion ».`]
   ];
@@ -2065,7 +2070,7 @@ function renderConsole(m){
   const usable = rows.filter(r=>r.s.usable).length;
   const shown = rows.filter(r=> ADMIN_FILTER==='tous' || r.s.k===ADMIN_FILTER);
   const F = (k,l,n) => `<button data-action="filter" data-f="${k}" aria-pressed="${ADMIN_FILTER===k}">${l}${n!==undefined?` (${n})`:''}</button>`;
-  m.innerHTML = `<header class="view-head"><h1>Console</h1><p>Vérifiez les paiements dans Wave Business avant de valider. Valider ajoute ${periode()} jours à l'échéance, ou à aujourd'hui si elle est dépassée.</p></header>
+  m.innerHTML = `<header class="view-head"><h1>Console</h1><p>Vérifiez les paiements dans Wave Business ou Orange Money Business avant de valider. Valider ajoute ${periode()} jours à l'échéance, ou à aujourd'hui si elle est dépassée.</p></header>
   <div class="kpis">
     <div class="kpi"><small>Agences actives</small><b>${usable} / ${rows.length}</b></div>
     <div class="kpi"><small>Paiements à vérifier</small><b>${count('info')}</b></div>
@@ -2088,7 +2093,7 @@ function renderConsole(m){
   </section>
   <section class="panel set" style="margin-top:18px;max-width:760px"><h2>Paramètres de l'abonnement</h2>
     <p>S'appliquent à toutes les agences dès l'enregistrement.</p>
-    <div class="inline"><div class="field" style="flex:2"><label for="adm-link">Lien de paiement Wave</label><input id="adm-link" class="txt" value="${esc(waveLink())}"></div></div>
+    <div class="inline"><div class="field" style="flex:2"><label for="adm-link">Lien de paiement Wave</label><input id="adm-link" class="txt" value="${esc(waveLink())}"></div><div class="field" style="flex:2"><label for="adm-om">Lien de paiement Orange Money</label><input id="adm-om" class="txt" value="${esc(omLink())}"></div></div>
     <div class="inline">
       <div class="field"><label for="adm-prix">Prix 1er PDV (F)</label><input id="adm-prix" class="txt" inputmode="numeric" value="${prix()}"></div>
       <div class="field"><label for="adm-sup">Prix PDV supp. (F)</label><input id="adm-sup" class="txt" inputmode="numeric" value="${prixSup()}"></div>
@@ -2097,7 +2102,7 @@ function renderConsole(m){
       <div class="field"><label for="adm-chan">Lien chaîne WhatsApp</label><input id="adm-chan" class="txt" value="${esc(SETTINGS.channelLink||'')}" placeholder="https://whatsapp.com/channel/…"></div>
       <div class="field"><label for="adm-wa">Votre WhatsApp</label><input id="adm-wa" class="txt" inputmode="tel" value="${esc(SETTINGS.waAdmin||'')}" placeholder="2250700000000"></div>
     </div>
-    <p class="small muted" style="margin-top:8px">Le montant du lien Wave est ajusté automatiquement (paramètre amount) : le prix du premier point de vente ou celui des points supplémentaires.</p>
+    <p class="small muted" style="margin-top:8px">Le montant des liens Wave et Orange Money est ajusté automatiquement (paramètre amount) : le prix du premier point de vente ou celui des points supplémentaires.</p>
     <div class="inline"><button class="btn primary" data-action="save-settings">Enregistrer les paramètres</button></div>
   </section>
   ${suggestionsPanel()}`;
@@ -2112,7 +2117,7 @@ function remindAgency(id){
   const a = ALL_AG.find(x=>x.id===id); if(!a) return;
   let num = waDigits(a.waPatron || a.telephone || ''); if(num.length===10) num = '225' + num;
   const s = subStatus(a), amount = priceOf(a);
-  const msg = `Bonjour ${a.ownerNom||''}, ici Odi's Agence. ${s.k==='bad' ? `L'abonnement de ${a.nom} est arrivé à échéance : la saisie est suspendue, mais vos données sont conservées.` : `L'abonnement de ${a.nom} se termine dans ${s.left} jour${s.left>1?'s':''}.`}\nPour continuer : ${fmt(amount)} par Wave${waveLinkFor(amount)?` ici : ${waveLinkFor(amount)}`:''}\nPuis dans l'app : Abonnement, « J'ai payé ». Merci !`;
+  const msg = `Bonjour ${a.ownerNom||''}, ici Odi's Agence. ${s.k==='bad' ? `L'abonnement de ${a.nom} est arrivé à échéance : la saisie est suspendue, mais vos données sont conservées.` : `L'abonnement de ${a.nom} se termine dans ${s.left} jour${s.left>1?'s':''}.`}\nPour continuer : ${fmt(amount)} par Wave${waveLinkFor(amount)?` ici : ${waveLinkFor(amount)}`:''}${omLinkFor(amount)?`\nou par Orange Money ici : ${omLinkFor(amount)}`:''}\nPuis dans l'app : Abonnement, « J'ai payé ». Merci !`;
   window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
 }
 let SUGS = [], SUG_FILTER = 'nouveau';
@@ -2160,7 +2165,7 @@ async function validateAgency(id){
 }
 async function rejectAgency(id){
   const a = ALL_AG.find(x=>x.id===id); if(!a) return;
-  if(!confirm(`Rejeter le paiement déclaré par ${a.nom} ? À faire seulement si le paiement est introuvable dans Wave Business.`)) return;
+  if(!confirm(`Rejeter le paiement déclaré par ${a.nom} ? À faire seulement si le paiement est introuvable dans Wave Business et Orange Money Business.`)) return;
   try{ await db.doc('agences/'+id).update({ declared:null, blockDeclare:true }); toast(`Paiement de ${a.nom} rejeté. L'agence ne pourra pas redéclarer tant que vous ne l'aurez pas débloquée.`); }
   catch(e){ writeErr(e, 'Le rejet'); }
 }
@@ -2281,7 +2286,7 @@ document.addEventListener('click', async e=>{
     render();
   }
   else if(act==='declare'){
-    if(!confirm('Confirmez-vous avoir payé ' + fmt(myPrix()) + ' par Wave ?')) return;
+    if(!confirm('Confirmez-vous avoir payé ' + fmt(myPrix()) + ' par Wave ou Orange Money ?')) return;
     a.disabled = true;
     db.doc('agences/'+AID).update({ declared:FV.serverTimestamp() }).then(()=>toast("Paiement déclaré. Envoyez maintenant le message à l'administrateur.")).catch(err=>{ a.disabled = false; writeErr(err, 'La déclaration'); });
   }
@@ -2330,10 +2335,12 @@ document.addEventListener('click', async e=>{
     const p = num($('#adm-prix').value), per = num($('#adm-per').value), link = $('#adm-link').value.trim(), w = waDigits($('#adm-wa').value);
     if(p<=0 || per<=0){ toast('Le prix et la durée doivent être supérieurs à zéro.', 'err'); return; }
     if(link && !/^https:\/\//.test(link)){ toast('Le lien Wave doit commencer par https://', 'err'); return; }
+    const om = $('#adm-om').value.trim();
+    if(om && !/^https:\/\//.test(om)){ toast('Le lien Orange Money doit commencer par https://', 'err'); return; }
     const sup = num($('#adm-sup').value) || 2000;
     const tuto = $('#adm-tuto').value.trim(), chan = $('#adm-chan').value.trim();
     if((tuto && !/^https:\/\//.test(tuto)) || (chan && !/^https:\/\//.test(chan))){ toast('Les liens doivent commencer par https://', 'err'); return; }
-    db.doc('settings/app').set({ prix:p, prixSup:sup, periode:per, waveLink:link, waAdmin:w, tutoLink:tuto, channelLink:chan }, { merge:true }).then(()=>toast('Paramètres enregistrés.')).catch(err=>writeErr(err, 'Les paramètres'));
+    db.doc('settings/app').set({ prix:p, prixSup:sup, periode:per, waveLink:link, omLink:om, waAdmin:w, tutoLink:tuto, channelLink:chan }, { merge:true }).then(()=>toast('Paramètres enregistrés.')).catch(err=>writeErr(err, 'Les paramètres'));
   }
   else if(act==='send-verify'){ try{ await USER.sendEmailVerification(); toast('E-mail de confirmation envoyé. Pensez à regarder dans les spams.'); }catch(err){ toast(authMsg(err), 'err'); } }
   else if(act==='check-verify'){
