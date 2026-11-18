@@ -1958,7 +1958,7 @@ function renderAbonnement(m){
 
 /* ═════════ Nouveautés (affichées une fois après chaque mise à jour) ═════════ */
 const APP_VERSION = '2.4';
-const SW_VERSION = 'odis-v28';
+const SW_VERSION = 'odis-v29';
 const NEWS = [
   `Nouveaux prix pour tous : ${fmt(prix())} par mois pour le point de vente principal, ${fmt(prixSup())} par point de vente ajouté.`,
   `L'essai gratuit passe à ${Number(CFG.essai)||7} jours pour les nouvelles agences.`,
@@ -2256,7 +2256,8 @@ function telemPanel(){
   TELEM_SUM = `Odi's Agence, dernières 24 h : ${S.err24.length} erreur${S.err24.length>1?'s':''}${S.err24.length?` (${n24} différente${n24>1?'s':''})`:''}, ${S.slow24.length} chargement${S.slow24.length>1?'s':''} lent${S.slow24.length>1?'s':''}.`
     + `\nNouvelles agences depuis le ${fmtDay(S.start)} : ` + S.steps.map(([l,n,d], i)=>i ? `${l.toLowerCase()} ${n}/${d}` : `${n} inscription${n>1?'s':''}`).join(', ') + '.'
     + (S.drop ? `\nPlus gros décrochage : ${S.drop.from.toLowerCase()} → ${S.drop.to.toLowerCase()}.` : '')
-    + (S.errG[0] ? `\nErreur la plus fréquente (7 j) : « ${S.errG[0].m.slice(0,90)} » (${S.errG[0].n} fois).` : '');
+    + (S.errG[0] ? `\nErreur la plus fréquente (7 j) : « ${S.errG[0].m.slice(0,90)} » (${S.errG[0].n} fois).` : '')
+    + '\n' + sugSummary();
   return head + `<p class="small muted">Mis à jour à ${fmtTime(TELEM_DATA.at)}. Les montants et numéros ne sont jamais envoyés.</p>
   <div class="kpis">
     <div class="kpi"><small>Erreurs (24 h)</small><b>${S.err24.length}</b></div>
@@ -2295,6 +2296,14 @@ function remindAgency(id){
   window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
 }
 let SUGS = [], SUG_FILTER = 'nouveau';
+// Les suggestions arrivent aussi des autres applis (Planning, Carnet, Archivage) avec le champ « app ».
+const SUG_APPS = { agence:"Odi's Agence", planning:"Odi's Planning", carnet:"Odi's Carnet", archivage:"Odi's Archivage" };
+function sugSummary(){
+  const d = SUGS.filter(x=>{ const t = tsDate(x.at); return t && Date.now() - t < DAY; });
+  if(!d.length) return 'Suggestions (24 h) : aucune.';
+  const by = {}; d.forEach(x=>{ const a = SUG_APPS[x.app||'agence'] || x.app; by[a] = (by[a]||0) + 1; });
+  return `Suggestions (24 h) : ${d.length} (` + Object.entries(by).map(([a,n])=>`${a} ${n}`).join(', ') + `), ${SUGS.filter(x=>(x.status||'nouveau')==='nouveau').length} nouvelle(s) à lire.`;
+}
 function listenSuggestions(){
   if(LISTEN.sugs || !ADMIN_READY) return;
   LISTEN.sugs = db.collection('suggestions').onSnapshot(snap=>{
@@ -2308,7 +2317,7 @@ function suggestionsPanel(){
   const ST = { nouveau:'Nouveau', afaire:'À faire', fait:'Fait', refuse:'Refusé' };
   return `<section class="panel" style="margin-top:18px"><h2>Suggestions des utilisateurs</h2>
     <div class="filters">${F('nouveau','Nouvelles',n('nouveau'))}${F('afaire','À faire',n('afaire'))}${F('fait','Faites',n('fait'))}${F('refuse','Refusées',n('refuse'))}${F('tous','Toutes',SUGS.length)}</div>
-    <ul class="plist sugs">${L.length ? L.map(x=>`<li><span class="sg-h"><b>${x.type==='Problème'?'⚠️':(x.type==='Question'?'❓':'💡')} ${esc(x.type||'')}</b> · ${esc(x.agence||'—')} · ${esc(x.nom||'')} <span class="muted">${tsDate(x.at)?fmtDay(tsDate(x.at)):''}</span></span>
+    <ul class="plist sugs">${L.length ? L.map(x=>`<li><span class="sg-h"><b>${x.type==='Problème'?'⚠️':(x.type==='Question'?'❓':'💡')} ${esc(x.type||'')}</b> · <span class="pill ok">${esc(SUG_APPS[x.app||'agence']||x.app)}</span> · ${x.app && x.app!=='agence' ? esc(x.qui||'—') : `${esc(x.agence||'—')} · ${esc(x.nom||'')}`} <span class="muted">${tsDate(x.at)?fmtDay(tsDate(x.at)):''}</span></span>
       <span class="sg-m">${esc(x.msg||'')}</span>
       <span class="tdact">${Object.entries(ST).filter(([k])=>k!==(x.status||'nouveau')).map(([k,l])=>`<button class="btn sm" data-action="sug-status" data-id="${x.id}" data-s="${k}">${l}</button>`).join('')}</span></li>`).join('') : '<li class="muted">Aucune suggestion dans cette catégorie.</li>'}</ul>
   </section>`;
