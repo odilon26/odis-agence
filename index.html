@@ -296,6 +296,10 @@ table.cmp{width:100%;border-collapse:collapse;font-size:14px;min-width:460px}
 .set.danger{border-color:var(--red-b)}
 .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
 .kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.funnel li{display:grid;grid-template-columns:130px 1fr 130px;gap:10px;align-items:center}
+.fn-bar{height:12px;border-radius:6px;background:var(--line);overflow:hidden}.fn-bar i{display:block;height:100%;background:var(--lagoon);border-radius:6px}
+.fn-n{text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:560px){.funnel li{grid-template-columns:1fr 90px}.fn-bar{grid-column:1/-1;grid-row:2}}
 .kpi small{display:block;font-size:12.5px;font-weight:700;color:var(--muted)}
 .kpi b{display:block;font-size:24px;font-weight:800;color:var(--title);margin-top:2px}
 table.adm{width:100%;border-collapse:collapse;min-width:720px;font-size:14px}
@@ -709,6 +713,75 @@ async function copyText(t){
 
 /* ═════════ État ═════════ */
 let auth = null, db = null, FV = null, TS = null;
+
+/* ═════════ Suivi des erreurs et des étapes clés (maison, gratuit, dans Firestore) ═════════
+   Erreurs : collection « erreurs » (écriture seule, lue par l'administrateur). Ni montant ni numéro :
+   les suites de chiffres du message sont masquées, aucun solde n'est envoyé. 8 rapports au plus par session,
+   une même erreur une seule fois par jour et par téléphone.
+   Étapes : collection « evt » ; une étape unique a pour identifiant agence_étape (pas de doublon possible). */
+const TELEM_START = '2026-11-18';   // début du suivi : le parcours ne compte que les agences créées depuis
+const TELEM = { sent:0, seen:new Set(), queue:[], slowDone:false, gateShown:false };
+function telemNet(){ try{ const c = navigator.connection; return c ? (String(c.effectiveType||'') + (c.downlink ? ' ' + c.downlink + ' Mb/s' : '')).slice(0,30) : ''; }catch(_){ return ''; } }
+function telemMask(s){ return String(s||'').replace(/\d[\d\s.,]{2,}\d/g, '#'); }
+function telemHash(s){ let h = 5381; for(let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return (h >>> 0).toString(36); }
+function telemVer(){ try{ return APP_VERSION + ' ' + SW_VERSION; }catch(_){ return '?'; } }
+function reportError(src, msg, stack){
+  try{
+    const m = telemMask(msg).trim().slice(0,300);
+    if(!m || m === 'Script error.' || TELEM.sent >= 8) return;
+    const key = src + '|' + m + '|' + String(stack||'').split('\n').slice(0,2).join('|');
+    if(TELEM.seen.has(key)) return;
+    TELEM.seen.add(key);
+    const day = new Date().toISOString().slice(0,10), h = telemHash(key);
+    let mem = lsGet('odis_err_sent', null); if(!mem || mem.day !== day) mem = { day, h:[] };
+    if(mem.h.includes(h)) return;
+    mem.h = mem.h.concat(h).slice(-50); lsSet('odis_err_sent', mem);
+    TELEM.sent++;
+    let page = ''; try{ page = String(USER ? VIEW : 'accueil:' + GATE).slice(0,40); }catch(_){}
+    let aid = ''; try{ aid = String(AID||'').slice(0,40); }catch(_){}
+    const doc = { src, m, s:String(stack||'').slice(0,1500), p:page, v:telemVer().slice(0,30), ua:String(navigator.userAgent||'').slice(0,200), net:telemNet(), aid };
+    if(db && FV) telemSend(doc); else if(TELEM.queue.length < 5) TELEM.queue.push(doc);
+  }catch(_){}
+}
+function telemSend(doc){ try{ db.collection('erreurs').add({ ...doc, at:FV.serverTimestamp() }).catch(()=>{}); }catch(_){} }
+function telemFlush(){ while(db && FV && TELEM.queue.length) telemSend(TELEM.queue.shift()); }
+function reportApi(where, e){
+  const c = String((e && e.code) || '');
+  // Erreurs de saisie de l'utilisateur (mot de passe, e-mail…) ou simple absence de réseau : ce ne sont pas des pannes.
+  if(/wrong-password|invalid-credential|user-not-found|email-already-in-use|weak-password|invalid-email|missing-password|too-many-requests|network-request-failed|popup-closed/.test(c)) return;
+  reportError('api', where + ' : ' + c + ' ' + String((e && e.message) || e || ''), e && e.stack);
+}
+window.addEventListener('error', e=>{ if(e && e.message) reportError('js', e.message, (e.error && e.error.stack) || ((e.filename||'') + ':' + (e.lineno||'') + ':' + (e.colno||''))); });
+window.addEventListener('unhandledrejection', e=>{ const r = e && e.reason; reportError('promesse', (r && ((r.code ? r.code + ' ' : '') + (r.message || ''))) || String(r), r && r.stack); });
+// Étape unique d'une agence (inscription, essai, première opération, retour J+1, retour J+7)
+function trackOnce(e, aid){
+  aid = aid || AID; if(!db || !FV || !aid) return;
+  const id = aid + '_' + e, flag = 'odis_evt_' + id;
+  if(lsGet(flag, false)) return;
+  db.doc('evt/' + id).set({ e, aid, at:FV.serverTimestamp(), v:telemVer().slice(0,30) })
+    .then(()=>lsSet(flag, true))
+    .catch(err=>{ if(String(err && err.code).includes('permission-denied')) lsSet(flag, true); });   // déjà enregistrée
+}
+// Étape répétable (paiement déclaré, chargement lent)
+function track(e, extra){
+  if(!db || !FV) return;
+  try{ db.collection('evt').add({ e, aid:String(AID||'').slice(0,40), at:FV.serverTimestamp(), v:telemVer().slice(0,30), ...(extra||{}) }).catch(()=>{}); }catch(_){}
+}
+// À chaque ouverture : retour à J+1 / J+7 (agences créées depuis le début du suivi) et chargement lent (> 3 s).
+function telemOnOpen(){
+  try{
+    if(!TELEM.slowDone){
+      TELEM.slowDone = true;
+      const ms = Math.round(performance.now());
+      if(!TELEM.gateShown && ms > 3000) track('lent', { ms:Math.min(ms, 599999), net:telemNet() });
+    }
+    const c = AGENCE && tsDate(AGENCE.createdAt);
+    if(!c || c < new Date(TELEM_START + 'T00:00:00')) return;
+    const days = Math.floor((Date.now() - c) / DAY);
+    if(days >= 1) trackOnce('retour_j1');
+    if(days >= 7) trackOnce('retour_j7');
+  }catch(_){}
+}
 let USER = null, PROFILE = null, PROFILE_LOADED = false, AID = null, AGENCE = null, SETTINGS = {};
 let POINTS = [], PAIEMENTS = [], TEAM = [], ALL_AG = [], ADMIN_FILTER = 'tous';
 let IS_ADMIN = false, ADMIN_READY = false;
@@ -836,6 +909,7 @@ function gateOk(msg){ const e = $('#g-err'); if(e){ e.className = 'g-ok'; e.text
 function setBusy(btn, busy, label){ if(!btn) return; btn.disabled = busy; if(label) btn.textContent = busy ? 'Patientez…' : label; }
 
 function renderGate(){
+  TELEM.gateShown = true;
   if(GATE==='login') showGate(`
     <h2 class="g-title">Connexion</h2>
     <form class="g-form" id="f-login" novalidate>
@@ -925,7 +999,7 @@ function orphanForms(){
     <p class="g-err" id="g-err" role="alert"></p>`;
 }
 
-function authMsg(e){ const m = authMsgBase(e), c = (e && e.code) || ''; try{ console.error("Odi's Agence :", e); }catch(_){} return c && !m.includes('code :') ? m + ' (code : ' + c + ')' : m; }
+function authMsg(e){ reportApi('compte', e); const m = authMsgBase(e), c = (e && e.code) || ''; try{ console.error("Odi's Agence :", e); }catch(_){} return c && !m.includes('code :') ? m + ' (code : ' + c + ')' : m; }
 function authMsgBase(e){
   const c = (e && e.code) || '';
   if(c.includes('email-already-in-use')) return 'Cette adresse e-mail a déjà un compte. Connectez-vous à la place.';
@@ -976,9 +1050,10 @@ function parrainCard(){
 function trialKey(tel){ const d = waDigits(tel); return d.length > 10 ? d.slice(-10) : d; }
 let NO_TRIAL = false;
 async function createAgency(uid, d){
-  const ref = db.collection('agences').doc(), key = trialKey(d.tel);
+  let ref = db.collection('agences').doc(); const key = trialKey(d.tel);
   try{ NO_TRIAL = false; await writeAgency(uid, d, ref, key, false); }
-  catch(e){ if(!String(e && e.code).includes('permission-denied')) throw e; NO_TRIAL = true; await writeAgency(uid, d, db.collection('agences').doc(), key, true); }
+  catch(e){ if(!String(e && e.code).includes('permission-denied')) throw e; NO_TRIAL = true; ref = db.collection('agences').doc(); await writeAgency(uid, d, ref, key, true); }
+  trackOnce('inscription', ref.id); if(!NO_TRIAL) trackOnce('essai', ref.id);
 }
 async function writeAgency(uid, d, ref, key, used){
   const exp = used ? new Date(Date.now() - DAY) : new Date(Date.now() + (Number(CFG.essai)||7)*DAY);
@@ -1097,7 +1172,7 @@ function useApp(name){
   IS_ADMIN = false; ADMIN_READY = false; VIEW = 'bord'; closeMenu();
   const app = getApp(name);
   CUR_APP = name; lsSet('odis_active_app', name);
-  auth = app.auth(); db = app.firestore();
+  auth = app.auth(); db = app.firestore(); FV = firebase.firestore.FieldValue; telemFlush();
   if(!PERSIST_DONE[name]){ PERSIST_DONE[name] = true; try{ db.enablePersistence({ synchronizeTabs:true }).catch(()=>{}); }catch(_){} }
   showGate(`<div style="margin-top:24px"><div class="spin" style="border-color:var(--line);border-top-color:var(--lagoon)"></div></div>`);
   AUTH_UNSUB = auth.onAuthStateChanged(u=>{
@@ -1207,12 +1282,12 @@ function listenAgency(aid){
     OPS = opsFor(AGENCE);
     if(!AGENCE && PROFILE){ route(); return; }
     route();
-  }, ()=>{ route(); });
+  }, e=>{ reportApi('lecture agence', e); route(); });
   LISTEN.points = db.collection('agences/'+aid+'/points').onSnapshot({ includeMetadataChanges:true }, snap=>{
     POINTS = snap.docs.map(d=>d.data()).filter(p=>p && p.date && p.type && p.soldes);
     SYNC = snap.metadata.hasPendingWrites ? 'pending' : (snap.metadata.fromCache ? 'cache' : 'ok');
     updateSync(); scheduleRender();
-  }, e=>{ SYNC = 'cache'; updateSync(); });
+  }, e=>{ reportApi('lecture points', e); SYNC = 'cache'; updateSync(); });
   LISTEN.paiements = db.collection('agences/'+aid+'/paiements').onSnapshot(snap=>{
     PAIEMENTS = snap.docs.map(d=>({ id:d.id, ...d.data({ serverTimestamps:'estimate' }) })).sort((a,b)=>(tsDate(b.validatedAt)||0)-(tsDate(a.validatedAt)||0));
     scheduleRender();
@@ -1247,6 +1322,7 @@ function route(){
   if(!AGENCE && !['console','monagence'].includes(VIEW)) VIEW = IS_ADMIN ? 'console' : 'bord';
   if(AGENCE && VIEW==='monagence') VIEW = 'bord';
   render();
+  telemOnOpen();
   showNews();
 }
 function logout(){
@@ -1289,6 +1365,7 @@ document.addEventListener('focusout', ()=>{
 });
 function writeErr(e, what){
   const c = (e && e.code) || '';
+  if(!c.includes('unavailable')) reportApi(what, e);
   if(c.includes('permission-denied')) toast(`${what} a été refusé par le serveur : abonnement, date (aujourd'hui ou hier seulement) ou point modifié sur un autre téléphone. Votre saisie est gardée : rechargez l'app puis réessayez.`, 'err');
   else toast(`${what} n'a pas pu être envoyé. Il sera réessayé au retour du réseau.`, 'err');
 }
@@ -1679,7 +1756,8 @@ function savePoint(){
   const cl = cleanCred(CUR_CRED); if(cl.length){ p.credList = cl; p.credits = cl.reduce((a,c)=>a+c.m, 0); }
   const pid = `${date}_${type}`, dkey = type+'|'+date;
   const done = ()=>{ delete DRAFT[dkey]; lsSet(draftKey(), DRAFT); };
-  writePoint(p, existing, pid).then(done).catch(e=>{
+  const first = !existing && !POINTS.length;
+  writePoint(p, existing, pid).then(()=>{ done(); if(first) trackOnce('premiere_op'); }).catch(e=>{
     if(String((e && e.code)||'').includes('permission-denied')) return pointDenied(p, pid, done);
     writeErr(e, existing ? 'La modification' : 'Le point'); scheduleRender();
   });
@@ -1716,6 +1794,7 @@ async function pointDenied(p, pid, done){
   }
   toast('Le serveur a refusé le point. Recherche de la cause…', 'err');
   const fails = await diagnosePoint(p);
+  reportError('api', 'Point refusé : ' + (fails.map(f=>f[0]).join(', ') || 'cause inconnue'), '');
   showDenied(fails, p);
   scheduleRender();
 }
@@ -1879,7 +1958,7 @@ function renderAbonnement(m){
 
 /* ═════════ Nouveautés (affichées une fois après chaque mise à jour) ═════════ */
 const APP_VERSION = '2.4';
-const SW_VERSION = 'odis-v27';
+const SW_VERSION = 'odis-v28';
 const NEWS = [
   `Nouveaux prix pour tous : ${fmt(prix())} par mois pour le point de vente principal, ${fmt(prixSup())} par point de vente ajouté.`,
   `L'essai gratuit passe à ${Number(CFG.essai)||7} jours pour les nouvelles agences.`,
@@ -2105,8 +2184,103 @@ function renderConsole(m){
     <p class="small muted" style="margin-top:8px">Le montant des liens Wave et Orange Money est ajusté automatiquement (paramètre amount) : le prix du premier point de vente ou celui des points supplémentaires.</p>
     <div class="inline"><button class="btn primary" data-action="save-settings">Enregistrer les paramètres</button></div>
   </section>
+  ${telemPanel()}
   ${suggestionsPanel()}`;
   listenSuggestions(); loadPayCounts();
+}
+/* Tableau « Erreurs et rétention » de la Console : chargé à la demande (bouton) pour limiter les lectures */
+let TELEM_DATA = null, TELEM_LOADING = false, TELEM_SUM = '';
+async function loadTelem(){
+  if(TELEM_LOADING || !ADMIN_READY) return;
+  TELEM_LOADING = true; scheduleRender();
+  try{
+    const since = TS.fromDate(new Date(Date.now() - 7*DAY)), start = TS.fromDate(new Date(TELEM_START + 'T00:00:00'));
+    const [er, ev] = await Promise.all([
+      db.collection('erreurs').where('at', '>=', since).orderBy('at', 'desc').limit(500).get(),
+      db.collection('evt').where('at', '>=', start).limit(5000).get() ]);
+    TELEM_DATA = { at:new Date(), err:er.docs.map(d=>d.data({ serverTimestamps:'estimate' })), evt:ev.docs.map(d=>d.data({ serverTimestamps:'estimate' })) };
+  }catch(e){ TELEM_DATA = { fail:String((e && e.code) || e) }; }
+  TELEM_LOADING = false; scheduleRender();
+}
+function uaShort(ua){
+  ua = String(ua||'');
+  const m = ua.match(/Android [\d.]+; (?:[a-z]{2}-[a-z]{2}; )?([^;)]+?)(?: Build|\))/i);
+  if(m) return m[1].trim() === 'K' ? 'Android' : m[1].trim();
+  if(/iPhone/.test(ua)) return 'iPhone'; if(/iPad/.test(ua)) return 'iPad';
+  if(/Windows/.test(ua)) return 'PC Windows'; if(/Mac OS/.test(ua)) return 'Mac'; if(/Linux/.test(ua)) return 'Linux';
+  return 'Autre';
+}
+function telemStats(){
+  const D = TELEM_DATA, now = Date.now(), t = x => (tsDate(x.at) || new Date(0)).getTime();
+  const err24 = D.err.filter(x=>now - t(x) < DAY);
+  const groups = {};
+  D.err.forEach(x=>{ const k = x.src + '|' + x.m, g = groups[k] || (groups[k] = { src:x.src, m:x.m, n:0, n24:0, ua:new Set(), last:0 });
+    g.n++; if(now - t(x) < DAY) g.n24++; g.ua.add(uaShort(x.ua));
+    if(t(x) > g.last){ g.last = t(x); g.v = x.v; g.p = x.p; g.s = x.s; g.net = x.net; } });
+  const errG = Object.values(groups).sort((a,b)=>b.n - a.n || b.last - a.last);
+  const slow = D.evt.filter(x=>x.e==='lent' && now - t(x) < 7*DAY), slow24 = slow.filter(x=>now - t(x) < DAY);
+  const start = new Date(TELEM_START + 'T00:00:00');
+  const ags = ALL_AG.filter(a=>{ const c = tsDate(a.createdAt); return c && c >= start; });
+  const has = {}; D.evt.forEach(x=>{ (has[x.e] || (has[x.e] = new Set())).add(x.aid); });
+  const age = a => (now - tsDate(a.createdAt)) / DAY;
+  const cnt = (e, list) => list.filter(a=>has[e] && has[e].has(a.id)).length;
+  const el1 = ags.filter(a=>age(a) >= 1), el7 = ags.filter(a=>age(a) >= 7);
+  const steps = [
+    ['Inscription', ags.length, ags.length],
+    ['Essai gratuit', cnt('essai', ags), ags.length],
+    ['1re opération', cnt('premiere_op', ags), ags.length],
+    ['Retour à J+1', cnt('retour_j1', el1), el1.length],
+    ['Retour à J+7', cnt('retour_j7', el7), el7.length],
+    ['Abonnement payé', cnt('abonnement', ags), ags.length] ];
+  // Plus gros décrochage : la plus forte baisse de taux entre deux étapes qui se suivent
+  let drop = null;
+  for(let i = 1; i < steps.length; i++){
+    const a = steps[i-1], b = steps[i]; if(!a[2] || !b[2]) continue;
+    const d = a[1]/a[2] - b[1]/b[2]; if(d > 0 && (!drop || d > drop.d)) drop = { d, from:a[0], to:b[0] };
+  }
+  // Rétention par semaine d'inscription (semaine du lundi)
+  const weeks = {};
+  ags.forEach(a=>{ const c = tsDate(a.createdAt), m = new Date(c.getFullYear(), c.getMonth(), c.getDate() - ((c.getDay() + 6) % 7)), k = m.toISOString().slice(0,10);
+    (weeks[k] || (weeks[k] = { m, L:[] })).L.push(a); });
+  const cohorts = Object.keys(weeks).sort().reverse().map(k=>{ const L = weeks[k].L, e1 = L.filter(a=>age(a) >= 1), e7 = L.filter(a=>age(a) >= 7);
+    return { m:weeks[k].m, n:L.length, op:cnt('premiere_op', L), j1:[cnt('retour_j1', e1), e1.length], j7:[cnt('retour_j7', e7), e7.length], pay:cnt('abonnement', L) }; });
+  return { err24, errG, slow, slow24, steps, drop, cohorts, start };
+}
+const telemPct = (n, d) => d ? Math.round(100*n/d) + ' %' : '—';
+function telemPanel(){
+  const head = `<section class="panel" style="margin-top:18px"><h2>Erreurs et rétention</h2>`;
+  if(!TELEM_DATA || TELEM_DATA.fail) return head + `<p>Plantages et appels refusés des 7 derniers jours, chargements lents (plus de 3 s) et parcours des nouvelles agences depuis le ${fmtDay(new Date(TELEM_START + 'T00:00:00'))}. Chargé à la demande pour économiser les lectures.</p>
+    ${TELEM_DATA && TELEM_DATA.fail ? `<p class="small" style="color:var(--red)">Lecture impossible (${esc(TELEM_DATA.fail)}). Les règles Firestore v9 sont-elles publiées ?</p>` : ''}
+    <div class="actions"><button class="btn primary" data-action="telem-load" ${TELEM_LOADING?'disabled':''}>${TELEM_LOADING?'Chargement…':'Afficher'}</button></div></section>`;
+  const S = telemStats(), n24 = new Set(S.err24.map(x=>x.src + '|' + x.m)).size;
+  TELEM_SUM = `Odi's Agence, dernières 24 h : ${S.err24.length} erreur${S.err24.length>1?'s':''}${S.err24.length?` (${n24} différente${n24>1?'s':''})`:''}, ${S.slow24.length} chargement${S.slow24.length>1?'s':''} lent${S.slow24.length>1?'s':''}.`
+    + `\nNouvelles agences depuis le ${fmtDay(S.start)} : ` + S.steps.map(([l,n,d], i)=>i ? `${l.toLowerCase()} ${n}/${d}` : `${n} inscription${n>1?'s':''}`).join(', ') + '.'
+    + (S.drop ? `\nPlus gros décrochage : ${S.drop.from.toLowerCase()} → ${S.drop.to.toLowerCase()}.` : '')
+    + (S.errG[0] ? `\nErreur la plus fréquente (7 j) : « ${S.errG[0].m.slice(0,90)} » (${S.errG[0].n} fois).` : '');
+  return head + `<p class="small muted">Mis à jour à ${fmtTime(TELEM_DATA.at)}. Les montants et numéros ne sont jamais envoyés.</p>
+  <div class="kpis">
+    <div class="kpi"><small>Erreurs (24 h)</small><b>${S.err24.length}</b></div>
+    <div class="kpi"><small>Erreurs (7 j)</small><b>${TELEM_DATA.err.length}</b></div>
+    <div class="kpi"><small>Chargements lents (7 j)</small><b>${S.slow.length}</b></div>
+    <div class="kpi"><small>Nouvelles agences</small><b>${S.steps[0][1]}</b></div>
+  </div>
+  <h3>Parcours des nouvelles agences</h3>
+  <ul class="plist funnel">${S.steps.map(([l,n,d])=>`<li><span class="fn-l">${l}</span><span class="fn-bar"><i style="width:${d?Math.round(100*n/d):0}%"></i></span><span class="fn-n"><b>${n}</b> / ${d} · ${telemPct(n,d)}</span></li>`).join('')}</ul>
+  ${S.drop ? `<p class="small" style="margin-top:6px">Plus gros décrochage : <b>${S.drop.from} → ${S.drop.to}</b>.</p>` : ''}
+  <p class="small muted">J+1 et J+7 : parmi les agences inscrites depuis au moins 1 ou 7 jours, celles qui ont rouvert l'app après ce délai.</p>
+  <h3 style="margin-top:16px">Rétention par semaine d'inscription</h3>
+  <div class="tbl-wrap"><table class="adm"><thead><tr><th>Semaine du</th><th>Inscrites</th><th>1re opération</th><th>J+1</th><th>J+7</th><th>Payé</th></tr></thead><tbody>
+  ${S.cohorts.length ? S.cohorts.map(c=>`<tr><td>${fmtDay(c.m)}</td><td>${c.n}</td><td>${c.op} · ${telemPct(c.op,c.n)}</td><td>${c.j1[0]}/${c.j1[1]} · ${telemPct(c.j1[0],c.j1[1])}</td><td>${c.j7[0]}/${c.j7[1]} · ${telemPct(c.j7[0],c.j7[1])}</td><td>${c.pay} · ${telemPct(c.pay,c.n)}</td></tr>`).join('') : '<tr><td colspan="6" class="muted">Aucune agence inscrite depuis le début du suivi.</td></tr>'}
+  </tbody></table></div>
+  <h3 style="margin-top:16px">Erreurs des 7 derniers jours</h3>
+  <div class="tbl-wrap"><table class="adm"><thead><tr><th>Erreur</th><th>Fois</th><th>Téléphones</th><th>Dernière</th></tr></thead><tbody>
+  ${S.errG.length ? S.errG.slice(0,20).map(g=>`<tr><td><div class="name">${esc(g.m)}</div><div class="subl">${g.src==='api'?'Appel au serveur':(g.src==='promesse'?'Promesse rejetée':'Plantage JavaScript')} · page ${esc(g.p||'—')}</div>${g.s?`<details><summary class="subl">Pile d'appels</summary><pre class="small" style="white-space:pre-wrap;word-break:break-all">${esc(g.s)}</pre></details>`:''}</td>
+    <td>${g.n}${g.n24?`<div class="subl">${g.n24} en 24 h</div>`:''}</td><td>${esc([...g.ua].slice(0,4).join(', '))}</td><td>${fmtDay(new Date(g.last))} ${fmtTime(new Date(g.last))}<div class="subl">v${esc(g.v||'?')}${g.net?' · '+esc(g.net):''}</div></td></tr>`).join('') : '<tr><td colspan="4" class="muted">Aucune erreur. 👍</td></tr>'}
+  </tbody></table></div>
+  <h3 style="margin-top:16px">Résumé pour le rapport du soir</h3>
+  <pre class="small" id="telem-sum" style="white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px">${esc(TELEM_SUM)}</pre>
+  <div class="actions"><button class="btn primary" data-action="telem-copy">Copier le résumé</button><button class="btn" data-action="telem-load" ${TELEM_LOADING?'disabled':''}>${TELEM_LOADING?'Chargement…':'Actualiser'}</button></div>
+  </section>`;
 }
 function lastSeen(a){
   const t = tsDate(a.lastAt); if(!t) return `<div class="subl">Aucune saisie</div>`;
@@ -2151,6 +2325,7 @@ async function validateAgency(id){
     const b = db.batch();
     b.update(db.doc('agences/'+id), { exp:TS.fromDate(nexp), declared:null, blockDeclare:false });
     b.set(db.collection('agences/'+id+'/paiements').doc(), { montant:priceOf(a), periode:periode(), validatedAt:FV.serverTimestamp(), newExp:TS.fromDate(nexp), declaredAt:a.declared||null });
+    b.set(db.collection('evt').doc(), { e:'abonnement', aid:id, at:FV.serverTimestamp(), v:telemVer().slice(0,30) });
     const pr = a.parrainCode && !a.parrainPaid ? parrainOf(a) : null;
     let bonus = '';
     if(pr && confirm(`${a.nom} a été parrainée par ${pr.nom}. Offrir 1 mois gratuit (${periode()} jours) à ${pr.nom} ?`)){
@@ -2288,11 +2463,13 @@ document.addEventListener('click', async e=>{
   else if(act==='declare'){
     if(!confirm('Confirmez-vous avoir payé ' + fmt(myPrix()) + ' par Wave ou Orange Money ?')) return;
     a.disabled = true;
-    db.doc('agences/'+AID).update({ declared:FV.serverTimestamp() }).then(()=>toast("Paiement déclaré. Envoyez maintenant le message à l'administrateur.")).catch(err=>{ a.disabled = false; writeErr(err, 'La déclaration'); });
+    db.doc('agences/'+AID).update({ declared:FV.serverTimestamp() }).then(()=>{ track('paiement_declare'); toast("Paiement déclaré. Envoyez maintenant le message à l'administrateur."); }).catch(err=>{ a.disabled = false; writeErr(err, 'La déclaration'); });
   }
   else if(act==='copy-parrain') copyText(parrainMsg()).then(ok=>toast(ok?'Lien de parrainage copié.':'Copie impossible : utilisez le bouton WhatsApp.', ok?'':'err'));
   else if(act==='copy-decl') copyText(declareMsg()).then(ok=>toast(ok?'Message copié.':'Copie impossible : utilisez le bouton WhatsApp.', ok?'':'err'));
   else if(act==='save-ops') saveOps();
+  else if(act==='telem-load') loadTelem();
+  else if(act==='telem-copy') copyText(TELEM_SUM).then(ok=>toast(ok?'Résumé copié.':'Copie impossible.', ok?'':'err'));
   else if(act==='do-missed'){ FORM.date = yesterday(); FORM.editing = false; go('fermeture'); }
   else if(act==='save-budget'){
     const n = num($('#set-budget').value); if(n<=0){ toast('Saisissez un budget supérieur à zéro.', 'err'); return; }
